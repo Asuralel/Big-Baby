@@ -3,6 +3,12 @@ import {connect} from 'react-redux'
 import * as loginActions from './LoginAction'
 import SpinnerComponent from '../spinner/SpinnerComponent'
 
+
+//import DatePicker from 'antd/lib/date-picker';
+import { DatePicker,Rate,Button } from 'antd';
+//import 'antd/lib/date-picker/style/css';
+
+
 // @connect(
 //     state => ({
 //         loading: state.login.loading
@@ -39,6 +45,14 @@ class LoginComponent extends React.Component {
                     <li><input type="button" value="登录" onClick={this.loginHandler.bind(this)}/></li>
                     <li>{this.props.loading + ''}</li>
                 </ul>
+				<DatePicker />
+				<Rate />
+				<div>
+				    <Button type="primary">Primary</Button>
+				    <Button>Default</Button>
+				    <Button type="dashed">Dashed</Button>
+				    <Button type="danger">Danger</Button>
+				  </div>
                 <SpinnerComponent show={this.props.loading}/>
             </div>
         )
