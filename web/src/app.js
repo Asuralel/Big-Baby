@@ -2,7 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import {Provider} from 'react-redux'
 import {Router, hashHistory, browserHistory} from 'react-router'
-import routes from './router'
+import routes from './router';
+import 'antd/dist/antd.css';
 
 import createStore from './redux/configureStore'
 
