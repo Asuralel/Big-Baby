@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --progress --colors",
-    "start": "webpack-dev-server --devtool eval --progress --port 3002 --colors --content-base ./"
+    "start": "webpack-dev-server --devtool eval --progress --port 3005 --colors --content-base ./"
   },
   "author": "DK",
   "license": "ISC",
@@ -34,5 +34,9 @@
     "url-loader": "^0.5.8",
     "webpack": "^2.6.1",
     "webpack-dev-server": "^2.4.5"
+  },
+  "dependencies": {
+    "antd": "^2.13.9",
+    "babel-plugin-import": "^1.6.2"
   }
 }
