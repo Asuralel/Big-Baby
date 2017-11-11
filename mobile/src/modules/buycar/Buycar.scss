@@ -1,0 +1,9 @@
+// mainRed : #f46e65
+#app{height:100%;
+    &>div{height:100%;}
+}
+#buycar{display:flex;flex-direction:column;height:100%;
+    #bcheader{height:50px;}
+    #bcfooter{height:40px;}
+    #bcmain{flex:1;}
+}
