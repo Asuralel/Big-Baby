@@ -4,6 +4,7 @@ import {Provider} from 'react-redux'
 import {Router, hashHistory, browserHistory} from 'react-router'
 import routes from './router'
 
+import 'antd/dist/antd.css';
 import createStore from './redux/configureStore'
 
 const store = createStore(window.__INITIAL_STATE__, browserHistory)
