@@ -7,6 +7,8 @@ import BuycarComponent from './modules/buycar/BuycarComponent'
 import homeComponent from './modules/home/homeComponent'
 import myComponent from './modules/my/myComponent'
 import sortComponent from './modules/sort/sortComponent'
+import listComponent from './modules/list/listComponent'
+import detailsComponent from './modules/details/detailsComponent'
 
 
 export default (
@@ -16,6 +18,8 @@ export default (
         <Route path="home" component={homeComponent} />
         <Route path="my" component={myComponent} />
         <Route path="sort" component={sortComponent} />
+        <Route path="list" component={listComponent} />
+        <Route path="details" component={detailsComponent} />
 
     </Route>
 )
