@@ -4,9 +4,7 @@ import * as loginActions from './LoginAction'
 import SpinnerComponent from '../spinner/SpinnerComponent'
 
 
-//import DatePicker from 'antd/lib/date-picker';
-import { DatePicker,Rate,Button } from 'antd';
-//import 'antd/lib/date-picker/style/css';
+import { DatePicker,Rate,Button,Affix } from 'antd';
 
 
 // @connect(
@@ -54,6 +52,9 @@ class LoginComponent extends React.Component {
 				    <Button type="danger">Danger</Button>
 				  </div>
                 <SpinnerComponent show={this.props.loading}/>
+                <Affix offsetBottom={0}>
+                	
+                </Affix>
             </div>
         )
     }
