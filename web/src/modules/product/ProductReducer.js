@@ -1,4 +1,4 @@
-export default function TestReducer(state = {}, action){
+export default function ProductReducer(state = {}, action){
     var reState = JSON.parse(JSON.stringify(state));
     switch(action.type){
         case 'BeforeRequest':

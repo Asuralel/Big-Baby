@@ -1,15 +1,15 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import * as TestActions from './TestAction'
+import * as HomeAction from './HomeAction'
 import SpinnerComponent from '../spinner/SpinnerComponent';
 import {Router,Route,Link} from "react-router";
 
 import { Layout, Menu, Icon } from 'antd';
 const { Header, Sider, Content,Footer} = Layout;
 
-var TestComponent =  React.createClass({
+var HomeComponent =  React.createClass({
     componentDidMount:function(){
-      this.props.Init();
+      this.props.HomeInit();
     },
     getInitialState:function(){
         return{
@@ -25,7 +25,6 @@ var TestComponent =  React.createClass({
     render(){
         return(
             <Layout>
-              <SpinnerComponent show={this.props.loading}/>
                 <Sider
                   breakpoint="lg"
                   collapsedWidth="0"
@@ -43,11 +42,15 @@ var TestComponent =  React.createClass({
                     </Menu.Item>
                     <Menu.Item key="3">
                       <Icon type="upload" />
-                      <span className="nav-text">order</span>
+                      <span className="nav-text"><Link to="order">order</Link></span>
                     </Menu.Item>
                     <Menu.Item key="4">
                       <Icon type="user" />
-                      <span className="nav-text">nav 4</span>
+                      <span className="nav-text"><Link to="product">product</Link></span>
+                    </Menu.Item>
+                    <Menu.Item key="4">
+                      <Icon type="user" />
+                      <span className="nav-text"><Link to="user">user</Link></span>
                     </Menu.Item>
                   </Menu>
                 </Sider>
@@ -68,7 +71,8 @@ var TestComponent =  React.createClass({
 })
 
 const mapStateToProps = state => ({
-    loading: state.test.loading,
-    dataset:state.test.dataset
+    loading: state.home.loading,
+    dataset:state.home.dataset
 })
-export default connect(mapStateToProps, TestActions)(TestComponent)
+export default connect(mapStateToProps, HomeAction)(HomeComponent)
+ 
