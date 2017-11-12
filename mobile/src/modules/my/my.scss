@@ -14,13 +14,17 @@
         img{width: 100%;height:150px;}
         
         .loginBox{position:absolute;left:0;top:0;height:150px;background:rgba(0,0,0,.4);width:100%;
-            .loginStatus{position:absolute;left:35%;top:30px;width:40%;padding:10px;
+            .loginStatus{position:absolute;left:50%;top:15px;width:40%;padding:10px;
+                    transform:translateX(-50%);
                 h4{color:#fff;font-size:16px;}
                 }
-            .loginHead{position:absolute;left:-50%;top:0px;width:80px;height:80px ;border-radius:50%;background:red;}
-            p,span{position:absolute;left:35%;font-size:20px;color:#fff;}
-            p{top:40px;}
-            span{top:70px;left:34%; padding:5px 25px;background:#DA0000;border-radius:18px;
+            .loginHead{position:absolute;left:-50%;top:0px;width:80px;height:80px ;
+                border-radius:50%;background:red;overflow:hidden;
+                img{width:100%;height:100%;}
+            }
+            p,span{position:absolute;left:50%;font-size:20px;color:#fff;text-align:center;transform:translateX(-50%);}
+            p{top:40px;width: 100%;}
+            span{top:75px;padding:5px 25px;background:#DA0000;border-radius:18px;width:100%;
                 a{color:#fff;}
             }
         }
@@ -34,7 +38,7 @@
             overflow:hidden;
             div{width:25%;
                 float:left;
-                i{padding-left: 39px;}
+                i{text-align:center;display:block;}
                 p{text-align:center;}
             }
         }
@@ -44,7 +48,7 @@
             overflow:hidden;
             div{width:33.3%;
                 float:left;
-                i{padding-left: 54px;}
+                i{text-align:center;display:block;}
                 p{text-align:center;}
             }
         }

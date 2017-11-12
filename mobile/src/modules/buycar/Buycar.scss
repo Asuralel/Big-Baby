@@ -3,7 +3,10 @@
     &>div{height:100%;}
 }
 #buycar{display:flex;flex-direction:column;height:100%;
-    #bcheader{height:50px;}
+    #bcheader{height:50px;position:relative;line-height:50px;
+        i{position:absolute;}
+        h2{font-size:20px;text-align:center;}
+    }
     #bcfooter{height:40px;}
     #bcmain{flex:1;}
 }

@@ -11,7 +11,9 @@ class SpinnerComponent extends React.Component{
         if(this.props.loginShow){
             return (
                 <div className="loginStatus">
-                <div className="loginHead"></div>
+                    <div className="loginHead">
+                        <img src="/src/asset/setheader.jpg"/>
+                    </div>
                     <h4>laughing</h4>
                     <h4>18888888888</h4>
                 </div>
@@ -19,7 +21,7 @@ class SpinnerComponent extends React.Component{
         }else{
             return(
 
-                <div className="">
+                <div className="loginStatus">
                     <p>您还没登录哦！</p>
                     <span><Link to="/login">马上登录</Link></span>
                 </div>
@@ -28,4 +30,4 @@ class SpinnerComponent extends React.Component{
 
     }
 }
-export default SpinnerComponent
+export default SpinnerComponent 

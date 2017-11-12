@@ -6,7 +6,7 @@ class MyComponent extends React.Component{
     render(){
         console.log(666)
         return (
-            <div>
+            <div className="MyHomeBox">
                 {this.props.children}
             </div>
         )
