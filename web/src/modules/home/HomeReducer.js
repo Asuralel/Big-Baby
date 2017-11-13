@@ -10,6 +10,6 @@ export default function HomeReducer(state = {}, action){
         default:
             reState.loading = false;
     }
-    console.log(reState, action);
+    // console.log(reState, action);
     return reState ;
 }
