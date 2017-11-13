@@ -3,6 +3,8 @@ import {connect} from 'react-redux'
 import * as loginActions from './LoginAction'
 import SpinnerComponent from '../spinner/SpinnerComponent'
 
+
+import { Rate } from 'antd';
 // @connect(
 //     state => ({
 //         loading: state.login.loading
@@ -31,8 +33,7 @@ class LoginComponent extends React.Component {
     }
 
     render(){
-        return(
-            <div className="login">
+        return(<div className="login">
                 <ul>
                     <li><input type="text" ref="username"/></li>
                     <li><input type="text" ref="password"/></li>
@@ -40,7 +41,9 @@ class LoginComponent extends React.Component {
                     <li>{this.props.loading + ''}</li>
                 </ul>
                 <SpinnerComponent show={this.props.loading}/>
+                <Rate allowHalf defaultValue={2.5} />
             </div>
+            
         )
     }
 }

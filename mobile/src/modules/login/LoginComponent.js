@@ -3,6 +3,10 @@ import {connect} from 'react-redux'
 import * as loginActions from './LoginAction'
 import SpinnerComponent from '../spinner/SpinnerComponent'
 
+
+import { DatePicker,Rate,Button,Affix } from 'antd';
+
+
 // @connect(
 //     state => ({
 //         loading: state.login.loading
@@ -27,7 +31,7 @@ class LoginComponent extends React.Component {
         // }
         
         this.props.login(this.refs.username.value, this.refs.password.value)
-        console.log(this.props)
+        
     }
 
     render(){
@@ -39,7 +43,18 @@ class LoginComponent extends React.Component {
                     <li><input type="button" value="登录" onClick={this.loginHandler.bind(this)}/></li>
                     <li>{this.props.loading + ''}</li>
                 </ul>
+				<DatePicker />
+				<Rate />
+				<div>
+				    <Button type="primary">Primary</Button>
+				    <Button>Default</Button>
+				    <Button type="dashed">Dashed</Button>
+				    <Button type="danger">Danger</Button>
+				  </div>
                 <SpinnerComponent show={this.props.loading}/>
+                <Affix offsetBottom={0}>
+                	
+                </Affix>
             </div>
         )
     }
