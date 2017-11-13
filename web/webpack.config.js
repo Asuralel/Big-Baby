@@ -14,6 +14,9 @@ module.exports = {
             test: /\.css$/,
             exclude: '/node_modules/',
             loader: 'style-loader!css-loader?sourceMap'          
+        },{ 
+            test: /\.less$/, 
+            loader: "style-loader!css-loader!less-loader"
         },{
             test: /\.scss$/,
             exclude: /node_modules/,
