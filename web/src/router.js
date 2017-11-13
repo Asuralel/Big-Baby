@@ -11,7 +11,7 @@ import OrderComponent from "./modules/order/OrderComponent";
 
 export default (
     <Route path="/" component={AppComponent}>
-	    <Route path="/login" component={LoginComponent} />
+	    <IndexRoute path="/login" component={LoginComponent} />
     	<Route path="/home" component={HomeComponent}>
 	        <Route path="/product" component={ProductComponent} />
 	        <Route path="/user" component={UserComponent} />

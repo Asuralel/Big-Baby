@@ -73,10 +73,10 @@ export function ajaxMiddleware(middlewareAPI) {
             });
 
             if(url){
-                http[method](url).then(response => {console.log(response)
+                http[method](url).then(response => {
                     middlewareAPI.dispatch({
                         type: 'Requested',
-                        dataset: response
+                        dataset: JSON.parse(response)
                     });
                 })
             }
