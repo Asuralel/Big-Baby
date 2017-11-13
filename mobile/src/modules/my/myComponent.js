@@ -1,12 +1,15 @@
 import React from 'react'
-class myComponent extends React.Component {
+import {Route} from 'react-router'
+
+import MyHome from "./MyHome"
+class MyComponent extends React.Component{
     render(){
-        return(
-            <div className="my">
-                我的
+        console.log(666)
+        return (
+            <div className="MyHomeBox">
+                {this.props.children}
             </div>
         )
     }
-}
-
-export default myComponent
+} 
+export default MyComponent

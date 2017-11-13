@@ -1,0 +1,29 @@
+.ant-menu-item{
+	i{
+		font-size:20px;
+	}
+	span{
+		font-size:20px;
+	}
+}
+.logo{
+	h1{
+		color:#fff;
+	}
+}
+.ant-layout-header{
+	ul{
+		float:right;
+		margin-right:100px;
+		overflow:hidden;
+		li{
+			float:left;
+			font-size:16px;
+			margin-left:50px;
+		}
+	}
+}
+
+.ant-menu{
+	margin-top:50px
+}

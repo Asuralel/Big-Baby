@@ -2,16 +2,23 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as BuycarActions from './BuycarActions';
 import SpinnerComponent from '../spinner/SpinnerComponent';
-import {Button } from 'antd';
+import {Button,Icon} from 'antd';
 
+import HistorybackComponent from "./HistorybackComponent";
 import './Buycar.scss';
 
+
 class BuycarComponent extends React.Component {
-    
+
+    constructor(props){
+        super(props)
+    }
+
     render(){
         return(
             <div id="buycar">
                 <header id="bcheader">
+                    <HistorybackComponent />
                     <h2>购物车</h2>
                 </header>
                 <main id="bcmain"></main>
