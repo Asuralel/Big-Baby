@@ -8,13 +8,11 @@ import FooterComponent from '../common/footer/footerComponent'
 import './home.scss'
 
 
-
-
 class homeComponent extends React.Component {
     render(){
         return(
             <div className="home">
-                首页
+                <input type="text" value="搜索商品" />
                 
                 {/*注释：公共底部*/}
                 <FooterComponent />
