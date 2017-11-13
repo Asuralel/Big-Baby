@@ -28,7 +28,7 @@ export default (
             <Route path='/my/mySecurity' component={AccSevurityComponent}/>
         </Route>
         <Route path="sort" component={sortComponent} />
-        <Route path="list" component={listComponent} />
-        <Route path="details" component={detailsComponent} />
+        <Route path="list/:goodType" component={listComponent} />
+        <Route path="details/:goodId" component={detailsComponent} />
     </Route>
 )
