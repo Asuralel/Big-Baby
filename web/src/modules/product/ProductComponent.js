@@ -8,14 +8,15 @@ import {Router,Route,Link} from "react-router";
 
 class ProductComponent extends React.Component{
     componentDidMount(){
+        // console.log(this.props.dataset);
         this.props.ProductInit();
-        console.log(this)
     }
 
     render(){
         return (
             <div>
                 <SpinnerComponent show={this.props.loading}/>
+                <h1>你好</h1>
                 <table>
                     <thead>
                         <tr>
