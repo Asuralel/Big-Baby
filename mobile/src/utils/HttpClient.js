@@ -34,10 +34,12 @@ const HttpClient = {
             .query(query)
             .send(formdata)
             .end((err, res) => {
+
                 if (err) {
                     reject(err);
                 } else {
-                    resolve(res.body);
+
+                    resolve(res.text);
                 }
             });
     })

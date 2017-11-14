@@ -10,12 +10,19 @@ import * as MyActions from "./MyActions";
 import FooterComponent from "../common/footer/footerComponent.js";
 import fcss from "../common/footer/footer.scss";
 import QuitLogin from "./quitLogin";
+import loginToken from "../login/logintoken";
+loginToken();
+// constructor
 class MyComponent extends React.Component {
     componentDidMount(){
-
+        
     }
+    // constructor(props){
+        
+    //     // this.props.show=true;
+    // }
     render(){
-        this.props.loginShow = true;
+
         return(
             <div className="personalBox">
                 <div className="personalHead">
@@ -25,7 +32,7 @@ class MyComponent extends React.Component {
                     <div className="pMainHead">
                         <div><img src="./src/asset/login.jpg"/></div>
                         <div className="loginBox">
-                            <OnLineState loginShow={this.props.loginShow}/>    
+                            <OnLineState loginShow={this.props.show}/>    
                         </div>
                     </div>     
                        
@@ -82,7 +89,7 @@ class MyComponent extends React.Component {
 }
 const MyState = function(state){
     return {
-        
+      show:state.login.data  
     }
 }
 export default connect(MyState, MyActions)(MyComponent)
