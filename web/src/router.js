@@ -7,11 +7,14 @@ import HomeComponent from "./modules/home/HomeComponent";
 import ProductComponent from "./modules/product/ProductComponent";
 import UserComponent from "./modules/user/UserComponent";
 import OrderComponent from "./modules/order/OrderComponent";
+import RegisterComponent from "./modules/register/RegisterComponent";
+
 
 
 export default (
     <Route path="/" component={AppComponent}>
-	    <IndexRoute path="/login" component={LoginComponent} />
+	    <IndexRoute path="/login" component={LoginComponent}/>
+	    <Route path="/register" component={RegisterComponent} />
     	<Route path="/home" component={HomeComponent}>
 	        <Route path="/product" component={ProductComponent} />
 	        <Route path="/user" component={UserComponent} />
@@ -19,3 +22,4 @@ export default (
     	</Route>
     </Route>
 )
+

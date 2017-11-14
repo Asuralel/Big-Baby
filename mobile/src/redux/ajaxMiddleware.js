@@ -45,6 +45,7 @@ export function ajaxMiddleware({ dispatch, getState }) {
                     type: successType,
                     body: response,
                     lastFetched: Date.now()
+
                 })),
                 error => dispatch(Object.assign({}, { query }, { payload }, {                    
                     type: failureType,

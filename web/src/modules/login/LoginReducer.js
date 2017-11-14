@@ -21,5 +21,6 @@ export default function(state = {loading: false}, action){
             reState.loading = false
             break
     }
+    console.log(reState);
     return reState;
 }
