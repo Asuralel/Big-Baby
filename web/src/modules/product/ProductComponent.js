@@ -4,7 +4,6 @@ import * as ProductAction from './ProductAction'
 import SpinnerComponent from '../spinner/SpinnerComponent';
 import DatagridComponent from '../datagrid/DatagridComponent';
 import {Router,Route,Link} from "react-router";
-import DataGrid from "../datagrid/DataGrid";
 
 
 class ProductComponent extends React.Component{
@@ -16,7 +15,8 @@ class ProductComponent extends React.Component{
     render(){
         return (
             
-                <DatagridComponent url="http://localhost/laoxie/api/goodslist.php"/> 
+                <DatagridComponent url="http://10.3.137.248/big_baby/api//web/product/product.php" 
+                title1='product_name,product_type,product_color,product_price'/>
             )
     }
 }

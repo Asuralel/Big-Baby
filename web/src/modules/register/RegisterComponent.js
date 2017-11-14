@@ -13,13 +13,13 @@ class RegisterComponent extends React.Component {
         super(props)
     }
     registerHandler(){
-        this.props.register(
-            this.refs.username.refs.input.value,
-            this.refs.password.refs.input.value,
-            this.refs.gender.refs.input.value,
-            this.refs.phone.refs.input.value,
-            this.refs.address.refs.input.value,
-            )
+        this.props.register({
+            username:this.refs.username.refs.input.value,
+            password:this.refs.password.refs.input.value,
+            gender:this.refs.gender.refs.input.value,
+            refs:this.refs.phone.refs.input.value,
+            address:this.refs.address.refs.input.value,
+        })
 
     }
     render(){

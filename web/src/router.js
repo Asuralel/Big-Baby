@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route,IndexRoute} from 'react-router';
+import {Router,Route,IndexRoute} from 'react-router';
 
 import AppComponent from './modules/app/AppComponent';
 import LoginComponent from './modules/login/LoginComponent';
@@ -13,7 +13,7 @@ import RegisterComponent from "./modules/register/RegisterComponent";
 
 export default (
     <Route path="/" component={AppComponent}>
-	    <IndexRoute path="/login" component={LoginComponent}/>
+	    <IndexRoute component={LoginComponent}/>
 	    <Route path="/register" component={RegisterComponent} />
     	<Route path="/home" component={HomeComponent}>
 	        <Route path="/product" component={ProductComponent} />

@@ -1,12 +1,8 @@
-/* 
-* @Author: Marte
-* @Date:   2017-11-13 11:38:44
-* @Last Modified by:   Marte
-* @Last Modified time: 2017-11-13 21:23:24
-*/
+
 import React, {Component} from 'react'
 import { Table , Input, Icon, Button, Popconfirm } from 'antd';
 import http from '../../utils/HttpClient';
+import DataGridAction from "./DataGridAction.js";
 
 // const EditableCell = ({ editable, value, onChange }) => (
 //   <div>
@@ -16,25 +12,31 @@ import http from '../../utils/HttpClient';
 //     }
 //   </div>
 // );
+//可以编辑的单元格对象组件
 class EditableCell extends React.Component {
+  //设置初始的value值，初始默认不可以编辑，所以editable为false
   state = {
     value: this.props.value,
     editable: false,
   }
+  //点击编辑单元格：把修改后的值覆盖原来的值
   handleChange = (e) => {
     const value = e.target.value;
     this.setState({ value });
   }
+  //打勾
   check = () => {
     this.setState({ editable: false });
     if (this.props.onChange) {
       this.props.onChange(this.state.value);
     }
   }
+  //编辑
   edit = () => {
     this.setState({ editable: true });
   }
   render() {
+    //根据当前的state状态，去重新渲染页面
     const { value, editable } = this.state;
     return (
       <div className="editable-cell">
@@ -66,6 +68,11 @@ class EditableCell extends React.Component {
     );
   }
 }
+
+
+
+
+
 export default class DatagridComponent extends Component{
     constructor(props) {
         super(props);
@@ -85,8 +92,6 @@ export default class DatagridComponent extends Component{
         this.fetch({
           results: pagination.pageSize,
           page: pagination.current,
-          sortField: sorter.field,
-          sortOrder: sorter.order,
           ...filters
         })
       }
@@ -98,19 +103,22 @@ export default class DatagridComponent extends Component{
             ...params
           }).then((res) => {
             var res = JSON.parse(res);
-            var datas = res.data;
+            var datas = res;
             var total = res.total
-            console.log(res)
             var data = [];
             var columns = [];
+            datas.forEach(function(item,idx){
+              item['key'] = idx;
+            })
+            console.log(datas)
             for(var attr in datas[0]){
                 data.push(attr)
             }
-            for (let i = 0; i < data.length; i++) {
+            var data1 =this.props.title1.split(',');
+            for (let i = 0; i < data1.length; i++) {
               columns.push({
-                title: data[i].toString(),
-                dataIndex: `${data[i]}`,
-                sorter: true,
+                title: data1[i].toString(),
+                dataIndex: `${data1[i]}`,
                 render: (text, record) => (
                         <EditableCell
                           value={text}
@@ -154,9 +162,22 @@ export default class DatagridComponent extends Component{
             }
           };
         }
-        onDelete = (key) => {
+        onDelete = (key) => {console.log(key)
+          var current = [];
           const data = [...this.state.data];
-          this.setState({ data: data.filter(item => item.key !== key) });
+          data.forEach(function(item){
+            if(item.key==key){
+                current.push(item);
+            }
+          })
+          console.log(current);
+          var arr =[];
+          for(var attr in current[0]){
+            arr.push(attr);
+          }
+
+          DataGridAction(this.props.url,arr[0]);
+          this.setState({ data: data.filter(item => {item.key !== key}) });
         }
         handleAdd = () => {
           const { count, data } = this.state;
@@ -188,4 +209,7 @@ export default class DatagridComponent extends Component{
         )
     }
 }
+
+
+
 

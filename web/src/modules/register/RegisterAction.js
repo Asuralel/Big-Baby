@@ -7,13 +7,5 @@ export function register(obj){console.log(obj)
         method: 'post',
         query: {objs:JSON.stringify(obj)},
     }
-    // return {
-    // 	type: constants.REQUEST
-    // }
 }
 
-// export function login(username, password){
-//     return {
-//         type: 'aa'
-//     }
-// }
