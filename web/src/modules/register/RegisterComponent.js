@@ -13,17 +13,9 @@ class RegisterComponent extends React.Component {
         super(props)
     }
     registerHandler(){
-<<<<<<< HEAD
+
         this.props.register(`user_account=${this.refs.account.refs.input.value}&user_name=${this.refs.username.refs.input.value}&user_password=${this.refs.password.refs.input.value}&user_gender=${this.refs.gender.refs.input.value}&user_phone=${this.refs.phone.refs.input.value}&user_address=${this.refs.address.refs.input.value}&user_identify=管理员`)
-=======
-        this.props.register({
-            username:this.refs.username.refs.input.value,
-            password:this.refs.password.refs.input.value,
-            gender:this.refs.gender.refs.input.value,
-            refs:this.refs.phone.refs.input.value,
-            address:this.refs.address.refs.input.value,
-        })
->>>>>>> 7c58177717d7644638022f0e7c893822ae8e5023
+
 
     }
     render(){

@@ -1,5 +1,6 @@
 <?php
 	header("Access-Control-Allow-Origin: *");
+
 	include '../../common/connect.php';
 	
 	$username = isset($_REQUEST['user_name']) ? $_REQUEST['user_name'] : '';
@@ -13,7 +14,8 @@
 	// 查看用户名是否已经存在
 
 	$sql = "select user_name from user where user_name='$username'";
-	echo "$sql";
+	
+
 	$result = $conn->query($sql);
 	if($result->num_rows>0){
 		echo "fail";
@@ -22,12 +24,15 @@
 		// md5()
 		// echo "$password <br>";
 		$password = md5($password);
+		// $password = md5($password);
 		// echo "$password <br>";
 
 		
 			// password_hash()     //对密码加密.
 			// 	* PASSWORD_DEFAULT：Bcrypt//加密算法，字段超过60个字符长度，
 			// 	* PASSWORD_BCRYPT：//字符串长度总为60。
+			// 	* PASSWORD_DEFAULT：Bcrypt加密算法，字段超过60个字符长度，
+			// 	* PASSWORD_BCRYPT：字符串长度总为60。
 			// password_verify()    //验证已经加密的密码，检验其hash字串是否一致.
 		 
 		// $password = password_hash($password,PASSWORD_DEFAULT);
