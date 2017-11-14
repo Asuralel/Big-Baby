@@ -2,7 +2,7 @@
 * @Author: Marte
 * @Date:   2017-11-13 11:38:44
 * @Last Modified by:   Marte
-* @Last Modified time: 2017-11-13 21:23:24
+* @Last Modified time: 2017-11-14 12:04:36
 */
 import React, {Component} from 'react'
 import { Table , Input, Icon, Button, Popconfirm } from 'antd';
@@ -98,7 +98,7 @@ export default class DatagridComponent extends Component{
             ...params
           }).then((res) => {
             var res = JSON.parse(res);
-            var datas = res.data;
+            var datas = res;
             var total = res.total
             console.log(res)
             var data = [];

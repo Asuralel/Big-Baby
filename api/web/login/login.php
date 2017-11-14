@@ -1,15 +1,15 @@
 <?php
 
-	include '../../common/connect.php';
 	header("Access-Control-Allow-Origin: *");
+	include '../../common/connect.php';
 	
-	$username = isset($_GET['username']) ? $_GET['username'] : '';
-	$password = isset($_GET['password']) ? $_GET['password'] : '';
+	$account = isset($_REQUEST['user_account']) ? $_REQUEST['user_account'] : '';
+	$password = isset($_REQUEST['user_password']) ? $_REQUEST['user_password'] : '';
 
 	// 密码md5加密
-	// $password = md5($password);
+	$password = md5($password);
 
-	$sql = "select * from user where user_name='$username' and user_password='$password'";
+	$sql = "select * from user where user_account='$account' and user_password='$password' and user_identify='管理员'";
 
 	// echo "$sql";
 

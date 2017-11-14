@@ -13,7 +13,7 @@ import RegisterComponent from "./modules/register/RegisterComponent";
 
 export default (
     <Route path="/" component={AppComponent}>
-	    <IndexRoute path="/login" component={LoginComponent}/>
+	    <IndexRoute  component={LoginComponent}/>
 	    <Route path="/register" component={RegisterComponent} />
     	<Route path="/home" component={HomeComponent}>
 	        <Route path="/product" component={ProductComponent} />

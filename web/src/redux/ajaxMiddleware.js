@@ -6,7 +6,7 @@ export function ajaxMiddleware({ dispatch, getState }) {
         const {
             types,
             shouldCallAPI = () => true,
-            query = {},
+            query = '',
             payload = {},
             method = "get",
             path

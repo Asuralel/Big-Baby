@@ -16,7 +16,7 @@ class ProductComponent extends React.Component{
     render(){
         return (
             
-                <DatagridComponent url="http://localhost/laoxie/api/goodslist.php"/> 
+                <DatagridComponent url="http://localhost/laoxie/api/web/product/product.php"/> 
             )
     }
 }
