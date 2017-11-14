@@ -11,6 +11,6 @@ export default function ProductReducer(state = {}, action){
         default:
             reState.loading = false;
     }
-    console.log(reState);
+    // console.log(reState);
     return reState ;
 }

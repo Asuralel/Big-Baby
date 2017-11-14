@@ -6,6 +6,7 @@ import home from '../modules/home/HomeReducer';
 import product from '../modules/product/ProductReducer';
 import user from '../modules/user/UserReducer';
 import order from '../modules/order/OrderReducer';
+import register from '../modules/register/RegisterReducer';
 
 
 
@@ -17,7 +18,8 @@ const rootReducer = combineReducers({
     home,
     product,
     user,
-    order
+    order,
+    register
 })
 
 export default rootReducer
