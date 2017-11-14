@@ -14,9 +14,11 @@ import myOrderComponent from './modules/my/MyOrder/MyOeder';
 import myCollectComponent from './modules/my/myCollect/myCollect.js';
 import MySetComponent from './modules/my/myset/mySet';
 import AccSevurityComponent from './modules/my/accountSecurity/accSecurity';
-
+import RegisterComponent from './modules/register/registerComponent';
+import agreement from './modules/register/agreement'
 export default (
     <Route path="/" component={AppComponent}>
+        <Route path="register" component={RegisterComponent}/>
         <Route path="login" component={LoginComponent} />
         <Route path="buycar" component={BuycarComponent} />
         <Route path="home" component={homeComponent} />
@@ -26,6 +28,7 @@ export default (
             <Route path='/my/myCollect' component={myCollectComponent}/>
             <Route path='/my/mySet' component={MySetComponent} />
             <Route path='/my/mySecurity' component={AccSevurityComponent}/>
+            <Route path='/register/agreement' component = {agreement}/> 
         </Route>
         <Route path="sort" component={sortComponent} />
         <Route path="list" component={listComponent} />

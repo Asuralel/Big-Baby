@@ -1,67 +1,64 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import * as loginActions from './LoginAction'
-import SpinnerComponent from '../spinner/SpinnerComponent'
+import React from 'react';
+import {Router, Route, Link, hashHistory, IndexRoute} from 'react-router';
+import {connect} from 'react-redux';
 
+import login from "./login.scss";
+import Goback from "../buycar/HistorybackComponent";
+import {Icon} from 'antd';
+import SpinnerComponent from "../spinner/SpinnerComponent";
+import * as loginActions from "./LoginAction";
 
-import { DatePicker,Rate,Button,Affix } from 'antd';
+class loginComponent extends React.Component{
+    loginMsg(){
 
-
-// @connect(
-//     state => ({
-//         loading: state.login.loading
-//     }),
-//     loginActions
-// )
-
-class LoginComponent extends React.Component {
-    constructor(props){
-        super(props)
+        const username = this.refs.username.value;
+        const password = this.refs.password.value;
+        this.props.login(username, password);
     }
+    componentDidUpdate(){
+        console.log(this.props.token);
+        if(this.props.token){
+            if(this.props.token.start){
+                var token = '';
+                var date = new Date();  
+                date.setDate(date.getDate() +7);
+                document.cookie = "token=" + JSON.stringify(this.props.token) + ";expires=" + date.toUTCString();
+                hashHistory.push('/home')
+            }else{
 
-    loginHandler(){
-        // console.log(loginActions)
-        // this.router.push('register')
-        // if(!this.refs.username){
-        //     //show up dialog => username cannot empty
-        //     return
-        // } else if(!this.refs.password){
-        //     //show up dialog => password cannot empty
-        //     return 
-        // }
-        
-        this.props.login(this.refs.username.value, this.refs.password.value)
-        
+            }
+        }
     }
-
     render(){
-        return(
-            <div className="login">
-                <ul>
-                    <li><input type="text" ref="username"/></li>
-                    <li><input type="text" ref="password"/></li>
-                    <li><input type="button" value="登录" onClick={this.loginHandler.bind(this)}/></li>
-                    <li>{this.props.loading + ''}</li>
-                </ul>
-				<DatePicker />
-				<Rate />
-				<div>
-				    <Button type="primary">Primary</Button>
-				    <Button>Default</Button>
-				    <Button type="dashed">Dashed</Button>
-				    <Button type="danger">Danger</Button>
-				  </div>
+
+        return (
+            <div>
+                <div className="loginHead">
+                    <img src="./src/asset/login.jpg"/>
+                    <div className="headtool">
+                        <span><Goback/></span><Link to="/register"><span>注册</span></Link>
+                        <h4><i>大宝家具</i></h4>
+                    </div>
+                </div>
+                <h2 className="chooseMode">
+                    欢迎登录
+                </h2>
+                <div className="loginCase">
+                    <div><Icon type="user" /><input type="text" placeholder="请输入用户名\手机号码\邮箱" ref="username"/></div>
+                    <div className="password"><Icon type="lock" /><input type="password" placeholder="请输入密码" ref="password"/></div>
+                    <div className="loginButton" onClick={this.loginMsg.bind(this)}>登录</div>
+                    <div ><span><Link to="/ ">忘记密码?</Link></span></div>
+                </div>
                 <SpinnerComponent show={this.props.loading}/>
-                <Affix offsetBottom={0}>
-                	
-                </Affix>
             </div>
+
         )
     }
+    
 }
 
 const mapStateToProps = state => ({
-    loading: state.login.loading,
+    loading : state.login.loading,
+    token : state.login.data
 })
-export default connect(mapStateToProps, loginActions)(LoginComponent)
-// export default LoginComponent
+export default connect(mapStateToProps, loginActions)(loginComponent);
