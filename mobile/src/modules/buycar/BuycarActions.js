@@ -1,13 +1,10 @@
 import * as constants from '../../redux/commonConstant'
 
-export function login(username, password){
+export function buycarInit(){
     return {
         types: [constants.REQUEST, constants.SUCCESS, constants.FAILURE],
-        path: 'login',
-        method: 'post',
-        query: {username, password}
+        path: '/api/web/order',
+        method: 'get',
     }
-    // return {
-    //  type: constants.REQUEST
-    // }
+ 
 }
