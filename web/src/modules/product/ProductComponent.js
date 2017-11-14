@@ -4,7 +4,7 @@ import * as ProductAction from './ProductAction'
 import SpinnerComponent from '../spinner/SpinnerComponent';
 import DatagridComponent from '../datagrid/DatagridComponent';
 import {Router,Route,Link} from "react-router";
-
+import DataGrid from "../datagrid/DataGrid";
 
 
 class ProductComponent extends React.Component{
@@ -21,10 +21,14 @@ class ProductComponent extends React.Component{
     }
 }
 
+
+
+
+
 const mapStateToProps = function(state){
     return {
         loading: state.product.loading,
-        dataset: state.product.dataset || {}
+        dataset: state.product.dataset
     }
 }
 

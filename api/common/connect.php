@@ -3,7 +3,7 @@
 	$servername = 'localhost';
 	$username = 'root';
 	$password = '';
-	$database = 'dionly';
+	$database = 'big_baby';
 
 	// 1）连接数据库
 	$conn = new mysqli($servername,$username,$password,$database);

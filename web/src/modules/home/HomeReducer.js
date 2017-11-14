@@ -6,7 +6,6 @@ export default function HomeReducer(state = {}, action){
             break;
         case 'Requested':
             reState.loading = false;
-            reState.dataset = action.dataset;
             break;
         default:
             reState.loading = false;
