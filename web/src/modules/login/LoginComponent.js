@@ -34,6 +34,7 @@ class LoginComponent extends React.Component {
     }
     render(){
         if(this.props.data=="ok"){
+            sessionStorage.setItem('user', this.refs.account.refs.input.value);
             hashHistory.push('/product');
         }else if(this.props.data=="fail"){
             alert("登录失败");

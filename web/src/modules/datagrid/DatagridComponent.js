@@ -2,83 +2,24 @@
 * @Author: Marte
 * @Date:   2017-11-13 11:38:44
 * @Last Modified by:   Marte
-* @Last Modified time: 2017-11-14 16:04:43
+* @Last Modified time: 2017-11-15 09:16:01
 */
 
 import React, {Component} from 'react'
 import { Table , Input, Icon, Button, Popconfirm } from 'antd';
 import http from '../../utils/HttpClient';
-import DataGridAction from "./DataGridAction.js";
 
-// const EditableCell = ({ editable, value, onChange }) => (
-//   <div>
-//     {editable
-//       ? <Input style={{ margin: '-5px 0' }} value={value} onChange={e => onChange(e.target.value)} />
-//       : value
-//     }
-//   </div>
-// );
-//可以编辑的单元格对象组件
-class EditableCell extends React.Component {
-  //设置初始的value值，初始默认不可以编辑，所以editable为false
-  state = {
-    value: this.props.value,
-    editable: false,
-  }
-  //点击编辑单元格：把修改后的值覆盖原来的值
-  handleChange = (e) => {
-    const value = e.target.value;
-    this.setState({ value });
-  }
-  //打勾
-  check = () => {
-    this.setState({ editable: false });
-    if (this.props.onChange) {
-      this.props.onChange(this.state.value);
+
+const EditableCell = ({ editable, value, onChange }) => (
+  <div>
+    {editable
+      ? <Input style={{ margin: '-5px 0' }} value={value} onChange={e => onChange(e.target.value)} />
+      : value
     }
-  }
-  //编辑
-  edit = () => {
-    this.setState({ editable: true });
-  }
-  render() {
-    //根据当前的state状态，去重新渲染页面
-    const { value, editable } = this.state;
-    return (
-      <div className="editable-cell">
-        {
-          editable ?
-            <div className="editable-cell-input-wrapper">
-              <Input
-                value={value}
-                onChange={this.handleChange}
-                onPressEnter={this.check}
-              />
-              <Icon
-                type="check"
-                className="editable-cell-icon-check"
-                onClick={this.check}
-              />
-            </div>
-            :
-            <div className="editable-cell-text-wrapper">
-              {value || ' '}
-              <Icon
-                type="edit"
-                className="editable-cell-icon"
-                onClick={this.edit}
-              />
-            </div>
-        }
-      </div>
-    );
-  }
-}
+  </div>
+);
 
-
-
-
-
+var titles = [];
 export default class DatagridComponent extends Component{
     constructor(props) {
         super(props);
@@ -111,40 +52,62 @@ export default class DatagridComponent extends Component{
             var res = JSON.parse(res);
             var datas = res;
             var total = res.total
-            var data = [];
+            
             var columns = [];
             datas.forEach(function(item,idx){
-              item['key'] = idx;
+              item['key'] = String(idx);
             })
             console.log(datas)
-            for(var attr in datas[0]){
-                data.push(attr)
+            
+            if(this.props.title){
+              titles =this.props.title.split(',');
+            }else{
+              for(var attr in datas[0]){
+                  titles.push(attr)
+              }
             }
-            var data1 =this.props.title1.split(',');
-            for (let i = 0; i < data1.length; i++) {
+            for (let i = 0; i < titles.length; i++) {
               columns.push({
-                title: data1[i].toString(),
-                dataIndex: `${data1[i]}`,
-                render: (text, record) => (
-                        <EditableCell
-                          value={text}
-                          onChange={this.onCellChange(record.key, 'name')}
-                        />
-                )
+                title: titles[i].toString(),
+                dataIndex: `${titles[i]}`,
+                key: `${titles[i]}`,
+                render: (text, record) => this.renderColumns(text, record, titles[i].toString()),
               });
             }
             columns.push(
                 {
-                    title: 'operation',
-                    dataIndex: 'operation',
+                    title: 'delete',
+                    dataIndex: 'delete',
                     render: (text, record) => {
                     return (
-                        this.state.data.length > 1 ?
+                        this.state.data.length > 0  ?
                         (
                             <Popconfirm title="Sure to delete?" onConfirm={() => this.onDelete(record.key)}>
                             <a href="#">Delete</a>
                             </Popconfirm>
                         ) : null
+                    )}
+                }  
+            )
+            columns.push(
+                {
+                    title: 'update',
+                    dataIndex: 'update',
+                    render: (text, record) => {
+                      const { editable } = record;
+                      return (
+                        <div className="editable-row-operations">
+                          {
+                            editable ?
+                              <span>
+                                <a onClick={() => this.save(record.key)}>Save</a>
+                                <Popconfirm title="Sure to cancel?" onConfirm={() => this.cancel(record.key)}>
+                                  <a>Cancel</a>
+                                </Popconfirm>
+                              </span>
+                              : <a onClick={() => this.edit(record.key)}>Edit</a>
+                          }
+                        </div>
                     )}
                 }  
             )
@@ -158,46 +121,95 @@ export default class DatagridComponent extends Component{
             })
         })
       }
-      onCellChange = (key, dataIndex) => {
-          return (value) => {
-            const data = [...this.state.data];
-            const target = data.find(item => item.key === key);
-            if (target) {
-              target[dataIndex] = value;
-              this.setState({ data });
-            }
-          };
-        }
-        onDelete = (key) => {console.log(key)
-          var current = [];
-          const data = [...this.state.data];
+      onDelete = (key) => {
+        var current = [];
+        const data = [...this.state.data];
+        http.get(this.props.delete_url,`id=${data[key].id}`).then(
           data.forEach(function(item){
             if(item.key==key){
                 current.push(item);
+                data.splice(key,1)
             }
           })
-          console.log(current);
-          var arr =[];
-          for(var attr in current[0]){
-            arr.push(attr);
-          }
+        )
+        this.setState({ data: data});
 
-          DataGridAction(this.props.url,arr[0]);
-          this.setState({ data: data.filter(item => {item.key !== key}) });
+      }
+      handleAdd = () => {
+        const { count, data } = this.state;
+        const newData = {
+          key: count,
+          name: `Edward King ${count}`,
+          age: 32,
+          address: `London, Park Lane no. ${count}`,
+        };
+        this.setState({
+          data: [...data, newData],
+          count: count + 1,
+        });
+      }
+
+      renderColumns(text, record, column) {
+        return (
+          <EditableCell
+            editable={record.editable}
+            value={text}
+            onChange={value => this.handleChange(value, record.key, column)}
+          />
+        );
+      }
+      handleChange(value, key, column) {
+        const newData = [...this.state.data];
+        const target = newData.filter(item => key === item.key)[0];
+        if (target) {
+          target[column] = value;
+          this.setState({ data: newData });
         }
-        handleAdd = () => {
-          const { count, data } = this.state;
-          const newData = {
-            key: count,
-            name: `Edward King ${count}`,
-            age: 32,
-            address: `London, Park Lane no. ${count}`,
-          };
-          this.setState({
-            data: [...data, newData],
-            count: count + 1,
-          });
+      }
+      edit(key) {
+        const newData = [...this.state.data];
+        const target = newData.filter(item => key === item.key)[0];
+        if (target) {
+          target.editable = true;
+          this.setState({ data: newData });
         }
+      }
+      save(key) {
+        const newData = [...this.state.data];
+        const target = newData.filter(item => key === item.key)[0];
+        var str = '';
+        for (let i = 0; i < titles.length; i++) {
+            for(var item in newData[key]){
+              if(item==titles[i]){
+
+                str += `${item}=${newData[key][titles[i]]}&`;
+              }
+            }
+        }
+        str += `id=${newData[key].id}`
+        http.get(this.props.update_url,str).then(
+          
+        )
+        console.log(str)
+        console.log(newData)
+        if (target) {
+          delete target.editable;
+          this.setState({ data: newData });
+          this.cacheData = newData.map(item => ({ ...item }));
+        }
+      }
+      cancel(key) {
+        const newData = [...this.state.data];
+        const target = newData.filter(item => key === item.key)[0];
+        if (target) {
+          Object.assign(target, this.cacheData.filter(item => key === item.key)[0]);
+          delete target.editable;
+          this.setState({ data: newData });
+        }
+      }
+
+
+
       componentDidMount() {
         this.fetch();
       }

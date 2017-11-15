@@ -17,7 +17,7 @@ export default (
 	    <IndexRoute component={LoginComponent}/>
 
 	    <Route path="/register" component={RegisterComponent} />
-    	<Route path="/home" component={HomeComponent}>
+    	<Route path="/home" component={HomeComponent} onEnter={enterFun}>
 	        <Route path="/product" component={ProductComponent} />
 	        <Route path="/user" component={UserComponent} />
 	        <Route path="/order" component={OrderComponent} />
@@ -25,3 +25,12 @@ export default (
     </Route>
 )
 
+function enterFun(nextState,replace,next){
+    let user = JSON.parse(sessionStorage.getItem('user'));
+    if (!user && this.path != '/') {
+      replace('/');
+      next();
+    } else {
+      next();
+    }
+}
