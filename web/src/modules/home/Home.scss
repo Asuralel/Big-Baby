@@ -29,7 +29,10 @@
 }
 .ant-menu-item{
 	.nav-text{
+		a{
+			color:#fff;
+		}
 		color:#fff;
 	}
 }
-a .active{color:#fff}
+a:active{color:#fff}

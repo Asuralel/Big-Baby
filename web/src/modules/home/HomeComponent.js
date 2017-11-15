@@ -59,7 +59,7 @@ var HomeComponent =  React.createClass({
                     </div>
                   </Content>
                   <Footer style={{ textAlign: 'center' }}>
-                    BigBaby ©2017 Created by bigbaby
+                    BigBaby ©2017 Created by bigbaby group
                   </Footer>
                 </Layout>
             </Layout>

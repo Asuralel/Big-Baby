@@ -16,17 +16,6 @@ const EditableCell = ({ editable, value, onChange }) => (
   </div>
 );
 
-
-
-const EditableCell = ({ editable, value, onChange }) => (
-  <div>
-    {editable
-      ? <Input style={{ margin: '-5px 0' }} value={value} onChange={e => onChange(e.target.value)} />
-      : value
-    }
-  </div>
-);
-
 var titles = [];
 export default class DatagridComponent extends Component{
     constructor(props) {
@@ -53,7 +42,6 @@ export default class DatagridComponent extends Component{
       })
     }
       
-
       fetch = (params = {}) => {
         this.setState({ loading: true });
         http.get(this.props.url,{
@@ -63,13 +51,10 @@ export default class DatagridComponent extends Component{
             var res = JSON.parse(res);
             var datas = res;
             var total = res.total
-            
             var columns = [];
             datas.forEach(function(item,idx){
               item['key'] = String(idx);
             })
-            console.log(datas)
-            
             if(this.props.title){
               titles =this.props.title.split(',');
             }else{
@@ -89,11 +74,12 @@ export default class DatagridComponent extends Component{
                 {
                     title: 'delete',
                     dataIndex: 'delete',
+                    // this.onDelete(record.key)
                     render: (text, record) => {
                     return (
                         this.state.data.length > 0  ?
                         (
-                            <Popconfirm title="Sure to delete?" onConfirm={() => this.onDelete(record.key)}>
+                            <Popconfirm title="Sure to delete?" onConfirm={() => this.onDelete(record.key,record.id)}>
                             <a href="#">Delete</a>
                             </Popconfirm>
                         ) : null
@@ -132,18 +118,21 @@ export default class DatagridComponent extends Component{
             })
         })
       }
-      onDelete = (key) => {
+      onDelete = (key,id) => {console.log(key,id)
         var current = [];
         const data = [...this.state.data];
+        console.log(data);
         http.get(this.props.delete_url,`id=${data[key].id}`).then(
           data.forEach(function(item){
             if(item.key==key){
                 current.push(item);
-                data.splice(key,1)
+                data.splice(key,1);
+                return;
             }
           })
         )
         this.setState({ data: data});
+        console.log(data);
 
       }
       handleAdd = () => {

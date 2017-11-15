@@ -14,32 +14,45 @@ class AddComponent extends React.Component {
     }
     componentDidMount(){
         this.props.Init(this.props.addUrl)
-
     }
     addHandler(){
-        console.log(this.props.addUrl);
         var arr = this.props.addUrl.split("/");
-        console.log(arr[arr.length-2]);
-        this.props.add(arr[arr.length-2],`${this.refs.input1.refs.input.id}=${this.refs.input1.refs.input.value}
-            &${this.refs.input2.refs.input.id}=${this.refs.input2.refs.input.value}
-            &${this.refs.input3.refs.input.id}=${this.refs.input3.refs.input.value}
-            &${this.refs.input4.refs.input.id}=${this.refs.input4.refs.input.value}
-            &${this.refs.input5.refs.input.id}=${this.refs.input5.refs.input.value}
-            &${this.refs.input6.refs.input.id}=${this.refs.input6.refs.input.value}
-            &${this.refs.input7.refs.input.id}=${this.refs.input7.refs.input.value}`)
+        var idx = 0;
+        for(var attr in this.props.data[0]){
+            idx++;
+        }
+        var id = this.props.data.length + 1;
+        var str = "";
+        for(var i = 1;i<idx-1;i++){
+            var num = "input" + i;
+            str += `&${this.refs[num].refs.input.id}=${this.refs[num].refs.input.value}`
+        }
+        str += '&id=' + id;
+        str = str.slice(1);
+
+        this.props.add(arr[arr.length-2],str)
 
     }
     close(e){
         e.target.parentNode.parentNode.style.display = "none";
     }
     render(){
+        if(this.props.res=="ok"){
+            alert("添加成功");
+            console.log(this.refs.add.parentNode);
+            this.refs.add.parentNode.style.display = "none";
+            
+            return;
+        }else if(this.props.res=="fail"){
+            alert("添加失败");
+        }
         return(
               <div className="add" ref="add">
                     <h1>添加</h1>
                     <ul>
                     {
-                       this.props.dataset ? Object.keys( this.props.dataset[0]).map(function(key, idx){
-                        if(key=="id"){
+                       this.props.data.length>0 ? Object.keys( this.props.data[0]).map(function(key, idx){
+                        if(key=="id" || key=="key"){
                             return;
                         }
                             return <li key={'li'+idx}>
@@ -62,6 +75,6 @@ class AddComponent extends React.Component {
 
 const mapStateToProps = state => ({
     loading: state.add.loading,
-    dataset:state.add.dataset
+    res:state.add.res
 })
 export default connect(mapStateToProps, AddActions)(AddComponent)

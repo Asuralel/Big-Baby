@@ -3,6 +3,7 @@
 
 	include '../../common/connect.php';
 	
+	$id = isset($_REQUEST['id']) ? $_REQUEST['id'] : '';
 	$product_name = isset($_REQUEST['product_name']) ? $_REQUEST['product_name'] : '';
 	$product_type = isset($_REQUEST['product_type']) ? $_REQUEST['product_type'] : '';
 	$product_price = isset($_REQUEST['product_price']) ? $_REQUEST['product_price'] : '';
@@ -23,7 +24,7 @@
 
 	$sql = "select product_name from product where product_name='$product_name'";
 	
-
+	
 	$result = $conn->query($sql);
 	if($result->num_rows>0){
 		echo "fail";
@@ -45,8 +46,7 @@
 		 
 		// $password = password_hash($password,PASSWORD_DEFAULT);
 
-		$sql = "insert into product (product_name,product_type,product_price,product_discount,product_inventory,product_description,product_image,product_rate,product_spec,product_color,product_brand,product_sold_out) values('$product_name','$product_type','$product_price','$product_discount','$product_inventory','$product_description','$product_image','product_rate','product_color','product_brand','product_sold_out')";
-
+		$sql = "insert into product (id,product_name,product_type,product_price,product_discount,product_inventory,product_description,product_image,product_rate,product_spec,product_color,product_brand,product_sold_out) values('$id','$product_name','$product_type','$product_price','$product_discount','$product_inventory','$product_description','$product_image','$product_rate','$product_spec','$product_color','$product_brand','$product_sold_out')";
 
 		// 获取查询结果
 		$result = $conn->query($sql);

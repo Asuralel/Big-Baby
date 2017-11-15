@@ -11,13 +11,13 @@ import RegisterComponent from "./modules/register/RegisterComponent";
 // import AddComponent from "./modules/datagrid/AddComponent";
 
 
-
+ // onEnter={enterFun}
 
 export default (
     <Route path="/" component={AppComponent}>
 	    <IndexRoute component={LoginComponent}/>
 	    <Route path="/register" component={RegisterComponent} />
-    	<Route path="/home" component={HomeComponent} onEnter={enterFun}>
+    	<Route path="/home" component={HomeComponent}>
 	        <Route path="/product" component={ProductComponent} />
 	        <Route path="/user" component={UserComponent} />
 	        <Route path="/order" component={OrderComponent} />
@@ -25,12 +25,12 @@ export default (
     </Route>
 )
 
-function enterFun(nextState,replace,next){
-    let user = JSON.parse(sessionStorage.getItem('user'));
-    if (!user && this.path != '/') {
-      replace('/');
-      next();
-    } else {
-      next();
-    }
-}
+// function enterFun(nextState,replace,next){
+//     let user = JSON.parse(sessionStorage.getItem('user'));
+//     if (!user && this.path != '/') {
+//       replace('/');
+//       next();
+//     } else {
+//       next();
+//     }
+// }
