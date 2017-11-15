@@ -30,10 +30,11 @@ class LoginComponent extends React.Component {
         //     return 
         // }
 
-        this.props.login(this.refs.username.refs.input.value,this.refs.password.refs.input.value)
+        this.props.login(`user_account=${this.refs.account.refs.input.value}&user_password=${this.refs.password.refs.input.value}`)
     }
     render(){
         if(this.props.data=="ok"){
+            sessionStorage.setItem('user', this.refs.account.refs.input.value);
             hashHistory.push('/product');
         }else if(this.props.data=="fail"){
             alert("登录失败");
@@ -43,8 +44,8 @@ class LoginComponent extends React.Component {
                 <h1>用户登录</h1>
                 <ul>
                     <li>
-                        <label for="username">用户名：</label>
-                        <Input placeholder="请输入您的帐号" ref="username" id="username"/>
+                        <label for="account">用户名：</label>
+                        <Input placeholder="请输入您的帐号" ref="account" id="account"/>
                     </li>
                      <li>
                         <label for="password">密码：</label>

@@ -16,11 +16,36 @@ export default function(state = {loading: false}, action){
             reState.data = action.body;
             reState.lastFetched = action.lastFetched
             reState.loading = false
+
             break
         case types.FAILURE:
             reState.error = action.error
             reState.loading = false
             break
+        default:
+            reState.loading = false;
+
     }
     return reState;
 }
+// export default function DatagridReducer(state = {}, action){
+//     var reState = JSON.parse(JSON.stringify(state));
+//     switch(action.type){
+//         case 'BeforeRequest':
+//             reState.loading = true;
+//             break;
+//         case 'Requested':
+//             reState.loading = false;
+//             if(action.dataset !== true && action.dataset !==false){
+//                 reState.dataset = action.dataset[1];
+//                 reState.pagination = action.dataset[0][0];
+//             }
+//             break;
+//         case 'edit':
+//             reState.editData = action.data;
+//             break;
+//         default:
+//             reState.loading = false;
+//     }
+//     return reState ;
+// }

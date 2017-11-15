@@ -52,7 +52,7 @@ class BuycarComponent extends React.Component {
     }
 
     topay(){
-        <console></console>.log(this.props.accountList)
+        console.log(this.props)
         // hashHistory.push('pay');
     }
 

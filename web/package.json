@@ -95,8 +95,10 @@
   "author": "DK.Lan",
   "license": "ISC",
   "dependencies": {
+    "babel-preset-env": "^1.6.1",
     "events": "^1.1.1",
     "flux": "^3.1.2",
+    "jsonwebtoken": "^8.1.0",
     "reqwest": "^2.0.5"
   }
 }
