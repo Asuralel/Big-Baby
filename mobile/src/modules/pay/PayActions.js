@@ -1,8 +1,8 @@
 import * as constants from '../../redux/commonConstant'
 
-export function accountInit(obj){
+export function payInit(obj){
     return {
-        types: ['ACCOUNT_REQUEST', 'ACCOUNT_SUCCESS', 'ACCOUNT_FAILURE'],
+        types: ['PAY_REQUEST', 'PAY_SUCCESS', 'PAY_FAILURE'],
         path: 'account/account.php',
         method: 'get',
         query:{
