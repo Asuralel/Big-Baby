@@ -8,8 +8,8 @@ import Historyback from "../../../buycar/HistorybackComponent"
 import myaddress from "./address.scss";
 class MyaddressComponent extends React.Component{
     componentDidMount(){
-        console.log(this.props.token)
     }
+    
     render(){
         return (
             <div className="Myaddress">
