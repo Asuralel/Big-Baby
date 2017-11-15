@@ -9,7 +9,9 @@ import mysetcss from "./myset.scss";
 var baseURI = "/src/asset/"
 class MySetComponent extends React.Component{
     componentDidMount(){
+        // console.log(JSON.parse(this.props.show).username)
         this.props.mysetinit(JSON.parse(this.props.show).username)
+        console.log(this.props.myMsg)
     }
     clickto(){
         
@@ -28,35 +30,30 @@ class MySetComponent extends React.Component{
                     <div>
                         <span>头像</span>
                         <span className="lastSpan">
-                            <img src={baseURI+this.props.myMsg.handimgs}/>
                         </span>
                         <Icon type="right" />
                     </div>
                     <div>
                         <span>昵称</span>
                         <span className="lastSpan">
-                           {this.props.myMsg.username}
                         </span>
                         <Icon type="right" />
                     </div>
                     <div>
                         <span>性别</span>
                         <span className="lastSpan">
-                            {this.props.myMsg.gender}
                         </span>
                         <Icon type="right" />
                     </div>
                     <div>
                         <span>账户名</span>
                         <span className="lastSpan">
-                            {this.props.myMsg.account}
                         </span>
                         <Icon type="right" />
                     </div>
                     <div className="address" onClick={this.clickto}>
                         <span>收货地址</span>
                         <span className="lastSpan">
-                            {this.props.myMsg.address}
                         </span>
                         <Icon type="right" />
                     </div>
@@ -67,9 +64,10 @@ class MySetComponent extends React.Component{
 }
 
 const MyState = function(state){
+    console.log(state)
     return {
         show:state.login.data,
-        myMsg:state.myset.myMsg?JSON.parse(state.myset.myMsg):null
+        myMsg:state.myset.myMsg
     }
 }
 export default connect(MyState, MysetActions)(MySetComponent)

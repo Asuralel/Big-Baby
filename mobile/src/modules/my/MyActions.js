@@ -1,5 +1,5 @@
 import loginToken from '../login/logintoken';
-import * as constants from '../../redux/commonConstant';
+// import * as constants from '../../redux/commonConstant';
 
 // console
 export function MyActions(){
@@ -15,7 +15,7 @@ export function MyActions(){
         }
     });
     return {
-          types: [constants.REQUEST, constants.SUCCESS, constants.FAILURE],
+          types: ['LOGIN_REQUEST', 'LOGIN_SUCCESS', 'LOGIN_FAILURE'],
           path: 'my/login.php',
           method: 'post',
           query: {token}

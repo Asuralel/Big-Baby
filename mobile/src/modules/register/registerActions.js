@@ -1,8 +1,8 @@
-import * as constants from '../../redux/commonConstant'
+// import * as constants from '../../redux/commonConstant'
 
 export function register(obj){
     return {
-        types: [constants.REQUEST, constants.SUCCESS, constants.FAILURE],
+        types: ['REGISTER_REQUEST', 'REGISTER_SUCCESS', 'REGISTER_FAILURE'],
         path: 'my/register.php',
         method: 'post',
         query: {
