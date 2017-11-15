@@ -7,6 +7,8 @@ import product from '../modules/product/ProductReducer';
 import user from '../modules/user/UserReducer';
 import order from '../modules/order/OrderReducer';
 import register from '../modules/register/RegisterReducer';
+import datagrid from "../modules/datagrid/dataGridReducer";
+import add from "../modules/datagrid/AddReducer";
 
 
 
@@ -19,7 +21,8 @@ const rootReducer = combineReducers({
     product,
     user,
     order,
-    register
+    register,
+    add
 })
 
 export default rootReducer

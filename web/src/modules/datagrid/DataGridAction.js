@@ -1,9 +1,36 @@
-
-export function DataGridAction(api, params){console.log(api,params)
+export function Init(sql){
+	console.log(sql);
     return {
         types: ['BeforeRequest', 'Requested', 'RequestError'],
-        url: api,
-        params:params
+        url: 'Datagrid.php',
+        data:{
+        	select:sql
+        },
     }
 }
 
+export function Edit(editData){
+    return {
+        type: 'edit',
+        data:editData
+    }
+}
+
+export function ChangePage(sql){
+    return {
+        types: ['BeforeRequest', 'Requested', 'RequestError'],
+        url: 'Datagrid.php',
+        data:{
+        	select:sql
+        },
+    }
+}
+export function Delete(sql){
+    return {
+        types: ['BeforeRequest', 'Requested', 'RequestError'],
+        url: 'Datagrid.php',
+        data:{
+            else:sql
+        },
+    }
+}
