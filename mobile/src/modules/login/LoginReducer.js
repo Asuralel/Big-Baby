@@ -12,9 +12,11 @@ export default function(state = {loading: false}, action){
             reState.loading = true
             break
         case types.SUCCESS:
-                reState.data =action.body;
-                reState.lastFetched = action.lastFetched
-                reState.loading = false
+            // console.log()
+            reState.data = action.body;
+            reState.lastFetched = action.lastFetched
+            reState.loading = false
+
             break
         case types.FAILURE:
             reState.error = action.error

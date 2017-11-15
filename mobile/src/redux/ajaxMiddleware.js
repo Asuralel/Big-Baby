@@ -11,6 +11,7 @@ export function ajaxMiddleware({ dispatch, getState }) {
             method = "get",
             path
         } = action;
+        
         if (!path || !method) {
             return next(action)
         }
