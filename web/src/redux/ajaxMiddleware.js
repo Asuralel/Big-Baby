@@ -9,7 +9,7 @@ export function ajaxMiddleware({ dispatch, getState }) {
             query = '',
             payload = {},
             method = "get",
-            path
+            url
         } = action;
         
 
@@ -20,7 +20,7 @@ export function ajaxMiddleware({ dispatch, getState }) {
 
 
 
-        if (!path || !method) {
+        if (!url || !method) {
             return next(action)
             // throw new Error('path and method is required!');
         }
@@ -39,11 +39,11 @@ export function ajaxMiddleware({ dispatch, getState }) {
             type: requestType,
         }));
 
-        return http[method](path, query, payload)
+        return http[method](url, query, payload)
             .then(
                 response => dispatch(Object.assign({}, { query }, { payload }, {
                     type: successType,
-                    body: response,
+                    body: JSON.parse(response),
                     lastFetched: Date.now()
                 })),
                 error => dispatch(Object.assign({}, { query }, { payload }, {                    

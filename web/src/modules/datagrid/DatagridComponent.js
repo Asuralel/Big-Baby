@@ -1,13 +1,21 @@
-/* 
-* @Author: Marte
-* @Date:   2017-11-13 11:38:44
-* @Last Modified by:   Marte
-* @Last Modified time: 2017-11-15 09:16:01
-*/
 
 import React, {Component} from 'react'
 import { Table , Input, Icon, Button, Popconfirm } from 'antd';
 import http from '../../utils/HttpClient';
+import * as DataGridAction from "./DataGridAction.js";
+import AddComponent from "./AddComponent";
+import addScss from "./add.scss";
+
+
+const EditableCell = ({ editable, value, onChange }) => (
+  <div>
+    {editable
+      ? <Input style={{ margin: '-5px 0' }} value={value} onChange={e => onChange(e.target.value)} />
+      : value
+    }
+  </div>
+);
+
 
 
 const EditableCell = ({ editable, value, onChange }) => (
@@ -27,22 +35,25 @@ export default class DatagridComponent extends Component{
             thead: [],
             data: [],
             pagination: {},
-            loading: false
+            loading: false,
+            showAdd:'none'
         };
     }
-      handleTableChange = (pagination, filters, sorter) => {
-        const pager = { ...this.state.pagination };
-        pager.current = pagination.current;
-        this.setState({
-          pagination: pager
-        });
-        this.fetch({
-          results: pagination.pageSize,
-          page: pagination.current,
-          ...filters
-        })
-      }
+    handleTableChange = (pagination, filters, sorter) => {
+
+      const pager = { ...this.state.pagination };
+      pager.current = pagination.current;
+      this.setState({
+        pagination: pager
+      });
+      this.fetch({
+        results: pagination.pageSize,
+        page: pagination.current,
+        ...filters
+      })
+    }
       
+
       fetch = (params = {}) => {
         this.setState({ loading: true });
         http.get(this.props.url,{
@@ -147,6 +158,7 @@ export default class DatagridComponent extends Component{
           data: [...data, newData],
           count: count + 1,
         });
+        this.setState({showAdd:"block"})
       }
 
       renderColumns(text, record, column) {
@@ -217,12 +229,17 @@ export default class DatagridComponent extends Component{
         return (
             <div>
                 <Button className="editable-add-btn" onClick={this.handleAdd}>Add</Button>
+                <br/>
                 <Table columns={this.state.thead}
                 dataSource={this.state.data}
                 pagination={this.state.pagination}
                 loading={this.state.loading}
                 onChange={this.handleTableChange}
                 />
+                <div style={{display:this.state.showAdd}} className="addCom" >
+                  <AddComponent  addUrl={this.props.url} data={this.state.data}/>
+                </div>
+                
             </div>
         )
     }
