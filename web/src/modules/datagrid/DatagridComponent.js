@@ -5,6 +5,7 @@ import http from '../../utils/HttpClient';
 import * as DataGridAction from "./DataGridAction.js";
 import AddComponent from "./AddComponent";
 import addScss from "./add.scss";
+import ZH_CN from "./ZH-CN.js";
 
 
 const EditableCell = ({ editable, value, onChange }) => (
@@ -16,6 +17,11 @@ const EditableCell = ({ editable, value, onChange }) => (
   </div>
 );
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 8a9609ad39d29a00d64c1d36f3eade7a6c7367c1
 var titles = [];
 export default class DatagridComponent extends Component{
     constructor(props) {
@@ -63,24 +69,24 @@ export default class DatagridComponent extends Component{
               }
             }
             for (let i = 0; i < titles.length; i++) {
+              var c_titles = ZH_CN[titles[i]];
               columns.push({
-                title: titles[i].toString(),
-                dataIndex: `${titles[i]}`,
-                key: `${titles[i]}`,
-                render: (text, record) => this.renderColumns(text, record, titles[i].toString()),
+                title: c_titles,
+                dataIndex: titles[i],
+                key: titles[i],
+                render: (text, record) => this.renderColumns(text, record, titles[i]),
               });
             }
             columns.push(
                 {
-                    title: 'delete',
+                    title: '删除',
                     dataIndex: 'delete',
-                    // this.onDelete(record.key)
-                    render: (text, record) => {
+                    render: (text, record, index) => {
                     return (
                         this.state.data.length > 0  ?
                         (
-                            <Popconfirm title="Sure to delete?" onConfirm={() => this.onDelete(record.key,record.id)}>
-                            <a href="#">Delete</a>
+                            <Popconfirm title="Sure to delete?" onConfirm={() => this.onDelete(index)}>
+                            <a href="#">删除</a>
                             </Popconfirm>
                         ) : null
                     )}
@@ -88,7 +94,7 @@ export default class DatagridComponent extends Component{
             )
             columns.push(
                 {
-                    title: 'update',
+                    title: '修改',
                     dataIndex: 'update',
                     render: (text, record) => {
                       const { editable } = record;
@@ -102,7 +108,7 @@ export default class DatagridComponent extends Component{
                                   <a>Cancel</a>
                                 </Popconfirm>
                               </span>
-                              : <a onClick={() => this.edit(record.key)}>Edit</a>
+                              : <a onClick={() => this.edit(record.key)}>修改</a>
                           }
                         </div>
                     )}
@@ -118,22 +124,13 @@ export default class DatagridComponent extends Component{
             })
         })
       }
-      onDelete = (key,id) => {console.log(key,id)
-        var current = [];
-        const data = [...this.state.data];
-        console.log(data);
-        http.get(this.props.delete_url,`id=${data[key].id}`).then(
-          data.forEach(function(item){
-            if(item.key==key){
-                current.push(item);
-                data.splice(key,1);
-                return;
-            }
-          })
-        )
-        this.setState({ data: data});
-        console.log(data);
+      onDelete = (index) => {
 
+        const data = this.state.data;
+
+        http.get(this.props.delete_url,`id=${data[index].id}`).then(()=>{
+          this.setState({ data: data.filter(item => item !== data[index]) });
+        })
       }
       handleAdd = () => {
         const { count, data } = this.state;

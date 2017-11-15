@@ -12,17 +12,8 @@ export function ajaxMiddleware({ dispatch, getState }) {
             path
         } = action;
         
-
-        // if (!types) {
-        //     // Normal action: pass it on
-        //     return next(action);
-        // }
-
-
-
         if (!path || !method) {
             return next(action)
-            // throw new Error('path and method is required!');
         }
 
         if (!Array.isArray(types) || types.length !== 3 || !types.every(type => typeof type === 'string')) {
@@ -38,7 +29,6 @@ export function ajaxMiddleware({ dispatch, getState }) {
         dispatch(Object.assign({}, { query }, { payload }, {
             type: requestType,
         }));
-
         return http[method](path, query, payload)
             .then(
                 response => dispatch(Object.assign({}, { query }, { payload }, {

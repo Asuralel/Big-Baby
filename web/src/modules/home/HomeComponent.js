@@ -4,14 +4,27 @@ import * as HomeAction from './HomeAction'
 import SpinnerComponent from '../spinner/SpinnerComponent';
 import {Router,Route,Link} from "react-router";
 
-import { Layout, Menu, Icon } from 'antd';
+import { Layout, Menu, Icon, Avatar, Badge, Dropdown, message } from 'antd';
 import homescss from "./home.scss";
 const { Header, Sider, Content,Footer} = Layout;
+const onClick = function ({ key }) {
+  message.success(`Click on item ${key}`);
+};
 
+const menu = (
+  <Menu onClick={onClick}>
+    <Menu.Item key="1">
+      <Badge count={1}>我的消息
+        <Icon type="notification" />
+      </Badge>
+    </Menu.Item>
+  </Menu>
+);
 var HomeComponent =  React.createClass({
     getInitialState:function(){
         return{
-            collapsed:false
+            collapsed:false,
+            user:sessionStorage.getItem('user')
         }
     },
     toggle(){
@@ -49,7 +62,15 @@ var HomeComponent =  React.createClass({
                 <Layout>
                   <Header style={{ background: '#fff', padding: 0 }}>
                       <ul>
-                          <li>Welcome！<span className="account"></span></li>
+                          <li>Welcome！<span className="account">{this.state.user}</span></li>
+                          <li>
+                            <Dropdown overlay={menu}>
+                                <span style={{ marginRight: 24 }}>
+                                  <Badge dot ><Avatar icon="user" /></Badge>
+                                </span>
+                              </Dropdown>
+                            
+                          </li>
                           <li><Link to="register">Exit</Link></li>
                       </ul>
                   </Header>

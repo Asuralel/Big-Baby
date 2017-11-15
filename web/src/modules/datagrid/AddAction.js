@@ -15,6 +15,7 @@ export function add(api,str){
         types: [constants.REQUEST, constants.SUCCESS, constants.FAILURE],
         // types: ['BeforeRequest', 'Requested', 'RequestError'],
         url: baseUrl+api+"/"+api+"_add.php",
+
         method: 'post',
         query: str
     }
