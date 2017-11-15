@@ -2,7 +2,7 @@ import * as constants from '../../redux/commonConstant'
 
 export function buycarInit(obj){
     return {
-        types: [constants.REQUEST, constants.SUCCESS, constants.FAILURE],
+        types: ['BUYCAR_REQUEST', 'BUYCAR_SUCCESS', 'BUYCAR_FAILURE'],
         path: 'buycar/buycar.php',
         method: 'get',
         query:{
