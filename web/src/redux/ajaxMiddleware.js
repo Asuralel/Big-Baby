@@ -43,7 +43,7 @@ export function ajaxMiddleware({ dispatch, getState }) {
             .then(
                 response => dispatch(Object.assign({}, { query }, { payload }, {
                     type: successType,
-                    body: JSON.parse(response),
+                    body: response,
                     lastFetched: Date.now()
                 })),
                 error => dispatch(Object.assign({}, { query }, { payload }, {                    

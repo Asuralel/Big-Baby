@@ -12,7 +12,7 @@ export function add(api,str){console.log(api,str)
 	var baseUrl = "http://localhost/big_baby/api/web/";
     return {
         types: [constants.REQUEST, constants.SUCCESS, constants.FAILURE],
-        path: baseUrl+api+"_add.php",
+        url: baseUrl+api+"_add.php",
         method: 'post',
         query: str
     }

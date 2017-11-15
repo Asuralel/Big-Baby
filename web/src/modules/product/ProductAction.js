@@ -4,7 +4,7 @@ export function ProductInit(){
     return {
         types: ['BeforeRequest', 'Requested', 'RequestError'],
 
-        url: 'http://10.3.137.248/big_baby/api/web/product/product.php',
+        url: 'http://localhost/big_baby/api/web/product/product.php',
 
     }
 }
