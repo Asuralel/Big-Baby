@@ -1,31 +1,33 @@
 <?php
     include "../../common/server.php";
     header("Access-Control-Allow-Origin: *");
-    $pageNo = isset($_REQUEST['username']) ? $_REQUEST['username'] : 1;
-    
     $username = isset($_REQUEST['username']) ? $_REQUEST['username'] : 1;
     $password = isset($_REQUEST['password']) ? $_REQUEST['password'] : 1;
-    $api_token = isset($_REQUEST['token']) ? $_REQUEST['password'] : true;
+    $api_token = isset($_REQUEST['token']) ? $_REQUEST['token'] : false;
 
-
-    if($api_token){
+    
+    if(!$api_token){
         $sql = "select user_name from users where user_name= '$username'";
         if(sizeof(query($sql))<=0){
-            echo time();
+            // echo '用户不存在';
         }else{
-            $sql1 = "select user_name from users where user_name= '$username' and user_password";
+            $sql1 = "select * from users where user_name= '$username' and user_password";
             if(sizeof(query($sql1))<=0){
                 echo "密码错误";
             }else{
+                // echo json_encode(query($sql1)[0]->user_sign,JSON_UNESCAPED_UNICODE);
+
                 $api_token_server = md5(date('Y-m-d', time()) .  'secret' . $username);
                 $time = time()+604800;
                 $sql = "update users set user_time='$time' where user_name='$username'";
 
                 if(excute($sql)){
                     $res = array(
-                        'token'=>$api_token_server . '!' . time(),
+                        'token'=>$api_token_server,
                         'start'=>excute($sql),
-                        'username'=>$username
+                        'username'=>$username,
+                        'sign'=>query($sql1)[0]->user_sign,
+                        'handimgs'=>query($sql1)[0]->head_image,
                     );
                     echo json_encode($res,JSON_UNESCAPED_UNICODE);
                 }else{
@@ -34,11 +36,22 @@
             }
         }
     }else{
-        
-        if ($api_token != $api_token_server) {
-
+        $username = json_decode($api_token)->username;
+        $sql1 = "select * from users where user_name= '$username'";
+        $time = query($sql1)[0]->user_time;
+        if($time>= time()){
+            $time = time()+604800;
+            $sql = "update users set user_time='$time' where user_name='$username'";
+            $res = array(
+                'token'=>md5(date('Y-m-d', time()) .  'secret' . $username),
+                'start'=>excute($sql),
+                'username'=>$username,
+                'sign'=>query($sql1)[0]->user_sign,
+                'handimgs'=>query($sql1)[0]->head_image,
+            );
+            echo json_encode($res,JSON_UNESCAPED_UNICODE);
         }else{
-
+            echo "false";
         }
 
     }

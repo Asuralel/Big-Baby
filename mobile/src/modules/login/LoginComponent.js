@@ -10,13 +10,13 @@ import * as loginActions from "./LoginAction";
 
 class loginComponent extends React.Component{
     loginMsg(){
-
+        
         const username = this.refs.username.value;
         const password = this.refs.password.value;
         this.props.login(username, password);
     }
     componentDidUpdate(){
-        console.log(this.props.token);
+        
         if(this.props.token){
             if(this.props.token.start){
                 var token = '';
@@ -59,6 +59,6 @@ class loginComponent extends React.Component{
 
 const mapStateToProps = state => ({
     loading : state.login.loading,
-    token : state.login.data
+    token : state.login.data?JSON.parse(state.login.data):null
 })
 export default connect(mapStateToProps, loginActions)(loginComponent);

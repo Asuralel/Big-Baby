@@ -3,11 +3,16 @@ import {connect} from "react-redux"
 import {Link} from 'react-router'
 import {Icon } from 'antd';
 
-
+import * as MysetActions from "./mysetAction"
 import Historyback from "../../buycar/HistorybackComponent" 
-import mysetcss from "./myset.scss"
+import mysetcss from "./myset.scss";
+var baseURI = "/src/asset/"
 class MySetComponent extends React.Component{
+    componentDidMount(){
+        this.props.mysetinit(JSON.parse(this.props.show).username)
+    }
     render(){
+        // console.log(this.props.myMsg)
         return (
             <div className="MySet">
                 <div className="personalHead">
@@ -20,35 +25,35 @@ class MySetComponent extends React.Component{
                     <div>
                         <span>头像</span>
                         <span className="lastSpan">
-                            <img src="/src/asset/setheader.jpg"/>
+                            <img src={baseURI+this.props.myMsg.handimgs}/>
                         </span>
                         <Icon type="right" />
                     </div>
                     <div>
                         <span>昵称</span>
                         <span className="lastSpan">
-                            少时诵诗书
+                           {this.props.myMsg.username}
                         </span>
                         <Icon type="right" />
                     </div>
                     <div>
                         <span>性别</span>
                         <span className="lastSpan">
-                            保密
+                            {this.props.myMsg.gender}
                         </span>
                         <Icon type="right" />
                     </div>
                     <div>
                         <span>账户名</span>
                         <span className="lastSpan">
-                            laughing
+                            {this.props.myMsg.account}
                         </span>
                         <Icon type="right" />
                     </div>
                     <div>
                         <span>收货地址</span>
                         <span className="lastSpan">
-                            添加
+                            {this.props.myMsg.address}
                         </span>
                         <Icon type="right" />
                     </div>
@@ -57,4 +62,11 @@ class MySetComponent extends React.Component{
         )
     }
 }
-export default MySetComponent
+
+const MyState = function(state){
+    return {
+        show:state.login.data,
+        myMsg:state.myset.myMsg?JSON.parse(state.myset.myMsg):null
+    }
+}
+export default connect(MyState, MysetActions)(MySetComponent)
