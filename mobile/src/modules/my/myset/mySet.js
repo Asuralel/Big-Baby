@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from "react-redux"
-import {Link} from 'react-router'
+import {Link,hashHistory} from 'react-router'
 import {Icon } from 'antd';
 
 import * as MysetActions from "./mysetAction"
@@ -10,6 +10,10 @@ var baseURI = "/src/asset/"
 class MySetComponent extends React.Component{
     componentDidMount(){
         this.props.mysetinit(JSON.parse(this.props.show).username)
+    }
+    clickto(){
+        
+        hashHistory.push("/my/mySet/address")
     }
     render(){
         return (
@@ -49,12 +53,12 @@ class MySetComponent extends React.Component{
                         </span>
                         <Icon type="right" />
                     </div>
-                    <div className="address"><Link to="/my/mySet/address">
+                    <div className="address" onClick={this.clickto}>
                         <span>收货地址</span>
                         <span className="lastSpan">
                             {this.props.myMsg.address}
                         </span>
-                        <Icon type="right" /></Link>
+                        <Icon type="right" />
                     </div>
                 </div>
             </div>

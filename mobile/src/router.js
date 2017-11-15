@@ -16,7 +16,8 @@ import MySetComponent from './modules/my/myset/mySet';
 import AccSevurityComponent from './modules/my/accountSecurity/accSecurity';
 import RegisterComponent from './modules/register/registerComponent';
 import agreement from './modules/register/agreement';
-import address from './modules/my/myset/address/address'
+import address from './modules/my/myset/address/address';
+import myEdit from './modules/my/myset/address/addressEdit/addressEdit'
 export default (
     <Route path="/" component={AppComponent}>
         <Route path="register" component={RegisterComponent}/>
@@ -31,6 +32,7 @@ export default (
             <Route path='/my/mySecurity' component={AccSevurityComponent}/>
             <Route path='/register/agreement' component = {agreement}/>
             <Route path = '/my/mySet/address' component = {address}/>
+            <Route path="/my/mySet/edit" component={myEdit}/>
         </Route>
         <Route path="sort" component={sortComponent} />
         <Route path="list/:goodType" component={listComponent} />
