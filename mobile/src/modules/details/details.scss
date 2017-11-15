@@ -1,4 +1,4 @@
-//轮播图
+//Ant Design轮播图
 .ant-carousel .slick-slide {
   text-align: center;
   height: 160px;
@@ -10,3 +10,69 @@
 .ant-carousel .slick-slide h3 {
   color: #fff;
 }
+
+.details{
+    .detailst-head{position:fixed;z-index: 9;background-color: #fff;top:0;left:0;display:flex;justify-content:space-between;align-items:center;width:100%;height:50px;padding:0 18px;box-sizing:border-box;border-bottom:1px solid rgba(7,17,27,.1);
+        .sort-hb{}
+        .sort-sh{height:100%;width:70%;display: flex;align-items: center;
+            li{flex:1;text-align: center;font-size: 16px;height:100%;box-sizing: border-box;line-height: 50px;
+                a{display: block;widows: 100%;height: 100%;color:#9D9A9D;}
+                &.current{border-bottom:2px solid rgb(240,110,101);
+                    a{color:rgb(240,110,101);}
+                }
+            }
+        }
+        .sort-links{font-size: 20px; color: rgb(224,110,101);font-weight: bold;}
+    }
+    .details-cont{position: absolute;top:50px;left:0;width:100%;overflow-x: hidden;
+        .details-good{
+            .img-list{
+                img{width:100%;}
+            }
+            .text{padding:14px 8px;color:#444;}
+            .extra{padding:0 8px 14px 8px;display: flex;line-height: 16px;justify-content: space-between;
+                .price{
+                    .now-price{color:#DA0000;font-weight: 700;font-size:18px;}
+                    .old-price{color:#999;margin-left:6px;text-decoration: line-through;font-size: 14px;}
+                }
+                .sell-num{color:#999;text-align: right;}
+            }
+            .others{padding:10px;background-color: #e5e5e5;display: flex;
+                span{flex:1;text-align: left;
+                    &:first-of-type{flex:1.5}
+                    i{color:#867DB6;margin-right:2px;}
+                }
+            }
+        }
+        .details-desc{padding:8px;
+            .desc-head{position:fixed;top:56px;left:0;width:100%;z-index: 9;background-color: #fff;}
+            .desc-cont{padding:40px 0 50px 0;
+                img{display: block;width:100%;}
+            }
+        }
+    }
+    .details-footer{display:flex;position:fixed;left:0;bottom:0;width:100%;height:50px;align-items: center;z-index: 9;background-color: #fff;box-sizing: border-box;border-top:1px solid rgba(7,17,27,.1);
+        ul{display: flex;flex:3;
+            &:first-of-type{flex:2;
+                li i{display: block;}
+            }
+            li{flex:1;text-align: center;color:#5A555A;font-size: 10px;
+                &.to-home a{color:#5A555A;}
+                &.add-favor{
+                    i:last-of-type{display: none;}
+                    &.has-favor{
+                        span::before{
+                            content:'已'
+                        }
+                        i:last-of-type{display: block;}
+                        i:first-of-type{display: none;}
+                    }
+                }
+                &.cart-list a{color:#5A555A;}
+                &.add-cart,&.buy-now{background-color: #FFCE42;height: 100%;line-height: 50px;color:#fff;font-size: 14px;letter-spacing: 2px;}
+                &.buy-now{background-color: #DA0000;}
+            }
+        }
+    }
+}
+
