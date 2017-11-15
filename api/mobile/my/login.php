@@ -9,11 +9,17 @@
     if(!$api_token){
         $sql = "select user_name from users where user_name= '$username'";
         if(sizeof(query($sql))<=0){
-            // echo '用户不存在';
+            // $res = array(
+            //     'start'=>'用户不存在',
+            // );
+            // echo json_encode($res,JSON_UNESCAPED_UNICODE);
         }else{
             $sql1 = "select * from users where user_name= '$username' and user_password";
             if(sizeof(query($sql1))<=0){
-                echo "密码错误";
+                // $res = array(
+                //     'start'=>'密码错误',
+                // );
+                // echo json_encode($res,JSON_UNESCAPED_UNICODE);
             }else{
                 // echo json_encode(query($sql1)[0]->user_sign,JSON_UNESCAPED_UNICODE);
 

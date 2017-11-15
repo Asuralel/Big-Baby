@@ -1,11 +1,11 @@
 import * as constants from '../../redux/commonConstant'
 
-export function login(username, password){
+export function login(str){
     return {
         types: [constants.REQUEST, constants.SUCCESS, constants.FAILURE],
-        path: 'login',
+        path: 'http://localhost/laoxie/api/web/login/login.php',
         method: 'post',
-        query: {username, password}
+        query: str
     }
     // return {
     // 	type: constants.REQUEST

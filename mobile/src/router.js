@@ -15,7 +15,8 @@ import myCollectComponent from './modules/my/myCollect/myCollect.js';
 import MySetComponent from './modules/my/myset/mySet';
 import AccSevurityComponent from './modules/my/accountSecurity/accSecurity';
 import RegisterComponent from './modules/register/registerComponent';
-import agreement from './modules/register/agreement'
+import agreement from './modules/register/agreement';
+import address from './modules/my/myset/address/address'
 export default (
     <Route path="/" component={AppComponent}>
         <Route path="register" component={RegisterComponent}/>
@@ -28,7 +29,8 @@ export default (
             <Route path='/my/myCollect' component={myCollectComponent}/>
             <Route path='/my/mySet' component={MySetComponent} />
             <Route path='/my/mySecurity' component={AccSevurityComponent}/>
-            <Route path='/register/agreement' component = {agreement}/> 
+            <Route path='/register/agreement' component = {agreement}/>
+            <Route path = '/my/mySet/address' component = {address}/>
         </Route>
         <Route path="sort" component={sortComponent} />
         <Route path="list/:goodType" component={listComponent} />

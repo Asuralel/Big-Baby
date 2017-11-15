@@ -12,7 +12,6 @@ class MySetComponent extends React.Component{
         this.props.mysetinit(JSON.parse(this.props.show).username)
     }
     render(){
-        // console.log(this.props.myMsg)
         return (
             <div className="MySet">
                 <div className="personalHead">
@@ -50,12 +49,12 @@ class MySetComponent extends React.Component{
                         </span>
                         <Icon type="right" />
                     </div>
-                    <div>
+                    <div className="address"><Link to="/my/mySet/address">
                         <span>收货地址</span>
                         <span className="lastSpan">
                             {this.props.myMsg.address}
                         </span>
-                        <Icon type="right" />
+                        <Icon type="right" /></Link>
                     </div>
                 </div>
             </div>

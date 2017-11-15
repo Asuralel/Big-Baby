@@ -6,10 +6,11 @@ export default function ProductReducer(state = {}, action){
             break;
         case 'Requested':
             reState.loading = false;
-            reState.dataset = action.dataset;
+            reState.dataset = action.body;
             break;
         default:
             reState.loading = false;
     }
+    // console.log(reState)
     return reState ;
 }

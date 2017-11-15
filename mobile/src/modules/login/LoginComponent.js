@@ -4,10 +4,10 @@ import {connect} from 'react-redux';
 
 import login from "./login.scss";
 import Goback from "../buycar/HistorybackComponent";
-import {Icon} from 'antd';
+import {Icon,Button, notification } from 'antd';
 import SpinnerComponent from "../spinner/SpinnerComponent";
 import * as loginActions from "./LoginAction";
-
+var verification;
 class loginComponent extends React.Component{
     loginMsg(){
         
@@ -16,17 +16,26 @@ class loginComponent extends React.Component{
         this.props.login(username, password);
     }
     componentDidUpdate(){
-        
+        console.log(this.props.token)
         if(this.props.token){
-            if(this.props.token.start){
+            if(this.props.token.start==true){
+                console.log(this.props.token)
                 var token = '';
                 var date = new Date();  
                 date.setDate(date.getDate() +7);
                 document.cookie = "token=" + JSON.stringify(this.props.token) + ";expires=" + date.toUTCString();
                 hashHistory.push('/home')
-            }else{
-
             }
+            return
+        }else{
+            if(verification){
+                verification = false;
+                notification.open({
+                    message: "请输入正确的账号、密码"
+                });
+                return
+            }
+            verification = true;
         }
     }
     render(){
@@ -59,6 +68,6 @@ class loginComponent extends React.Component{
 
 const mapStateToProps = state => ({
     loading : state.login.loading,
-    token : state.login.data?JSON.parse(state.login.data):null
+    token : state.login.data?JSON.parse(state.login.data):false
 })
 export default connect(mapStateToProps, loginActions)(loginComponent);

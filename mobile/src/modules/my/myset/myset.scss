@@ -10,13 +10,13 @@
         &>div:first-child{
             margin-top:10px;
         }
-        &>div{position:relative;
+        &>div,.address{position:relative;
             padding:10px;border-bottom:1px solid #D8D8D8;
             background:#fff;overflow:hidden;
             span{font-size:16px;line-height:50px;}
             span:first-child{
                 float:left;
-                color:black;
+                color:black;color:#ccc;
                 i{
                     font-size:20px;
                 }
