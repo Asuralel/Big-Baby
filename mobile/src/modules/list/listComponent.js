@@ -3,11 +3,11 @@ import React from 'react';
 import {Link} from 'react-router'
 
 //第三方系列
-import {Icon,Input} from 'antd';
+import {Icon,Input,BackTop} from 'antd';
 const Search = Input.Search;
 
 //自定义系列
-import './LIST.scss'
+import './list.scss'
 import Hbicon from '../buycar/HistorybackComponent.js'
 import LinksMask from '../common/linksMask/linksMaskComponent.js'
 
@@ -236,7 +236,7 @@ class listComponent extends React.Component {
 							this.state.goodList.map((item,idx) => {
 								return (
 									<li key={idx}>
-										<Link to={'/details/:'+item.goodId}>
+										<Link to={{pathname:'/details/',state:item.goodId}}>
 										<div className="img"><img src={item.img} /></div>
 										<div className="text">
 											<span className="now-price">￥{item.nowPrice}</span>
@@ -252,6 +252,9 @@ class listComponent extends React.Component {
 					</ul>
 				</div>
 				<LinksMask childHideLinks={this.hideLinks.bind(this)} hideLinkIdx={-1} boxStyleObj={{'display': this.state.isShowLinks}} ulStyleObj={{top:'50px',right:0}}/>
+			    <BackTop style={{right:0,bottom:0}}>
+			      <div className="ant-back-top-inner"><Icon type="up-circle-o"  style={{ fontSize: 28, color: '#555555',backgroundColor:'#fff',borderRadius:'50%' }}/></div>
+			    </BackTop>
             </div>
         )
     }
