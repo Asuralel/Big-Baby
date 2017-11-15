@@ -6,13 +6,12 @@ export function ajaxMiddleware({ dispatch, getState }) {
         const {
             types,
             shouldCallAPI = () => true,
-            query = {},
+            query = '',
             payload = {},
             method = "get",
-            path
+            url
         } = action;
         
-
         // if (!types) {
         //     // Normal action: pass it on
         //     return next(action);
@@ -20,7 +19,7 @@ export function ajaxMiddleware({ dispatch, getState }) {
 
 
 
-        if (!path || !method) {
+        if (!url || !method) {
             return next(action)
             // throw new Error('path and method is required!');
         }
@@ -34,12 +33,11 @@ export function ajaxMiddleware({ dispatch, getState }) {
         }
         
         const [requestType, successType, failureType] = types;
-
         dispatch(Object.assign({}, { query }, { payload }, {
             type: requestType,
         }));
-
-        return http[method](path, query, payload)
+        
+        return http[method](url, query, payload)
             .then(
                 response => dispatch(Object.assign({}, { query }, { payload }, {
                     type: successType,

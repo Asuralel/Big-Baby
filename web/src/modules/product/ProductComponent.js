@@ -4,19 +4,22 @@ import * as ProductAction from './ProductAction'
 import SpinnerComponent from '../spinner/SpinnerComponent';
 import DatagridComponent from '../datagrid/DatagridComponent';
 import {Router,Route,Link} from "react-router";
-import DataGrid from "../datagrid/DataGrid";
 
 
 class ProductComponent extends React.Component{
-    componentDidMount(){
+    // componentDidMount(){
         
-        this.props.ProductInit();
-    }
+    //     this.props.ProductInit();
+    // }
 
     render(){
         return (
             
-                <DatagridComponent url="http://localhost/laoxie/api/goodslist.php"/> 
+
+                <DatagridComponent url="http://localhost/big_baby/api//web/product/product.php" 
+                delete_url="http://localhost/big_baby/api//web/product/deleteProduct.php"  
+                update_url="http://localhost/big_baby/api//web/product/updateProduct.php" 
+                title='product_name,product_type,product_color,product_price'/>
             )
     }
 }

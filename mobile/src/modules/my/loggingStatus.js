@@ -7,14 +7,16 @@ class SpinnerComponent extends React.Component{
     componentDidMount(){
     }
     render(){
+        // console.log(this.props.loginShow)
         if(this.props.loginShow){
+            let show = JSON.parse(this.props.loginShow)
             return (
                 <div className="loginStatus">
                     <div className="loginHead">
-                        <img src={baseURI+"setheader.jpg"}/>
+                        <img src={baseURI+show.handimgs}/>
                     </div>
-                    <h4>laughing</h4>
-                    <h4>18888888888</h4>
+                    <h4>{show.username}</h4>
+                    <h4>{show.sign}</h4>
                 </div>
             )
         }else{

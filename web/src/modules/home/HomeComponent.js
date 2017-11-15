@@ -3,15 +3,28 @@ import {connect} from 'react-redux'
 import * as HomeAction from './HomeAction'
 import SpinnerComponent from '../spinner/SpinnerComponent';
 import {Router,Route,Link} from "react-router";
+
+import { Layout, Menu, Icon, Avatar, Badge, Dropdown, message } from 'antd';
 import homescss from "./home.scss";
-
-import { Layout, Menu, Icon } from 'antd';
 const { Header, Sider, Content,Footer} = Layout;
+const onClick = function ({ key }) {
+  message.success(`Click on item ${key}`);
+};
 
+const menu = (
+  <Menu onClick={onClick}>
+    <Menu.Item key="1">
+      <Badge count={1}>我的消息
+        <Icon type="notification" />
+      </Badge>
+    </Menu.Item>
+  </Menu>
+);
 var HomeComponent =  React.createClass({
     getInitialState:function(){
         return{
-            collapsed:false
+            collapsed:false,
+            user:sessionStorage.getItem('user')
         }
     },
     toggle(){
@@ -29,7 +42,7 @@ var HomeComponent =  React.createClass({
                   onCollapse={(collapsed, type) => { console.log(collapsed, type); }}
                 >
                   <div className="logo">
-                    <h1>LOGO</h1>
+                    <h1>BIGBABY</h1>
                   </div>
                   <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']}>
                     <Menu.Item key="1">
@@ -49,8 +62,16 @@ var HomeComponent =  React.createClass({
                 <Layout>
                   <Header style={{ background: '#fff', padding: 0 }}>
                       <ul>
-                          <li><Link to="login">登录</Link></li>
-                          <li><Link to="register">注册</Link></li>
+                          <li>Welcome！<span className="account">{this.state.user}</span></li>
+                          <li>
+                            <Dropdown overlay={menu}>
+                                <span style={{ marginRight: 24 }}>
+                                  <Badge dot ><Avatar icon="user" /></Badge>
+                                </span>
+                              </Dropdown>
+                            
+                          </li>
+                          <li><Link to="register">Exit</Link></li>
                       </ul>
                   </Header>
                   <Content style={{ margin: '24px 16px 0' }}>
@@ -59,7 +80,7 @@ var HomeComponent =  React.createClass({
                     </div>
                   </Content>
                   <Footer style={{ textAlign: 'center' }}>
-                    Ant Design ©2016 Created by Ant UED
+                    BigBaby ©2017 Created by bigbaby group
                   </Footer>
                 </Layout>
             </Layout>

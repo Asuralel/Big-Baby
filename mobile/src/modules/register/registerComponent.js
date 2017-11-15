@@ -1,21 +1,27 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Link} from 'react-router';
+import {Link, hashHistory} from 'react-router';
 import {Icon, Button, notification} from 'antd';
+// import {Router, Route, Link, , IndexRoute} from 'react-router';
 
 import * as registerActions from './registerActions';
 import registerss from "./register.scss";
 import Goback from "../buycar/HistorybackComponent";
 import SpinnerComponent from '../spinner/SpinnerComponent';
 
-
-
-
 class RegisterComponent extends React.Component {
     componentDidMount(){
-
+        
     }
-    
+    componentDidUpdate(){
+        if(this.props.logindata=='ok'){
+            hashHistory.push('/login')
+        }else if(this.props.logindata=='false'){
+            notification.open({
+               message: '用户名存在'
+             });
+        }
+    }
     regChange(){
         const tel = this.refs.tel.value;
 
@@ -72,11 +78,11 @@ class RegisterComponent extends React.Component {
         this.reBtnStyle(this.registerRule())
     }
     inspectBlur(){
-        console.log(this.registerRule())
         this.reBtnStyle(this.registerRule())
        
     }
     render(){
+        
         return(
             <div className="registerBox">
             <div className="registerHead"><Link to="/login"><span><Goback /></span></Link><h3>注册</h3></div>
@@ -104,6 +110,7 @@ class RegisterComponent extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    loading: state.login.loading
+    loading: state.register.loading,
+    logindata:state.register.loginData
 })
 export default connect(mapStateToProps, registerActions)(RegisterComponent);

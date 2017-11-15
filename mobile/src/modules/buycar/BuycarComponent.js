@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Router, hashHistory, browserHistory} from 'react-router';
 import {Link} from 'react-router'
 import {connect} from 'react-redux';
 import * as BuycarActions from './BuycarActions';
@@ -6,6 +7,8 @@ import SpinnerComponent from '../spinner/SpinnerComponent';
 import {Button,Icon} from 'antd';
 
 import HistorybackComponent from "./HistorybackComponent";
+import MaskComponent from "./MaskComponent";
+import LinksMask  from "../common/linksMask/linksMaskComponent";
 import './Buycar.scss';
 import * as commonUrl from '../common/commonUrl.js';
 
@@ -16,24 +19,14 @@ class BuycarComponent extends React.Component {
         super(props);
         this.state= {
             buycarHas: false,
-            bcListInit: [
-                        {
-                          product_name: '皇家尊享 一级K9水晶拉扣 1.8米玫瑰雕花描金真皮床 725系列' ,
-                          product_origin_price: '10900',
-                          amount: 1,
-                          product_image:'LAROSE-CO-A728-18C.jpg'
-                        },
-                        {
-                          product_name: '白橡木纹 质感明显 健康风尚时尚双拼色 1.5米双床' ,
-                          product_origin_price: '12900',
-                          amount: 2,
-                          product_image:'DMY-XL-A934-15C.jpg'
-                        }
-                        ],
+            isShowLinks:'none',
             accountList:[],
             totalPri:0,
             amountAll:0,
-            selAll:false
+            selAll:false,
+            maskshow:false,
+            username:'liu',
+            buycarLi: this.props.buycarLi.length > 0 ? JSON.parse(JSON.stringify(this.props.buycarLi)) : []
         }
         this.addAmount = this.addAmount.bind(this);
         this.subAmount = this.subAmount.bind(this);
@@ -41,41 +34,89 @@ class BuycarComponent extends React.Component {
         this.selLi = this.selLi.bind(this);
         this.selAll = this.selAll.bind(this);
         this.accountOK = this.accountOK.bind(this);
+        this.masknoshow = this.masknoshow.bind(this);
+        // this.buycarGrid= this.buycarGrid.bind(this);
+        this.test1 = this.test1.bind(this);
+    }
+
+    test1(){
+        // this.props.history.goBack(-1)
     }
 
     componentWillMount(){
-        if(this.state.bcListInit.length > 0){
+
+        const obj = {username:this.state.username}
+        this.props.buycarInit(obj);
+        if(this.props.buycarLi.length <= 0){
             this.setState({buycarHas:true})
         }
     }
+    componentDidMount(){
+        // console.log(666)
 
+    }
+
+
+    componentWillUnmount(){
+        // console.log(4)
+        const obj = {
+                        username:this.state.username,
+                        list:JSON.stringify(this.props.buycarLi)
+                    }
+        console.log(obj)
+        this.props.buycarInit(obj);
+    }
     addAmount(e){
         const idx = e.target.getAttribute('data-index');
-        const list = this.state.bcListInit;
+        const list = this.props.buycarLi;
+        const accountList = this.state.accountList;
+        var totalPri = this.state.totalPri;
+        var amountAll = this.state.amountAll;
+        for(var i=0;i<accountList.length;i++){
+            if(list[idx].product_name == accountList[i].product_name){
+                accountList[i].amount++;
+                amountAll++;
+                totalPri += accountList[i].product_origin_price * 1;
+            }
+        }
         list[idx].amount++;
-        this.setState({bcListInit:list});
+        // console.log(accountList)
+        this.setState({buycarLi:list,accountList:accountList,totalPri:totalPri,amountAll:amountAll});
     }
     subAmount(e){
         const idx = e.target.getAttribute('data-index');
-        const list = this.state.bcListInit;
+        const list = this.props.buycarLi;
+        const accountList = this.state.accountList;
+        var totalPri = this.state.totalPri;
+        var amountAll = this.state.amountAll;
+        // console.log(accountList)
+        for(var i=0;i<accountList.length;i++){
+            if(list[idx].product_name == accountList[i].product_name){
+                if(accountList[i].amount > 1){
+                    accountList[i].amount--;
+                    amountAll--;
+                    totalPri -= accountList[i].product_origin_price * 1;
+                }
+            }
+        }       
         if(list[idx].amount > 1){
             list[idx].amount--;
         };
-        this.setState({bcListInit:list});
+        this.setState({buycarLi:list,accountList:accountList,totalPri:totalPri,amountAll:amountAll});
     }
     removeLi(e){
         const idx = e.target.getAttribute('data-index');
-        const list = this.state.bcListInit;
+        const list = this.props.buycarLi;
         list.splice(idx,1);
-        this.setState({bcListInit:list}); 
-        if(this.state.bcListInit.length <= 0){
+        this.setState({buycarLi:list}); 
+        if(this.props.buycarLi.length <= 0){
             this.setState({buycarHas:false})
         }      
     }
 
     selLi(e){
         const idx = e.target.getAttribute('data-index');
-        const list = this.state.bcListInit;
+        const list = this.props.buycarLi;
         const accountList = this.state.accountList;
 
         var accountLihas = false;
@@ -107,6 +148,7 @@ class BuycarComponent extends React.Component {
     }
 
     selAll(){
+        // this.masknoshow = this.masknoshow.bind(this);
         const selAll = !this.state.selAll;
         var totalPri = 0;
         var amountAll = 0;
@@ -114,8 +156,7 @@ class BuycarComponent extends React.Component {
         this.setState({selAll:selAll})
 
         if(selAll){
-            const accountList = JSON.parse(JSON.stringify(this.state.bcListInit));
-           
+            const accountList = JSON.parse(JSON.stringify(this.props.buycarLi));
             this.setState({accountList:accountList});
             accountList.forEach(function(item){
                 amountAll += item.amount;
@@ -132,16 +173,39 @@ class BuycarComponent extends React.Component {
 
     accountOK(){
         if(this.state.accountList.length <= 0){
-
+            this.setState({maskshow:true});
+        }else{
+            const obj = {
+                            username:this.state.username,
+                            list:JSON.stringify(this.props.buycarLi),
+                            account:JSON.stringify(this.state.accountList)
+                        }
+            this.props.buycarInit(obj);
+            hashHistory.push('account');
         }
     }
-
+    masknoshow(){
+        this.setState({maskshow:false})
+    }
+    //linksMaskComponent.js：公共模块导航相关方法
+    showLinks(){
+        this.setState({
+            isShowLinks:'block'
+        });
+    }
+    hideLinks(){
+        this.setState({
+            isShowLinks:'none'
+        });
+    }
     render(){
         return(
             <div id="buycar">
                 <header id="bcheader">
                     <HistorybackComponent />
-                    <h2>购物车</h2>
+                    <h2 onClick= {this.test1}>购物车</h2>
+                    <Icon className="sort-links" type="ellipsis" onClick={this.showLinks.bind(this)}/>
+                 
                 </header>
                 <main id="bcmain">
                     <div className="nothing" style={{display:this.state.buycarHas ? 'none' : 'block'}}>
@@ -151,7 +215,8 @@ class BuycarComponent extends React.Component {
                     </div>
                     <ul className="buycarList" style={{display:this.state.buycarHas ? 'block' : 'none'}}>
                             {
-                                this.state.bcListInit.map(function(item,index){
+                                this.props.buycarLi.length > 0 ?
+                                this.props.buycarLi.map((item,index) => {
                                     return(
                                             <li key={item.product_image} >
                                                 <div className='checkBox'>
@@ -172,7 +237,7 @@ class BuycarComponent extends React.Component {
                                                 </div>
                                             </li>
                                         )
-                                }.bind(this))
+                                }) : ''
                             }
                     </ul>
                 </main>
@@ -184,10 +249,11 @@ class BuycarComponent extends React.Component {
                         合计:<span className="price">￥{this.state.totalPri}</span><br />
                        <span>不含运费</span>
                     </div>
-                    <Link to='account' className="account">结算(<span>{this.state.amountAll}</span>)</Link>
+                    <a onClick={this.accountOK} className="account">结算(<span>{this.state.amountAll}</span>)</a>
                 </footer>
                 <SpinnerComponent show = {this.props.loading} />
-                <div className='mask'></div>
+                <MaskComponent maskshow={this.state.maskshow} masknoshow={this.masknoshow} />
+                <LinksMask childHideLinks={this.hideLinks.bind(this)} hideLinkIdx={2} boxStyleObj={{'display': this.state.isShowLinks}} ulStyleObj={{top:'50px',right:0}}/>
             </div>
         )
     }
@@ -195,6 +261,7 @@ class BuycarComponent extends React.Component {
 
 
 const mapStateToProps = state => ({
-    loading: state.login.loading
+    loading: state.login.loading,
+    buycarLi:state.buycar.data ? JSON.parse(state.buycar.data[0].list) : []
 })
 export default connect(mapStateToProps, BuycarActions)(BuycarComponent)

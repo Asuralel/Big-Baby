@@ -1,12 +1,22 @@
 import React from 'react'
 import {connect} from "react-redux"
-import {Link} from 'react-router'
+import {Link,hashHistory} from 'react-router'
 import {Icon } from 'antd';
 
-
+import * as MysetActions from "./mysetAction"
 import Historyback from "../../buycar/HistorybackComponent" 
-import mysetcss from "./myset.scss"
+import mysetcss from "./myset.scss";
+var baseURI = "/src/asset/"
 class MySetComponent extends React.Component{
+    componentDidMount(){
+        // console.log(JSON.parse(this.props.show).username)
+        this.props.mysetinit(JSON.parse(this.props.show).username)
+        console.log(this.props.myMsg)
+    }
+    clickto(){
+        
+        hashHistory.push("/my/mySet/address")
+    }
     render(){
         return (
             <div className="MySet">
@@ -20,35 +30,30 @@ class MySetComponent extends React.Component{
                     <div>
                         <span>头像</span>
                         <span className="lastSpan">
-                            <img src="/src/asset/setheader.jpg"/>
                         </span>
                         <Icon type="right" />
                     </div>
                     <div>
                         <span>昵称</span>
                         <span className="lastSpan">
-                            少时诵诗书
                         </span>
                         <Icon type="right" />
                     </div>
                     <div>
                         <span>性别</span>
                         <span className="lastSpan">
-                            保密
                         </span>
                         <Icon type="right" />
                     </div>
                     <div>
                         <span>账户名</span>
                         <span className="lastSpan">
-                            laughing
                         </span>
                         <Icon type="right" />
                     </div>
-                    <div>
+                    <div className="address" onClick={this.clickto}>
                         <span>收货地址</span>
                         <span className="lastSpan">
-                            添加
                         </span>
                         <Icon type="right" />
                     </div>
@@ -57,4 +62,12 @@ class MySetComponent extends React.Component{
         )
     }
 }
-export default MySetComponent
+
+const MyState = function(state){
+    console.log(state)
+    return {
+        show:state.login.data,
+        myMsg:state.myset.myMsg
+    }
+}
+export default connect(MyState, MysetActions)(MySetComponent)

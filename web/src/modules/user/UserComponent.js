@@ -1,17 +1,39 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import * as UserActions from './UserAction'
+import * as UserAction from './UserAction'
 import SpinnerComponent from '../spinner/SpinnerComponent';
+import DatagridComponent from '../datagrid/DatagridComponent';
 import {Router,Route,Link} from "react-router";
 
 
-var UserComponent =  React.createClass({
+class UserComponent extends React.Component{
+    // componentDidMount(){
+        
+    //     this.props.UserInit();
+    // }
+
     render(){
-        return(
-           <div>
-              <h2>user</h2>
-           </div>
-        )
+        return (
+            
+
+                <DatagridComponent url="http://localhost/big_baby/api//web/user/user.php" 
+                delete_url="http://localhost/big_baby/api//web/user/deleteUser.php"  
+                update_url="http://localhost/big_baby/api//web/user/updateUser.php" 
+                title='user_name,user_gender,user_tel,user_account,user_sign,user_collect'/>
+            )
     }
-})
+}
+
+
+
+
+
+const mapStateToProps = function(state){
+    return {
+        loading: state.user.loading,
+        dataset: state.user.dataset
+    }
+}
+
+export default connect(mapStateToProps, UserAction)(UserComponent)
 
