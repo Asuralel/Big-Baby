@@ -1,6 +1,6 @@
 //react相关
 import React from 'react'
-import {Link} from 'react-router'
+import {Link,hashHistory} from 'react-router'
 
 //第三方
 import {Icon,Input,BackTop,Carousel} from 'antd';
@@ -210,12 +210,26 @@ class detailsComponent extends React.Component {
 			}
 		})
 	}
+	//收藏相关
 	changeFavor(){
 		let favor = this.refs.favorLi;
 		if(favor.className === "add-favor has-favor"){
 			favor.className = "add-favor";
 		}else{
 			favor.className = "add-favor has-favor";
+		}
+	}
+	//购物车/订单相关
+	handleCart(e){
+		const isLogin = true;
+		if(!isLogin){
+			hashHistory.push('/login');
+		}else{
+			if(e.target.className === "add-cart"){
+				console.log('发请求到购物车接口')
+			}else if(e.target.className === "buy-now"){
+				console.log('发请求到购物车接口;并跳到订单结算页面')
+			}
 		}
 	}
     render(){
@@ -265,7 +279,7 @@ class detailsComponent extends React.Component {
 						<li className="add-favor" onClick={this.changeFavor.bind(this)} ref="favorLi"><Icon type="star-o"  style={{ fontSize: 20, color: '#555555' }}/><Icon type="star"  style={{ fontSize: 20, color: '#FFCE42' }}/><span>收藏</span></li>
 						<li className="cart-list"><Link to="/buycar"><Icon type="shopping-cart"  style={{ fontSize: 20, color: '#555555' }}/>购物车</Link></li>
 					</ul>
-					<ul>
+					<ul onClick={this.handleCart.bind(this)}>
 						<li className="add-cart">加入购物车</li>
 						<li className="buy-now">立即购买</li>
 					</ul>

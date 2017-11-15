@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {Icon } from 'antd';
-import {Link} from 'react-router';
+import {Link ,hashHistory} from 'react-router';
 
 import common from "../../static/styles/common.scss";
 import Mycss from "./my.scss";
@@ -10,22 +10,41 @@ import * as MyActions from "./MyActions";
 import FooterComponent from "../common/footer/footerComponent.js";
 import fcss from "../common/footer/footer.scss";
 import QuitLogin from "./quitLogin";
+import loginToken from "../login/logintoken";
+
+
 class MyComponent extends React.Component {
     componentDidMount(){
+        this.props.MyActions()
+    }
 
+    componentDidUpdate(){
+        if(this.props.show=="false"){
+            var date = new Date();
+            date.setDate(date.getDate() -100);
+            document.cookie = "token=" + "" + ";expires=" + date.toUTCString();
+        }
+    }
+    quitLogin(e){
+
+        if(e.target.className == 'QuitLogin'){
+            var date = new Date();
+            date.setDate(date.getDate() -100);
+            document.cookie = "token=" + "" + ";expires=" + date.toUTCString();
+            hashHistory.push('/home')
+        }
     }
     render(){
-        this.props.loginShow = true;
         return(
             <div className="personalBox">
                 <div className="personalHead">
                     <h3>我</h3>
                 </div>
-                <div className="personalMain">
+                <div className="personalMain" onClick={this.quitLogin.bind(this)}>
                     <div className="pMainHead">
                         <div><img src="./src/asset/login.jpg"/></div>
                         <div className="loginBox">
-                            <OnLineState loginShow={this.props.loginShow}/>    
+                            <OnLineState loginShow={this.props.show}/>    
                         </div>
                     </div>     
                        
@@ -73,7 +92,8 @@ class MyComponent extends React.Component {
 
 
                     </div>
-                    <QuitLogin loginShow={this.props.loginShow}/> 
+
+                    <QuitLogin loginShow={this.props.show}/> 
                 </div>
                 <FooterComponent />
             </div>
@@ -82,7 +102,7 @@ class MyComponent extends React.Component {
 }
 const MyState = function(state){
     return {
-        
+      show:state.login.data
     }
 }
 export default connect(MyState, MyActions)(MyComponent)

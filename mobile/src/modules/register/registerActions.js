@@ -1,10 +1,15 @@
-/* 
-* @Author: Marte
-* @Date:   2017-11-12 16:49:06
-* @Last Modified by:   Marte
-* @Last Modified time: 2017-11-12 16:50:55
-*/
+import * as constants from '../../redux/commonConstant'
 
-$(document).ready(function(){
-    
-});
+export function register(obj){
+    return {
+        types: [constants.REQUEST, constants.SUCCESS, constants.FAILURE],
+        path: 'my/register.php',
+        method: 'post',
+        query: {
+            username:obj.username,
+            tel:obj.tel,
+            password:obj.password,
+            user_id:Math.random()*100000
+        }
+    }
+}

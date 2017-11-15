@@ -1,6 +1,6 @@
 <?php
 	// 配置参数
-	$servername = 'localhost';
+	$servername = '10.3.137.248:3306';
 	$username = 'root';
 	$password = '';
 	$database = 'big_baby';

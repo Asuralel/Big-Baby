@@ -6,11 +6,13 @@ import loginstatus from "./my.scss"
 class SpinnerComponent extends React.Component{
     componentDidMount(){
     }
+    // quitLogin(){
+    // }
     render(){
         if(this.props.loginShow){
             return (
-                <div className="quitLogin">
-                       <span>退出登录</span>
+                <div className="quitLogin" >
+                       <span className="QuitLogin">退出登录</span>
                 </div>
             )
         }else{

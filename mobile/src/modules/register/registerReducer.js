@@ -1,10 +1,22 @@
-/* 
-* @Author: Marte
-* @Date:   2017-11-12 16:50:24
-* @Last Modified by:   Marte
-* @Last Modified time: 2017-11-12 16:50:53
-*/
 
-$(document).ready(function(){
-    
-});
+import * as types from '../../redux/commonConstant'
+
+export default function(state = {loading: false}, action){
+    let reState = JSON.parse(JSON.stringify(state))
+    switch(action.type){
+        case types.REQUEST:
+            reState.loading = true
+            break
+        case types.SUCCESS:
+        
+            reState.loginData = action.body
+            // reState.lastFetched = action.lastFetched
+            reState.loading = false
+            break
+        case types.FAILURE:
+            reState.error = action.error
+            reState.loading = false
+            break
+    }
+    return reState;
+}

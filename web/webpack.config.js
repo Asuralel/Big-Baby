@@ -1,23 +1,30 @@
 var path = require('path');
 var webpack = require('webpack');
 var ProgressBarPlugin = require('progress-bar-webpack-plugin');
-
+//css样式从js文件中分离出来,需要通过命令行安装 extract-text-webpack-plugin依赖包
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = {
-    entry: './src/app.js',//唯一的入口文件
-    output: {
-        path: path.resolve(__dirname, './dist'),//打包的 js 存放目录，也就是 npm build(webpack) 会生成一个 js 文件
-        publicPath: '/dist/', //npm start 虚拟路径
-        filename: 'app.js'
+    entry: './src/app.js',//唯一入口文件
+    output: {//输出目录
+        path: path.resolve(__dirname, './dist'),//打包后的js文件存放的地方(build 后的文件)
+        publicPath: '/dist/',//指定资源文件引用的目录(build 在内存中的位置)
+        filename: 'app.js'//打包后输出的js的文件名
     },
     module: {
         rules: [{
             test: /\.css$/,
             exclude: '/node_modules/',
-            loader: 'style-loader!css-loader?sourceMap'          
-        },{ 
+            // use: [ 'style-loader', 'css-loader' ],
+            loader: 'style-loader!css-loader?sourceMap' 
+            // use: ExtractTextPlugin.extract({
+            //     use: 'css-loader'
+            // })            
+        },
+        { 
             test: /\.less$/, 
             loader: "style-loader!css-loader!less-loader"
-        },{
+        },
+        {
             test: /\.scss$/,
             exclude: /node_modules/,
             use: ['style-loader', 'css-loader', 'sass-loader']
@@ -29,14 +36,15 @@ module.exports = {
             test: /\.(woff|svg|eot|ttf)\??.*$/,
             exclude: /node_modules/,
             loader: 'url-loader?limit=50000&name=[path][name].[ext]'
+            // use: ['url-loader?limit=50000&name=[path][name].[ext]']
         },{
             test: /\.(jpe?g|png|gif|svg)$/i,
             use: [{
                 loader: 'file-loader',
                 options: {
                     query: {
-                        name:'static/[name].[ext]'
-                    }
+                    name:'assets/[name].[ext]'
+                }
                 }
             },{
                 loader: 'image-webpack-loader',
@@ -54,18 +62,19 @@ module.exports = {
                     }
                 }
             }]
-        }]
+      }]
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new ProgressBarPlugin(),
+        new ExtractTextPlugin('styles.css'),//提取出来的样式放在style.css文件中
         new webpack.DefinePlugin({
             'process.env': {
-                'NODE_ENV': '"production"'
+                'NODE_ENV': '"development"'
             }
         })    
     ],
     devServer: {
         stats: 'errors-only'
-    }	
-}
+    }   
+};
