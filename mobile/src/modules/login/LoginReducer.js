@@ -13,7 +13,7 @@ export default function(state = {loading: false}, action){
             break
         case types.SUCCESS:
             // console.log()
-            reState.data = JSON.parse(action.body);
+            reState.data = action.body;
             reState.lastFetched = action.lastFetched
             reState.loading = false
             break

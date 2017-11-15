@@ -12,7 +12,6 @@ export function ajaxMiddleware({ dispatch, getState }) {
             path
         } = action;
         
-
         // if (!types) {
         //     // Normal action: pass it on
         //     return next(action);
