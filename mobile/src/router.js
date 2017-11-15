@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route} from 'react-router';
+import {Route,IndexRoute} from 'react-router';
 
 import AppComponent from './modules/app/AppComponent';
 import LoginComponent from './modules/login/LoginComponent';
@@ -14,10 +14,13 @@ import myOrderComponent from './modules/my/MyOrder/MyOeder';
 import myCollectComponent from './modules/my/myCollect/myCollect.js';
 import MySetComponent from './modules/my/myset/mySet';
 import AccSevurityComponent from './modules/my/accountSecurity/accSecurity';
+import descComponent from './modules/details/descComponent.js';
+import ratingComponent from './modules/details/rating/ratingComponent.js'
 import RegisterComponent from './modules/register/registerComponent';
 import agreement from './modules/register/agreement';
 import address from './modules/my/myset/address/address';
 import myEdit from './modules/my/myset/address/addressEdit/addressEdit'
+
 export default (
     <Route path="/" component={AppComponent}>
         <Route path="register" component={RegisterComponent}/>
@@ -36,6 +39,9 @@ export default (
         </Route>
         <Route path="sort" component={sortComponent} />
         <Route path="list/:goodType" component={listComponent} />
-        <Route path="details/:goodId" component={detailsComponent} />
+        <Route path="details/" component={detailsComponent}>
+        	<Route path="detailsDesc" component={descComponent}/>
+        	<Route path="detailsRating" component={ratingComponent}/>
+        </Route>
     </Route>
 )
