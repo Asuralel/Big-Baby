@@ -3,15 +3,14 @@ import * as types from '../../../../../redux/commonConstant'
 export default function(state = {loading: false}, action){
     let reState = JSON.parse(JSON.stringify(state))
     switch(action.type){
-        case types.REQUEST:
+        case 'EDIT_REQUEST':
+        reState.loading = true
             break;
-        case types.SUCCESS:
-            if(action.body=="紫禁城"){
-               reState.addressMsg = action.body;
-            
-            }
+        case 'EDIT_SUCCESS':
+            reState.addressMsg = action.body;
+            reState.loading = false  
             break; 
-        case types.FAILURE:
+        case 'EDIT_FAILURE':
             break;
         default :
             reState.loading = false  

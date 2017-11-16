@@ -44,12 +44,12 @@ class BuycarComponent extends React.Component {
     }
 
     componentWillMount(){
-
         const obj = {username:this.state.username}
-        this.props.buycarInit(obj);
-        if(this.props.buycarLi.length <= 0){
-            this.setState({buycarHas:true})
-        }
+        this.props.buycarInit(obj).then(()=>{
+            if(this.props.buycarLi.length > 0){
+                this.setState({buycarHas:true})
+            }
+        });
     }
     componentDidMount(){
         // console.log(666)
@@ -63,45 +63,58 @@ class BuycarComponent extends React.Component {
                         username:this.state.username,
                         list:JSON.stringify(this.props.buycarLi)
                     }
-        console.log(obj)
         this.props.buycarInit(obj);
     }
     addAmount(e){
         const idx = e.target.getAttribute('data-index');
         const list = this.props.buycarLi;
-        const accountList = this.state.accountList;
+        const accountList = JSON.parse(JSON.stringify(this.state.accountList));
         var totalPri = this.state.totalPri;
         var amountAll = this.state.amountAll;
+        var accountIdx = -1;
         for(var i=0;i<accountList.length;i++){
-            if(list[idx].product_name == accountList[i].product_name){
-                accountList[i].amount++;
-                amountAll++;
-                totalPri += accountList[i].product_origin_price * 1;
+            if(accountList[i].product_name == list[idx].product_name){
+                accountIdx = i;
             }
         }
-        list[idx].amount++;
-        // console.log(accountList)
+        if(accountIdx >= 0){
+                accountList[accountIdx].amount++;
+                amountAll++;
+                list[idx].amount++; 
+                // console.log(list,accountList)
+                totalPri += accountList[accountIdx].product_origin_price * 1;
+        }else{
+            list[idx].amount++;
+        }
         this.setState({buycarLi:list,accountList:accountList,totalPri:totalPri,amountAll:amountAll});
     }
     subAmount(e){
         const idx = e.target.getAttribute('data-index');
         const list = this.props.buycarLi;
-        const accountList = this.state.accountList;
+        const accountList = JSON.parse(JSON.stringify(this.state.accountList));
         var totalPri = this.state.totalPri;
         var amountAll = this.state.amountAll;
-        // console.log(accountList)
+        var accountIdx = -1;
         for(var i=0;i<accountList.length;i++){
             if(list[idx].product_name == accountList[i].product_name){
-                if(accountList[i].amount > 1){
-                    accountList[i].amount--;
-                    amountAll--;
-                    totalPri -= accountList[i].product_origin_price * 1;
-                }
+                accountIdx = i;
             }
-        }       
-        if(list[idx].amount > 1){
-            list[idx].amount--;
-        };
+        }
+        if(accountIdx >= 0){
+            if(accountList[accountIdx].amount > 1){
+                accountList[accountIdx].amount--;
+                amountAll--;
+                // list[idx].amount--;
+                totalPri -= accountList[accountIdx].product_origin_price * 1;
+                if(list[idx].amount > 1){
+                    list[idx].amount--;      
+                };
+            }          
+        }else{
+            if(list[idx].amount > 1){
+                list[idx].amount--;      
+            };
+        }
         this.setState({buycarLi:list,accountList:accountList,totalPri:totalPri,amountAll:amountAll});
     }
     removeLi(e){
@@ -152,11 +165,11 @@ class BuycarComponent extends React.Component {
         const selAll = !this.state.selAll;
         var totalPri = 0;
         var amountAll = 0;
-
         this.setState({selAll:selAll})
 
         if(selAll){
             const accountList = JSON.parse(JSON.stringify(this.props.buycarLi));
+            // const buycarLi = this.props.buycarLi;
             this.setState({accountList:accountList});
             accountList.forEach(function(item){
                 amountAll += item.amount;
