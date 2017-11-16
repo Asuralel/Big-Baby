@@ -15,18 +15,19 @@ import loginToken from "../login/logintoken";
 
 class MyComponent extends React.Component {
     componentDidMount(){
-        this.props.MyActions()
+        
     }
 
-    componentDidUpdate(){
-        if(this.props.show=="false"){
-            var date = new Date();
-            date.setDate(date.getDate() -100);
-            document.cookie = "token=" + "" + ";expires=" + date.toUTCString();
-        }
+    componentWillReceiveProps(){
+        // this.props.MyActions()
+        // console.log(this.propr.show)
+        // if(this.props.show==false){
+        //     var date = new Date();
+        //     date.setDate(date.getDate() -100);
+        //     document.cookie = "token=" + "" + ";expires=" + date.toUTCString();
+        // }
     }
     quitLogin(e){
-
         if(e.target.className == 'QuitLogin'){
             var date = new Date();
             date.setDate(date.getDate() -100);
@@ -101,6 +102,7 @@ class MyComponent extends React.Component {
     }
 }
 const MyState = function(state){
+    console.log(state.login.data)
     return {
       show:state.login.data
     }

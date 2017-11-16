@@ -11,7 +11,7 @@ class SpinnerComponent extends React.Component{
         if(this.props.loginShow){
             let show = JSON.parse(this.props.loginShow)
             return (
-                <div className="loginStatus">
+                <div className="loginStatus" style={{display: show ? 'block' : 'none'}}>
                     <div className="loginHead">
                         <img src={baseURI+show.handimgs}/>
                     </div>

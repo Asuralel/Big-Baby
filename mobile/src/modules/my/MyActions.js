@@ -14,6 +14,7 @@ export function MyActions(){
             token = temp[1];
         }
     });
+    console.log(token)
     return {
           types: ['LOGIN_REQUEST', 'LOGIN_SUCCESS', 'LOGIN_FAILURE'],
           path: 'my/login.php',

@@ -64,7 +64,6 @@ class MySetComponent extends React.Component{
 }
 
 const MyState = function(state){
-    console.log(state)
     return {
         show:state.login.data,
         myMsg:state.myset.myMsg
