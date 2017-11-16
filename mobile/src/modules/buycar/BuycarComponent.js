@@ -18,6 +18,7 @@ class BuycarComponent extends React.Component {
     constructor(props){
         super(props);
         this.state= {
+            user:[],
             buycarHas: false,
             isShowLinks:'none',
             accountList:[],
@@ -25,7 +26,7 @@ class BuycarComponent extends React.Component {
             amountAll:0,
             selAll:false,
             maskshow:false,
-            username:'liu',
+            username:null,
             buycarLi: this.props.buycarLi.length > 0 ? JSON.parse(JSON.stringify(this.props.buycarLi)) : []
         }
         this.addAmount = this.addAmount.bind(this);
@@ -44,10 +45,16 @@ class BuycarComponent extends React.Component {
     }
 
     componentWillMount(){
-        const obj = {username:this.state.username}
-        this.props.buycarInit(obj).then(()=>{
-            if(this.props.buycarLi.length > 0){
-                this.setState({buycarHas:true})
+        this.props.loginState().then((response) =>{
+            console.log(1)
+            if(JSON.parse(response).username){
+                this.setState({user:JSON.parse(response),username:JSON.parse(response).username});
+                const obj = {username:this.state.username}
+                this.props.buycarInit(obj).then(()=>{
+                    if(this.props.buycarLi.length > 0){
+                        this.setState({buycarHas:true})
+                    }
+                });            
             }
         });
     }
@@ -223,8 +230,8 @@ class BuycarComponent extends React.Component {
                 <main id="bcmain">
                     <div className="nothing" style={{display:this.state.buycarHas ? 'none' : 'block'}}>
                         <img src={commonUrl.IMGURL + 'buycar.png'} />
-                        <p>您还没有加入任何商品</p>
-                        <Link to='home'>随便逛逛</Link>
+                        <p>{this.state.username ? '您还没有加入任何商品' :'您还没有登录'}</p>
+                        <Link to={this.state.username ? 'home' : 'login'}>{this.state.username ? '随便逛逛' : '点击登录'}</Link>
                     </div>
                     <ul className="buycarList" style={{display:this.state.buycarHas ? 'block' : 'none'}}>
                             {
