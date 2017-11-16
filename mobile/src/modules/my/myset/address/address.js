@@ -8,10 +8,9 @@ import Historyback from "../../../buycar/HistorybackComponent"
 import myaddress from "./address.scss";
 
 class MyaddressComponent extends React.Component{
+    
     componentWillMount(){
-        this.props.loginInit().then(response=>{
-            console.log(response)
-        })
+        this.props.loginInit()
     }
     
     render(){
