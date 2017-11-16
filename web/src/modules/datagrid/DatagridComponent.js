@@ -198,7 +198,7 @@ export default class DatagridComponent extends Component{
       render() {
         return (
             <div>
-                <Button className="editable-add-btn" onClick={this.handleAdd}>Add</Button>
+                <Button className="editable-add-btn" onClick={this.handleAdd.bind(this)}>Add</Button>
                 <br/>
                 <Table columns={this.state.thead}
                 dataSource={this.state.data}

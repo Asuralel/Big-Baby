@@ -21,27 +21,27 @@ class RegisterComponent extends React.Component {
                 <h1>用户注册</h1>
                 <ul>
                     <li>
-                        <label for="account">帐号：</label>
+                        <label htmlFor="account">帐号：</label>
                         <Input placeholder="请输入您的帐号" ref="account" id="account"/>
                     </li>
                     <li>
-                        <label for="password">密码：</label>
+                        <label htmlFor="password">密码：</label>
                         <Input type="password" placeholder="请输入您的密码" ref="password" id="password"/>
                     </li>
                     <li>
-                        <label for="username">昵称：</label>
+                        <label htmlFor="username">昵称：</label>
                         <Input type="username" placeholder="请输入您的昵称" ref="username" id="username"/>
                     </li>
                     <li>
-                        <label for="gender">性别：</label>
+                        <label htmlFor="gender">性别：</label>
                         <Input type="text" placeholder="请输入您的性别" ref="gender" id="gender"/>
                     </li>
                     <li>
-                        <label for="phone">电话：</label>
+                        <label htmlFor="phone">电话：</label>
                         <Input type="phone" placeholder="请输入您的电话" ref="phone" id="phone"/>
                     </li>
                     <li>
-                        <label for="address">地址：</label>
+                        <label htmlFor="address">地址：</label>
                         <Input type="address" placeholder="请输入您的地址" ref="address" id="address"/>
                     </li>
                     <SpinnerComponent show={this.props.loading}/>
