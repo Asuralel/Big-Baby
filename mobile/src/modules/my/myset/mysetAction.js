@@ -1,9 +1,12 @@
 import * as constants from '../../../redux/commonConstant';
+
 export function mysetinit(username){
-    return {
-        types: [constants.REQUEST, constants.SUCCESS, constants.FAILURE],
-        path: 'my/setMyMsg.php',
-        method: 'post',
-        query: {username}
+    if(username){
+        return {
+            types: ['MYMSG_REQUEST', 'MYMSG_SUCCESS', 'MYMSG_FAILURE'],
+            path: 'my/setMyMsg.php',
+            method: 'post',
+            query: {username}
+        }
     }
 }

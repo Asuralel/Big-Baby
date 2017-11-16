@@ -1,10 +1,21 @@
-/* 
-* @Author: Marte
-* @Date:   2017-11-11 16:21:42
-* @Last Modified by:   Marte
-* @Last Modified time: 2017-11-12 12:01:34
-*/
+import * as types from '../../redux/commonConstant'
 
-$(document).ready(function(){
-    
-});
+export default function(state = {loading: false}, action){
+    let reState = JSON.parse(JSON.stringify(state))
+    switch(action.type){
+        case 'BUYCAR_REQUEST':
+            reState.loading = true
+            break
+        case 'BUYCAR_SUCCESS':
+            reState.data = JSON.parse(action.body)
+            
+            reState.lastFetched = action.lastFetched
+            reState.loading = false
+            break
+        case 'BUYCAR_FAILURE':
+            reState.error = action.error
+            reState.loading = false
+            break
+    }
+    return reState;
+}

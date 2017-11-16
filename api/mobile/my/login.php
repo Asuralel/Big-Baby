@@ -9,18 +9,18 @@
     if(!$api_token){
         $sql = "select user_name from users where user_name= '$username'";
         if(sizeof(query($sql))<=0){
-            // $res = array(
-            //     'start'=>'用户不存在',
-            // );
-            // echo json_encode($res,JSON_UNESCAPED_UNICODE);
+            $res = array(
+                'start'=>'用户不存在',
+            );
+            echo json_encode($res,JSON_UNESCAPED_UNICODE);
         }else{
-            $sql1 = "select * from users where user_name= '$username' and user_password";
+            $sql1 = "select * from users where user_name= '$username' and user_password='$password'";
             if(sizeof(query($sql1))<=0){
-                // $res = array(
-                //     'start'=>'密码错误',
-                // );
-                // echo json_encode($res,JSON_UNESCAPED_UNICODE);
-            }else{
+                $res = array(
+                    'start'=>'密码错误',
+                );
+                echo json_encode($res,JSON_UNESCAPED_UNICODE);
+            }else if(sizeof(query($sql1))>0){
                 // echo json_encode(query($sql1)[0]->user_sign,JSON_UNESCAPED_UNICODE);
 
                 $api_token_server = md5(date('Y-m-d', time()) .  'secret' . $username);
@@ -34,6 +34,8 @@
                         'username'=>$username,
                         'sign'=>query($sql1)[0]->user_sign,
                         'handimgs'=>query($sql1)[0]->head_image,
+                        'tel'=>query($sql1)[0]->user_phone,
+                        'user_address'=>query($sql1)[0]->user_address,
                     );
                     echo json_encode($res,JSON_UNESCAPED_UNICODE);
                 }else{
@@ -54,6 +56,8 @@
                 'username'=>$username,
                 'sign'=>query($sql1)[0]->user_sign,
                 'handimgs'=>query($sql1)[0]->head_image,
+                'tel'=>query($sql1)[0]->user_phone,
+                'user_address'=>query($sql1)[0]->user_address,
             );
             echo json_encode($res,JSON_UNESCAPED_UNICODE);
         }else{

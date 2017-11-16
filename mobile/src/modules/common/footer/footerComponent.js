@@ -7,7 +7,6 @@ import {Icon } from 'antd';
 
 class footerComponent extends React.Component {
     handleClick(event){
-        console.log(event.target.parentNode)
         event.target.parentNode.style.color="red"
     }
     render(){

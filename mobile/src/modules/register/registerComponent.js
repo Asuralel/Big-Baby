@@ -14,7 +14,9 @@ class RegisterComponent extends React.Component {
         
     }
     componentDidUpdate(){
+        console.log(this.props.logindata)
         if(this.props.logindata=='ok'){
+            console.log(666)
             hashHistory.push('/login')
         }else if(this.props.logindata=='false'){
             notification.open({

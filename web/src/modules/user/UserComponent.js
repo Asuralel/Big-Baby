@@ -1,60 +1,39 @@
-// import React, {Component} from 'react'
-// import {connect} from 'react-redux'
-// import * as UserActions from './UserAction'
-// import SpinnerComponent from '../spinner/SpinnerComponent';
-// import {Router,Route,Link} from "react-router";
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import * as UserAction from './UserAction'
+import SpinnerComponent from '../spinner/SpinnerComponent';
+import DatagridComponent from '../datagrid/DatagridComponent';
+import {Router,Route,Link} from "react-router";
 
 
-// class UserComponent extends React.Component{
-//     componentDidMount(){
-//         this.props.Init();
-//         console.log(this)
-//     }
+class UserComponent extends React.Component{
+    // componentDidMount(){
+        
+    //     this.props.UserInit();
+    // }
 
-//     render(){
-//         return (
-//             <div>
-//                 <SpinnerComponent show={this.props.loading}/>
-//                 <h1>{this.props.loading + ''}</h1>
-//                 <table>
-//                     <thead>
-//                         <tr>
-//                         {
-//                             Object.keys(this.props.dataset.data ? this.props.dataset.data[0] : {}).map(function(key, idx){
-//                                 return <th key={'th' + idx}>{key}</th>
-//                             })
-//                         }
-//                         </tr>
-//                     </thead>
-//                     <tbody>
-//                         {
-//                             (this.props.dataset.data || []) .map(function(obj, idx){
-//                                 return (
-//                                     <tr key={'tr' + idx}>
-//                                         {
-//                                             Object.keys(obj).map(function(key, i){
-//                                                 return <td key={'td' + i}>{obj[key]}</td>
-//                                             })
-//                                         }
-//                                     </tr>
-//                                 )
-//                             })
-//                         }
-//                         <tr>
-//                             <td></td>
-//                         </tr>
-//                     </tbody>
-//                 </table>
-//             </div>
-//         )
-//     }
-// }
+    render(){
+        return (
+            
 
-// const mapStateToProps = function(state){
-//     return {
-//         loading: state.student.loading,
-//         dataset: state.student.dataset
-//     }
-// }
+                <DatagridComponent url="http://localhost/big_baby/api//web/user/user.php" 
+                delete_url="http://localhost/big_baby/api//web/user/deleteUser.php"  
+                update_url="http://localhost/big_baby/api//web/user/updateUser.php" 
+                title='user_name,user_gender,user_phone,user_account,user_sign,user_collect'/>
+            )
+    }
+}
 
-// export default connect(mapStateToProps, UserAction)(UserComponent)
+
+
+
+
+const mapStateToProps = function(state){
+    return {
+        loading: state.user.loading,
+        dataset: state.user.dataset
+    }
+}
+
+export default connect(mapStateToProps, UserAction)(UserComponent)
+

@@ -1,4 +1,4 @@
-import * as types from '../../../redux/commonConstant'
+import * as types from '../../../../redux/commonConstant'
 
 export default function(state = {loading: false}, action){
     let reState = JSON.parse(JSON.stringify(state))
