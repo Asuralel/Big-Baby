@@ -5,7 +5,7 @@ import * as constants from '../../../../../redux/commonConstant';
 export function addressInit(address,username){
     console.log(address)
     return {
-          types: [constants.REQUEST, constants.SUCCESS, constants.FAILURE],
+          types: ['EDIT_REQUEST', 'EDIT_SUCCESS', 'EDIT_FAILURE'],
           path: 'my/selectMsg',
           method: 'post',
           query: {

@@ -34,6 +34,8 @@
                         'username'=>$username,
                         'sign'=>query($sql1)[0]->user_sign,
                         'handimgs'=>query($sql1)[0]->head_image,
+                        'tel'=>query($sql1)[0]->user_phone,
+                        'user_address'=>query($sql1)[0]->user_address,
                     );
                     echo json_encode($res,JSON_UNESCAPED_UNICODE);
                 }else{
@@ -54,6 +56,8 @@
                 'username'=>$username,
                 'sign'=>query($sql1)[0]->user_sign,
                 'handimgs'=>query($sql1)[0]->head_image,
+                'tel'=>query($sql1)[0]->user_phone,
+                'user_address'=>query($sql1)[0]->user_address,
             );
             echo json_encode($res,JSON_UNESCAPED_UNICODE);
         }else{
