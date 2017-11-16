@@ -25,7 +25,6 @@ class MyComponent extends React.Component {
         // this.masknoshow = this.masknoshow.bind(this);
     }
     componentWillMount(){
-        console.log(666)
         this.props.MyActions().then(response=>{
             const res =JSON.parse(response)
 
