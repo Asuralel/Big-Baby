@@ -26,15 +26,16 @@ class BuycarComponent extends React.Component {
 
     componentWillMount(){
         const obj = {username:this.state.username};
-        this.props.accountInit(obj);
-        var totalPrice = 0;
-        if(this.props.accountList.length > 0){
-            this.props.accountList.forEach(function(item){
-                totalPrice += item.product_origin_price * item.amount
-            })
-            this.setState({totalPrice:totalPrice})
-            console.log(totalPrice)
-        }
+        this.props.accountInit(obj).then(()=>{
+
+            var totalPrice = 0;
+            if(this.props.accountList.length > 0){
+                this.props.accountList.forEach(function(item){
+                    totalPrice += item.product_origin_price * item.amount
+                })
+                this.setState({totalPrice:totalPrice})
+            }
+        });
     }
 
     componentUpdate(){
