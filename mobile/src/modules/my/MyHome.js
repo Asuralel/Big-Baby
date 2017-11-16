@@ -58,16 +58,18 @@ class MyComponent extends React.Component {
                     </div>     
                        
                     <div className="pOrder">
-                    <Link to="/my/myOrder"><div className="rightIcon"><Icon type="file-text" style={{ fontSize: 20, color: '#FF9C00'}}/>&nbsp;&nbsp;我的订单<span><Icon type="right" /></span>
-                        </div></Link>
-                        <div>
-                        <div><Icon type="credit-card" /><p>待付款</p></div>
-                        <div><Icon type="inbox" /><p>待发货</p></div>
-                        <div><Icon type="car" /><p>待收货</p></div>
-                        <div><Icon type="message" /><p>待评价</p></div>
-                        </div>
+                        <Link to="/my/myOrder/1">
+                            <div className="rightIcon"><Icon type="file-text" style={{ fontSize: 20, color: '#FF9C00'}}/>&nbsp;&nbsp;我的订单<span><Icon type="right" /></span>
+                            </div>
+                        </Link>
+                    <div>
+                    <Link to="/my/myOrder/1"><div><Icon type="credit-card" /><p>待付款</p></div></Link>
+                    <Link to="/my/myOrder/2"><div><Icon type="inbox" /><p>待发货</p></div></Link>
+                    <Link to="/my/myOrder/3"><div><Icon type="car" /><p>待收货</p></div></Link>
+                    <Link to="/my/myOrder/4"><div><Icon type="message" /><p>待评价</p></div></Link>
+                </div>
                         
-                    </div>
+            </div>
                     <div className="pMyPay">
                         <div className="rightIcon"><Icon type="pay-circle-o"style={{ fontSize: 20, color: '#B479E6'}} />&nbsp;&nbsp;我的钱包<span><Icon type="right" /></span></div>
                         <div>
