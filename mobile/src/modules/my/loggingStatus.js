@@ -7,7 +7,7 @@ class SpinnerComponent extends React.Component{
     componentDidMount(){
     }
     render(){
-        // console.log(this.props.loginShow)
+        console.log(this.props.loginShow)
         if(this.props.loginShow){
             let show = JSON.parse(this.props.loginShow)
             return (

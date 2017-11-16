@@ -17,15 +17,27 @@ class MyComponent extends React.Component {
     componentDidMount(){
         
     }
+    constructor(props){
+        super(props);
+        this.state= {
+            show:false
+        }
+        // this.masknoshow = this.masknoshow.bind(this);
+    }
+    componentWillMount(){
+        console.log(666)
+        this.props.MyActions().then(response=>{
+            const res =JSON.parse(response)
 
-    componentWillReceiveProps(){
-        // this.props.MyActions()
-        // console.log(this.propr.show)
-        // if(this.props.show==false){
-        //     var date = new Date();
-        //     date.setDate(date.getDate() -100);
-        //     document.cookie = "token=" + "" + ";expires=" + date.toUTCString();
-        // }
+            if(res.start==true){
+                var token = '';
+                var date = new Date();  
+                date.setDate(date.getDate() +7);
+                document.cookie = "token=" + JSON.stringify(res) + ";expires=" + date.toUTCString();
+                this.setState({show:response});
+            }
+
+        })
     }
     quitLogin(e){
         if(e.target.className == 'QuitLogin'){
@@ -45,7 +57,7 @@ class MyComponent extends React.Component {
                     <div className="pMainHead">
                         <div><img src="./src/asset/login.jpg"/></div>
                         <div className="loginBox">
-                            <OnLineState loginShow={this.props.show}/>    
+                            <OnLineState loginShow={this.state.show}/>    
                         </div>
                     </div>     
                        
@@ -94,7 +106,7 @@ class MyComponent extends React.Component {
 
                     </div>
 
-                    <QuitLogin loginShow={this.props.show}/> 
+                    <QuitLogin loginShow={this.state.show}/> 
                 </div>
                 <FooterComponent />
             </div>
@@ -102,7 +114,6 @@ class MyComponent extends React.Component {
     }
 }
 const MyState = function(state){
-    console.log(state.login.data)
     return {
       show:state.login.data
     }

@@ -14,7 +14,6 @@ export function MyActions(){
             token = temp[1];
         }
     });
-    console.log(token)
     return {
           types: ['LOGIN_REQUEST', 'LOGIN_SUCCESS', 'LOGIN_FAILURE'],
           path: 'my/login.php',
@@ -22,9 +21,9 @@ export function MyActions(){
           query: {token}
     }
 }
-export function userQuit(){
-    return {
-          type:'gg',
-          query: false
-      }
-}
+// export function userQuit(){
+//     return {
+//           type:'gg',
+//           query: false
+//       }
+// }
