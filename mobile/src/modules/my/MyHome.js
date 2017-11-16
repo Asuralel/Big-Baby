@@ -29,10 +29,8 @@ class MyComponent extends React.Component {
             if(response){
                 const res =JSON.parse(response)
                 if(res.start==true){
-                    var token = '';
-                    var date = new Date();  
-                    date.setDate(date.getDate() +7);
-                    document.cookie = "token=" + JSON.stringify(res) + ";expires=" + date.toUTCString();
+                    console.log(sessionStorage.getItem('user'))
+                    sessionStorage.setItem('user', response);
                     this.setState({show:response});
                 }
             }
@@ -41,9 +39,7 @@ class MyComponent extends React.Component {
     }
     quitLogin(e){
         if(e.target.className == 'QuitLogin'){
-            var date = new Date();
-            date.setDate(date.getDate() -100);
-            document.cookie = "token=" + "" + ";expires=" + date.toUTCString();
+            sessionStorage.removeItem('user');
             hashHistory.push('/home')
         }
     }

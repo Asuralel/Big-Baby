@@ -26,10 +26,7 @@ class loginComponent extends React.Component{
         this.props.login(username, password).then(response => {
             const res =JSON.parse(response)
             if(res.start==true){
-                var token = '';
-                var date = new Date();  
-                date.setDate(date.getDate() +7);
-                document.cookie = "token=" + JSON.stringify(res) + ";expires=" + date.toUTCString();
+                sessionStorage.setItem('user', response);
                 hashHistory.push('/home')
             }else if(res.start=="用户不存在"){
                this.setState({maskshow:'用户不存在'});
