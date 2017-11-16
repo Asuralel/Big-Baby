@@ -7,19 +7,19 @@ import {Router,Route,Link} from "react-router";
 
 
 class ProductComponent extends React.Component{
-    componentDidMount(){
+    // componentDidMount(){
         
-        this.props.ProductInit();
-    }
+    //     this.props.ProductInit();
+    // }
 
     render(){
         return (
             
 
-                <DatagridComponent url="http://localhost/laoxie/api//web/product/product.php" 
-                delete_url="http://localhost/laoxie/api//web/product/deleteProduct.php"  
-                update_url="http://localhost/laoxie/api//web/product/updateProduct.php" 
-                title='product_name,product_type,product_color,product_price'/>
+                <DatagridComponent url="http://localhost/big_baby/api//web/product/product.php" 
+                delete_url="http://localhost/big_baby/api//web/product/deleteProduct.php"  
+                update_url="http://localhost/big_baby/api//web/product/updateProduct.php" 
+                title='product_name,product_type,product_color,product_price,product_rate'/>
             )
     }
 }

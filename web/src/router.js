@@ -8,10 +8,10 @@ import ProductComponent from "./modules/product/ProductComponent";
 import UserComponent from "./modules/user/UserComponent";
 import OrderComponent from "./modules/order/OrderComponent";
 import RegisterComponent from "./modules/register/RegisterComponent";
-// import AddComponent from "./modules/datagrid/AddComponent";
+import BuycarComponent from "./modules/buycar/BuycarComponent";
 
 
-
+ // onEnter={enterFun}
 
 export default (
     <Route path="/" component={AppComponent}>
@@ -21,6 +21,7 @@ export default (
 	        <Route path="/product" component={ProductComponent} />
 	        <Route path="/user" component={UserComponent} />
 	        <Route path="/order" component={OrderComponent} />
+          <Route path="/buycar" component={BuycarComponent} />
     	</Route>
     </Route>
 )

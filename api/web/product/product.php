@@ -1,8 +1,8 @@
 <?php
-    // 引入其他文件
-    include '../../common/connect.php';
     //允许所有域名发起的跨域请求，可以使用通配符 *
     header("Access-Control-Allow-Origin: *");
+    // 引入其他文件
+    include '../../common/connect.php';
 
     // 编写查询sql语句
     $sql = 'select * from product';
