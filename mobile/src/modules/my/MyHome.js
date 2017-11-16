@@ -15,22 +15,31 @@ import loginToken from "../login/logintoken";
 
 class MyComponent extends React.Component {
     componentDidMount(){
-        this.props.MyActions()
+        
     }
-
-    componentDidUpdate(){
-        if(this.props.show=="false"){
-            var date = new Date();
-            date.setDate(date.getDate() -100);
-            document.cookie = "token=" + "" + ";expires=" + date.toUTCString();
+    constructor(props){
+        super(props);
+        this.state= {
+            show:false
         }
+        // this.masknoshow = this.masknoshow.bind(this);
+    }
+    componentWillMount(){
+        this.props.MyActions().then(response=>{
+            if(response){
+                const res =JSON.parse(response)
+                if(res.start==true){
+                    console.log(sessionStorage.getItem('user'))
+                    sessionStorage.setItem('user', response);
+                    this.setState({show:response});
+                }
+            }
+
+        })
     }
     quitLogin(e){
-
         if(e.target.className == 'QuitLogin'){
-            var date = new Date();
-            date.setDate(date.getDate() -100);
-            document.cookie = "token=" + "" + ";expires=" + date.toUTCString();
+            sessionStorage.removeItem('user');
             hashHistory.push('/home')
         }
     }
@@ -44,21 +53,23 @@ class MyComponent extends React.Component {
                     <div className="pMainHead">
                         <div><img src="./src/asset/login.jpg"/></div>
                         <div className="loginBox">
-                            <OnLineState loginShow={this.props.show}/>    
+                            <OnLineState loginShow={this.state.show}/>    
                         </div>
                     </div>     
                        
                     <div className="pOrder">
-                    <Link to="/my/myOrder"><div className="rightIcon"><Icon type="file-text" style={{ fontSize: 20, color: '#FF9C00'}}/>&nbsp;&nbsp;我的订单<span><Icon type="right" /></span>
-                        </div></Link>
-                        <div>
-                        <div><Icon type="credit-card" /><p>待付款</p></div>
-                        <div><Icon type="inbox" /><p>待发货</p></div>
-                        <div><Icon type="car" /><p>待收货</p></div>
-                        <div><Icon type="message" /><p>待评价</p></div>
-                        </div>
+                        <Link to="/my/myOrder/1">
+                            <div className="rightIcon"><Icon type="file-text" style={{ fontSize: 20, color: '#FF9C00'}}/>&nbsp;&nbsp;我的订单<span><Icon type="right" /></span>
+                            </div>
+                        </Link>
+                    <div>
+                    <Link to="/my/myOrder/1"><div><Icon type="credit-card" /><p>待付款</p></div></Link>
+                    <Link to="/my/myOrder/2"><div><Icon type="inbox" /><p>待发货</p></div></Link>
+                    <Link to="/my/myOrder/3"><div><Icon type="car" /><p>待收货</p></div></Link>
+                    <Link to="/my/myOrder/4"><div><Icon type="message" /><p>待评价</p></div></Link>
+                </div>
                         
-                    </div>
+            </div>
                     <div className="pMyPay">
                         <div className="rightIcon"><Icon type="pay-circle-o"style={{ fontSize: 20, color: '#B479E6'}} />&nbsp;&nbsp;我的钱包<span><Icon type="right" /></span></div>
                         <div>
@@ -93,7 +104,7 @@ class MyComponent extends React.Component {
 
                     </div>
 
-                    <QuitLogin loginShow={this.props.show}/> 
+                    <QuitLogin loginShow={this.state.show}/> 
                 </div>
                 <FooterComponent />
             </div>

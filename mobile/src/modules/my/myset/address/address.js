@@ -6,8 +6,11 @@ import {Icon } from 'antd';
 import * as MyaddressAtions from "./addressAction"
 import Historyback from "../../../buycar/HistorybackComponent" 
 import myaddress from "./address.scss";
+
 class MyaddressComponent extends React.Component{
-    componentDidMount(){
+    
+    componentWillMount(){
+        this.props.loginInit()
     }
     
     render(){

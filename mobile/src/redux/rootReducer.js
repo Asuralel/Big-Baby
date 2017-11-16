@@ -5,6 +5,7 @@ import {combineReducers} from 'redux'
 import login from '../modules/login/LoginReducer';
 import buycar from '../modules/buycar/BuycarReducer';
 import account from '../modules/account/accountReducer';
+import pay from '../modules/pay/PayReducer.js';
 import register from '../modules/register/registerReducer';
 import myset from '../modules/my/myset/mysetreduces'
 import myedit from '../modules/my/myset/address/addressEdit/editreduce'
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
     myset,
     myedit,
     buycar,
-    account,   
+    account, 
+    pay,  
     router
 })
 
