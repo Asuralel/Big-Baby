@@ -69,16 +69,40 @@ class BuycarComponent extends React.Component {
     addAmount(e){
         const idx = e.target.getAttribute('data-index');
         const list = this.props.buycarLi;
+        const accountList = this.state.accountList;
+        var totalPri = this.state.totalPri;
+        var amountAll = this.state.amountAll;
+        for(var i=0;i<accountList.length;i++){
+            if(list[idx].product_name == accountList[i].product_name){
+                accountList[i].amount++;
+                amountAll++;
+                totalPri += accountList[i].product_origin_price * 1;
+            }
+        }
         list[idx].amount++;
-        this.setState({buycarLi:list});
+        // console.log(accountList)
+        this.setState({buycarLi:list,accountList:accountList,totalPri:totalPri,amountAll:amountAll});
     }
     subAmount(e){
         const idx = e.target.getAttribute('data-index');
         const list = this.props.buycarLi;
+        const accountList = this.state.accountList;
+        var totalPri = this.state.totalPri;
+        var amountAll = this.state.amountAll;
+        // console.log(accountList)
+        for(var i=0;i<accountList.length;i++){
+            if(list[idx].product_name == accountList[i].product_name){
+                if(accountList[i].amount > 1){
+                    accountList[i].amount--;
+                    amountAll--;
+                    totalPri -= accountList[i].product_origin_price * 1;
+                }
+            }
+        }       
         if(list[idx].amount > 1){
             list[idx].amount--;
         };
-        this.setState({buycarLi:list});
+        this.setState({buycarLi:list,accountList:accountList,totalPri:totalPri,amountAll:amountAll});
     }
     removeLi(e){
         const idx = e.target.getAttribute('data-index');

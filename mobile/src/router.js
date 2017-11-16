@@ -5,6 +5,7 @@ import AppComponent from './modules/app/AppComponent';
 import LoginComponent from './modules/login/LoginComponent';
 import BuycarComponent from './modules/buycar/BuycarComponent';
 import AccountComponent from './modules/account/AccountComponent';
+import PayComponent from './modules/pay/PayComponent';
 import homeComponent from './modules/home/homeComponent';
 import myComponent from './modules/my/myComponent';
 import sortComponent from './modules/sort/sortComponent';
@@ -28,6 +29,7 @@ export default (
         <Route path="login" component={LoginComponent} />
         <Route path="buycar" component={BuycarComponent} />
         <Route path="account" component={AccountComponent} />
+        <Route path="pay" component={PayComponent} />
         <Route path="home" component={homeComponent} />
         <Route path="my" component={myComponent} >
             <Route path='/my/myHome' component={myHome}/>
