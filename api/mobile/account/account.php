@@ -2,12 +2,34 @@
     include "../../common/server.php";
     header("Access-Control-Allow-Origin: *");
     
-    $username = isset($_REQUEST['username']) ? $_REQUEST['username'] : 1;
+    $order_num = isset($_REQUEST['order_num']) ? $_REQUEST['order_num'] : 1;
+    $user_name = isset($_REQUEST['user_name']) ? $_REQUEST['user_name'] : 1;
+    $order_product = isset($_REQUEST['order_product']) ? $_REQUEST['order_product'] : 1;
+    $order_phone = isset($_REQUEST['order_phone']) ? $_REQUEST['order_phone'] : 1; 
+    $order_total_price = isset($_REQUEST['order_total_price']) ? $_REQUEST['order_total_price'] : 1; 
+    $order_date = isset($_REQUEST['order_date']) ? $_REQUEST['order_date'] : 1; 
+    $order_status = isset($_REQUEST['order_status']) ? $_REQUEST['order_status'] : 1;
+    $order_address = isset($_REQUEST['order_address']) ? $_REQUEST['order_address'] : 1; 
 
-
-    if($username){
-        $sql = "select * from buycar where username= '$username'";
-        // echo '2';
-            echo json_encode(query($sql),JSON_UNESCAPED_UNICODE);
-    }
+    $sql = "insert into `order` (
+            order_num,
+            user_name,
+            order_product,order_phone, 
+            order_total_price,order_date,
+            order_status,
+            order_address) 
+            values('$order_num',
+            '$user_name',
+            '$order_product',
+            '$order_phone',
+            '$order_total_price',
+            '$order_date',
+            '$order_status',
+            '$order_address')";   
+    if(excute($sql)){
+        echo "ok";
+    }else{
+        echo "false";
+    } 
+    
 ?>

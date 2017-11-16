@@ -45,18 +45,17 @@ class BuycarComponent extends React.Component {
     }
 
     componentWillMount(){
-        this.props.loginState().then((response) =>{
-            console.log(1)
-            if(JSON.parse(response).username){
-                this.setState({user:JSON.parse(response),username:JSON.parse(response).username});
-                const obj = {username:this.state.username}
-                this.props.buycarInit(obj).then(()=>{
-                    if(this.props.buycarLi.length > 0){
-                        this.setState({buycarHas:true})
-                    }
-                });            
-            }
-        });
+        var user = sessionStorage.getItem('user') ? JSON.parse(sessionStorage.getItem('user')) : false;
+        if(user){
+            this.setState({user:user,username:user.username});
+            const obj = {username:user.username}
+            this.props.buycarInit(obj).then(()=>{
+                if(this.props.buycarLi.length > 0){
+                    this.setState({buycarHas:true})
+                }
+            });            
+        }
+   
     }
     componentDidMount(){
         // console.log(666)
@@ -65,12 +64,14 @@ class BuycarComponent extends React.Component {
 
 
     componentWillUnmount(){
-        // console.log(4)
-        const obj = {
-                        username:this.state.username,
-                        list:JSON.stringify(this.props.buycarLi)
-                    }
-        this.props.buycarInit(obj);
+        if(this.state.username){
+            const obj = {
+                            username:this.state.username,
+                            list:JSON.stringify(this.props.buycarLi)
+                        }
+
+            this.props.buycarInit(obj);
+        }
     }
     addAmount(e){
         const idx = e.target.getAttribute('data-index');
@@ -129,6 +130,8 @@ class BuycarComponent extends React.Component {
         const list = this.props.buycarLi;
         list.splice(idx,1);
         this.setState({buycarLi:list}); 
+        const obj = {list: JSON.stringify(list),username:this.state.username,}
+        this.props.buycarInit(obj);
         if(this.props.buycarLi.length <= 0){
             this.setState({buycarHas:false})
         }      
@@ -197,10 +200,9 @@ class BuycarComponent extends React.Component {
         }else{
             const obj = {
                             username:this.state.username,
-                            list:JSON.stringify(this.props.buycarLi),
-                            account:JSON.stringify(this.state.accountList)
+                            account:this.state.accountList
                         }
-            this.props.buycarInit(obj);
+            sessionStorage.setItem('accountList',JSON.stringify(obj));
             hashHistory.push('account');
         }
     }

@@ -18,27 +18,32 @@ class BuycarComponent extends React.Component {
         super(props);
         this.state= {
             isShowLinks:'none',
-            username: 'liu',
-            totalPrice:0
+            user: '',
+            totalPrice:0,
+            addressOK:false,
+            accountList:[]
         }
         this.topay = this.topay.bind(this);
     }
 
     componentWillMount(){
-        const obj = {username:this.state.username};
-        this.props.accountInit(obj).then(()=>{
+        var user = JSON.parse(sessionStorage.getItem('user'));
+        console.log(user)
+        var accountList = JSON.parse(sessionStorage.getItem('accountList')).account;       
+        var totalPrice = 0;
+        var addressOK = false;
+        if(accountList.length > 0){
+            accountList.forEach(function(item){
+                totalPrice += item.product_origin_price * item.amount
+            })
+        };
+        if(user.tel && user.user_address){
+            console.log(1)
+            addressOK = true;
+        }
 
-            var totalPrice = 0;
-            if(this.props.accountList.length > 0){
-                this.props.accountList.forEach(function(item){
-                    totalPrice += item.product_origin_price * item.amount
-                })
-                this.setState({totalPrice:totalPrice})
-            }
-        });
-    }
+        this.setState({totalPrice:totalPrice,accountList:accountList,user:user,addressOK:addressOK});
 
-    componentUpdate(){
     }
 
     showLinks(){
@@ -53,8 +58,30 @@ class BuycarComponent extends React.Component {
     }
 
     topay(){
-        console.log(this.props)
-        // hashHistory.push('pay');
+        var now = new Date();
+
+        // 年月日
+        var year = now.getFullYear();
+        var month = now.getMonth()+1;
+        var date = now.getDate(); 
+        month = month<10 ? '0'+month : month;
+        date = date<10 ? '0'+date : date; 
+
+        var order_num = '' + year + month + date + parseInt(Math.random() * 100000);   
+        const obj = {
+                        order_num:order_num,
+                        user_name:this.state.user.username ,
+                        order_product:this.state.accountList,
+                        order_phone:this.state.user.tel,
+                        order_total_price:this.state.totalPrice,
+                        order_date:'' + year + month + date,
+                        order_status:'待付款',
+                        order_address:this.state.user.user_address
+                    }
+        // console.log(obj)
+        this.props.accountInit(obj).then(()=>{
+             hashHistory.push('pay/' + order_num);
+        });
     }
 
     render(){
@@ -66,14 +93,18 @@ class BuycarComponent extends React.Component {
                     <Icon className="sort-links" type="ellipsis" onClick={this.showLinks.bind(this)}/>
                 </header>
                 <main id="acmain">
-                    <div className='address'>
-                        <p><span>+</span>请添加收货地址</p>
+                    <div className='address' style = {{display:this.state.addressOK ? 'block' : 'none'}}>
+                        <p className='username'><label for="username">收货人：</label><input type="text" id="username" value={this.state.user.username} /></p>
+                        <p className='tel'><label for="tel">联系方式：</label><input id='tel' type="text" value={this.state.user.tel} /></p>
+                        <p className='dizhi'><label for="dizhi">地址：</label><input id="dizhi" type="text" value={this.state.user.user_address} /></p> :
+                        
                     </div>
+                    <div className = 'address' style={{display:this.state.addressOK ? 'none' : 'block'}}><p className="add"><span>+</span>请添加收货地址</p></div>
                     <div className='blank'></div>
                     <ul className="accountList">
                             {
-                                this.props.accountList.length > 0 ?
-                                this.props.accountList.map((item,index) => {
+                                this.state.accountList.length > 0 ?
+                                this.state.accountList.map((item,index) => {
                                     return(
                                             <li key={item.product_image} >
                                                <div className='imgbox'>
@@ -113,6 +144,5 @@ class BuycarComponent extends React.Component {
 
 const mapStateToProps = state => ({
     loading: state.login.loading,
-    accountList:state.account.data ? JSON.parse(state.account.data[0].account) : []
 })
 export default connect(mapStateToProps, BuycarActions)(BuycarComponent)

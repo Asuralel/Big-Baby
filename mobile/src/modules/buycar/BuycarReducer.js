@@ -8,8 +8,8 @@ export default function(state = {loading: false}, action){
             break
         case 'BUYCAR_SUCCESS':
         console.log(action)
-        console.log(action.body)
-            reState.data = JSON.parse(action.body)
+            reState.data =  JSON.parse(action.body).length > 0 ? JSON.parse(action.body) : false
+            console.log(reState.data) 
             reState.lastFetched = action.lastFetched
             reState.loading = false
             break
