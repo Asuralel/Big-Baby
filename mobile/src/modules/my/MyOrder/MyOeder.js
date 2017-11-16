@@ -17,7 +17,7 @@ class MyOrderComponent extends React.Component{
                     </div>
                     <h3>我的订单</h3>
                 </div>
-                <Tabs defaultActiveKey="1">
+                <Tabs defaultActiveKey={this.props.params.key}>
                     <TabPane tab="待付款" key="1">
                         <div className="goShop">
                             <div className="noGoods">

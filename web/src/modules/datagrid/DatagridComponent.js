@@ -135,17 +135,6 @@ export default class DatagridComponent extends Component{
 
       }
       handleAdd = () => {
-        const { count, data } = this.state;
-        const newData = {
-          key: count,
-          name: `Edward King ${count}`,
-          age: 32,
-          address: `London, Park Lane no. ${count}`,
-        };
-        this.setState({
-          data: [...data, newData],
-          count: count + 1,
-        });
         this.setState({showAdd:"block"})
       }
 
