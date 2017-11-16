@@ -32,6 +32,7 @@ export default {
     user_name:'用户名',
     order_product:'订单商品',
     order_phone:'订单电话',
+    order_total_price:'总价',
     order_date:'下单时间',
     order_status:'订单状态',
     order_address:'订单地址',

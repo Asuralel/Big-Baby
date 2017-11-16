@@ -66,205 +66,126 @@ header{
             }
         }
     }
-.f4f4f4{
-    background:#F4F4F4;
-    width:100%;
-}
+.f4f4f4{ background:#F4F4F4;width:100%;}
 nav{
     div{
+        .title-hong{display:block;height:24px;line-height:24px;
+            i{background-color:red; display:inline-block;width:2px;margin-right:8px;}
+        }
+        .hei{color:black;font-weight:bold;}
+        .red{color:red;font-weight:bold;}
         .remen{
-            span{
-                left:20px;
-                top: 10px;
-            }
-            .title-remen{
-                display:block;
-                height:24px;
-                line-height:24px;
-                i{
-                    background-color:red;
-                    display:inline-block;
-                    width:2px;
-                    margin-right:6px;
-                }
-            }
             .remen-hot{
-                .hot{
-                    width:100%; overflow:hidden;
-                    img{
-                         width:187px; height:100px;
-                    }
-                    div{
-                        width:50%;
-                        float:left;
-                    }
-                    .hei{
-                        color:black;
-                        padding-top:20px;
-                        font-weight:bold;
-                    }
-                    .hong{
-                        color:red;
-                        font-weight:bold;
-                    }
-                    .h1{
-                        height:200px;
-                        border-top:1px solid #E7E7E7;
-                        border-bottom:1px solid #E7E7E7;
-                        p{
-                            padding-left:10px;
-                            font-size: 16px;
-                            line-height: 24px;
-                        }
+                .hot{width:100%; overflow:hidden;
+                    img{width:187px; height:100px;}
+                    div{width:50%;float:left;}
+                    .hei{padding-top:20px;font-weight:bold;}
+                    .h1{height:200px;border-top:1px solid #E7E7E7;border-bottom:1px solid #E7E7E7;
+                        p{padding-left:10px;font-size: 14px;line-height: 24px;}
                     }
                     .h2{
-                        .hong{
-                            top:380px;
-                        }
+                        .red{top:380px;}
                     }
                     .h3{
-                        .hong{
-                            top:480px;
-                        }
+                        .red{top:480px;}
                     }
-                    .h2,.h3{
-                       border-left:1px solid #E7E7E7;
-                       border-top:1px solid #E7E7E7;
-                       height:100px;
-                       p{
-                           position:absolute;
-                           padding-left:10px;
-                           font-size: 16px;
-                           line-height: 24px;
-                       }
+                    .h2,.h3{border-left:1px solid #E7E7E7;border-top:1px solid #E7E7E7;height:100px;
+                       p{position:absolute;padding-left:10px;font-size: 14px;line-height: 24px;}
                     }
                 }
+            }
+        }
+        .jiaju{
+            position:relative;
+            .jiaju-furniture{overflow:hidden;}
+            p{position:absolute;padding-left:10px;font-size: 14px;}
+            .hei{font-weight:bold;}
+            .hui{top:60px;}
+            .red{padding-left: 7px;top:86px;}
+            .h1{float:left;height:100px;width:50%;overflow:hidden;border-top:1px solid #E7E7E7;
+                border-bottom:1px solid #E7E7E7;
+                .hei{top: 34px;}
+                img{width:50%;height:100px;float:right;}
+            }
+            .h2{float:right;height:200px;width:50%;border-top:1px solid #E7E7E7;border-left:1px solid #E7E7E7;
+                .hei{top: 34px;}
+                img{padding-top:80px;}
+                p{position:absolute;padding-left:10px;font-size: 14px;}
+            }
+            .h3{height:100px; float:left;overflow:hidden;
+                p{position:absolute;padding-left:10px;font-size: 14px;}
+                .hui{top:150px; }
+                .red{top:178px;}
+                img{width:100%; height:100px;float:right;}
             }
         }
         .xinpin{
-            position:relative;
-            .title-remen{
-                display:block;
-                height:24px;
-                line-height:24px;
-                i{
-                    background-color:red;
-                    display:inline-block;
-                    width:2px;
-                    margin-right:6px;
+            .jiaju-recommend{overflow:hidden;
+                >ul{
+                    float:left;position:relative;width:50%;height:100px;
+                    li{
+                        padding-left:10px;font-size:14px;
+                        p{position: absolute;}
+                        .hei{top:14px;}
+                        .hui{top:42px;}
+                        .red{top:72px;}
+                        img{
+                            width:100%;
+                            height:100px;
+                            float:right;
+                        }
+                    }
                 }
             }
-            .xinpin-recommend{
-                overflow:hidden;
-            }
-            p{
-                position:absolute;
-                padding-left:10px;
-                font-size: 16px;
-            }
-            .hei{
+        }
+    }
+}
+main{
+    padding-left:10px;
+    >span{
+        display:block;
+    }
+    .like{
+       overflow:hidden;
+       >span{
+        display:block;
+       }
+        ul{
+            width:50%;
+            float:left;
+            padding-right:10px;
+            li{
+                font-size:14px;
                 color:black;
-                font-weight:bold;
-            }
-            .hui{
-                top:60px;
-            }
-            .red{
-                color:red;
-                font-weight: bold;
-                padding-left: 7px;
-                top:86px;
-            }
-            .h1{
-                float:left;
-                height:100px;
-                width:50%;overflow:hidden;
-                border-top:1px solid #E7E7E7;
-                border-bottom:1px solid #E7E7E7;
-                .hei{
-                    top: 34px;
-                }
-                img{
-                    width:50%;
-                    height:100px;
-                    float:right;
-                }
-            }
-            .h2{
-                float:right;
-                height:200px;
-                width:50%;
-                border-top:1px solid #E7E7E7;
-                border-left:1px solid #E7E7E7;
-                .hei{
-                    top: 34px;
-                }
-                img{
-                    padding-top:80px;
-                }
-                p{
-                    position:absolute;
-                    padding-left:10px;
-                    font-size: 16px;
-                }
-            }
-            .h3{
-                height:100px;
-                float:left;overflow:hidden;
-                p{
-                    position:absolute;
-                    padding-left:10px;
-                    font-size: 16px;
+                .red{
+                   color:#cf000e;
                 }
                 .hui{
-                    top:150px;
+                    color: #9e9e9e; margin-left:10px;
                 }
-                .red{
-                    top:178px;
-                }
-                img{
-                    width:50%;
-                    height:100px;
-                    float:right;
+                p{
+                    display: -webkit-box; /** 对象作为伸缩盒子模型显示 **/
+                    -webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+                    -webkit-line-clamp:2; /** 显示的行数 **/
+                    overflow: hidden;  /** 隐藏超出的内容 **/
                 }
             }
-           
         }
-        ul{
-            overflow:hidden;
-            li{
-                width:187px;float:left;
-                border:none;
-                height:106px;
-                border:1px solid #E7E7E7;
-                position:relative;
-                .hei{
-                    color:black;font-weight:bold;
-                }
-                .hong{
-                    color:red;
-                }
-                span{
-                    position:absolute;
-                    font-size:16px;
-                }
-            }
+        img{
+            width:100%;
+            height:122px;
         }
     }
 }
 footer{
-    .ant-back-top {
-      bottom: 80px;
-      right:20px;
-    }
+    .ant-back-top {bottom:80px;right:20px;}
     .ant-back-top-inner {
-      height: 40px;
-      width: 40px;
-      line-height: 40px;
-      border-radius:50%;
-      background-color:#A0A0A0;
-      color:white;
-      text-align: center;
-      font-size: 20px;
+      height: 40px;width: 40px;line-height:40px;
+      border-radius:50%;background-color:#A0A0A0;
+      color:white;text-align: center;font-size: 20px;
     }
+}
+// position: fixed 绝对固定底部后会挡住内容 加一个DIV显示出最下面的东西
+.h50{
+    height:50px;
 }

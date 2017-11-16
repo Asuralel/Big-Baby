@@ -19,24 +19,25 @@ class LoginComponent extends React.Component {
     loginHandler(){
 
         this.props.login(`user_account=${this.refs.account.refs.input.value}&user_password=${this.refs.password.refs.input.value}`)
+    }
+    render(){
         if(this.props.data=="yes"){
             sessionStorage.setItem('user', this.refs.account.refs.input.value);
             hashHistory.push('/product');
         }else if(this.props.data=="no"){
             alert("登录失败");
         }
-    }
-    render(){
         return(
+
             <div className="login">
                 <h1>用户登录</h1>
                 <ul>
                     <li>
-                        <label for="account">用户名：</label>
+                        <label htmlFor="account">用户名：</label>
                         <Input placeholder="请输入您的帐号" ref="account" id="account"/>
                     </li>
                      <li>
-                        <label for="password">密码：</label>
+                        <label htmlFor="password">密码：</label>
                         <Input type="password" placeholder="请输入您的密码" ref="password" id="password"/>
                     </li>
                     <SpinnerComponent show={this.props.loading}/>

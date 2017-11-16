@@ -15,6 +15,10 @@
 	$user_password = isset($_REQUEST['user_password']) ? $_REQUEST['user_password'] : '';
 	$user_identify = isset($_REQUEST['user_identify']) ? $_REQUEST['user_identify'] : '';
 	$user_time = isset($_REQUEST['user_time']) ? $_REQUEST['user_time'] : '';
+	$user_id = isset($_REQUEST['user_id']) ? $_REQUEST['user_id'] : '';
+	$arr=rand(1,1000);
+	$id = isset($_REQUEST['id']) ? $_REQUEST['id'] : $arr;
+
 
 
 
@@ -45,9 +49,8 @@
 		 
 		// $password = password_hash($password,PASSWORD_DEFAULT);
 
-		$sql = "insert into user (user_name,user_password,user_phone,user_gender,user_address,user_identify,user_account,user_sign,user_collect,user_image,user_order,user_time) values('$user_name','$user_password','$user_phone','$user_gender','$user_address',$user_identify','$user_account','$user_sign','$user_collect','$user_image','$user_order','$user_time')";
+		$sql = "insert into users (id,user_id,user_name,user_password,user_phone,user_gender,user_address,user_identify,user_account,user_sign,user_collect,head_image,user_order,user_time) values('$id','$user_id','$user_name','$user_password','$user_phone','$user_gender','$user_address','$user_identify','$user_account','$user_sign','$user_collect','$head_image','$user_order','$user_time')";
 
-		echo "$sql";
 		// 获取查询结果
 		$result = $conn->query($sql);
 
