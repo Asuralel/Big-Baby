@@ -16,29 +16,17 @@ class LoginComponent extends React.Component {
     constructor(props){
         super(props)
     }
-    componentDidMount(){
-        // console.log(this.refs.username.value)
-    }
     loginHandler(){
-        // console.log(loginActions)
-        // this.router.push('register')
-        // if(!this.refs.username){
-        //     //show up dialog => username cannot empty
-        //     return
-        // } else if(!this.refs.password){
-        //     //show up dialog => password cannot empty
-        //     return 
-        // }
 
         this.props.login(`user_account=${this.refs.account.refs.input.value}&user_password=${this.refs.password.refs.input.value}`)
-    }
-    render(){
-        if(this.props.data=="ok"){
+        if(this.props.data=="yes"){
             sessionStorage.setItem('user', this.refs.account.refs.input.value);
             hashHistory.push('/product');
-        }else if(this.props.data=="fail"){
+        }else if(this.props.data=="no"){
             alert("登录失败");
         }
+    }
+    render(){
         return(
             <div className="login">
                 <h1>用户登录</h1>

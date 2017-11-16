@@ -19,7 +19,7 @@ class ProductComponent extends React.Component{
                 <DatagridComponent url="http://localhost/big_baby/api//web/product/product.php" 
                 delete_url="http://localhost/big_baby/api//web/product/deleteProduct.php"  
                 update_url="http://localhost/big_baby/api//web/product/updateProduct.php" 
-                title='product_name,product_type,product_color,product_price'/>
+                title='product_name,product_type,product_color,product_price,product_rate'/>
             )
     }
 }

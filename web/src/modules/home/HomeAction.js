@@ -3,4 +3,3 @@ export function HomeInit(){
         types: ['BeforeRequest', 'Requested', 'RequestError'],
     }
 }
-

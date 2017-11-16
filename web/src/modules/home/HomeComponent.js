@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import * as HomeAction from './HomeAction'
 import SpinnerComponent from '../spinner/SpinnerComponent';
-import {Router,Route,Link} from "react-router";
+import {Router,Route,Link,hashHistory} from "react-router";
 
 import { Layout, Menu, Icon, Avatar, Badge, Dropdown, message } from 'antd';
 import homescss from "./home.scss";
@@ -32,7 +32,10 @@ var HomeComponent =  React.createClass({
             collapsed:!this.state.collapsed,
         })
     },
-
+    exit(){
+      sessionStorage.removeItem("user");
+      hashHistory.push("/");
+    },
     render(){
         return(
             <Layout>
@@ -47,22 +50,26 @@ var HomeComponent =  React.createClass({
                   <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']}>
                     <Menu.Item key="1">
                       <Icon type="video-camera" />
-                      <span className="nav-text"><Link to="product">product</Link></span>
+                      <span className="nav-text"><Link to="product">商品管理</Link></span>
                     </Menu.Item>
                     <Menu.Item key="2">
                       <Icon type="upload" />
-                      <span className="nav-text"><Link to="order">order</Link></span>
+                      <span className="nav-text"><Link to="order">订单详情</Link></span>
                     </Menu.Item>
                     <Menu.Item key="3">
                       <Icon type="user" />
-                      <span className="nav-text"><Link to="user">user</Link></span>
+                      <span className="nav-text"><Link to="user">用户管理</Link></span>
+                    </Menu.Item>
+                    <Menu.Item key="4">
+                      <Icon type="user" />
+                      <span className="nav-text"><Link to="buycar">购物车</Link></span>
                     </Menu.Item>
                   </Menu>
                 </Sider>
                 <Layout>
                   <Header style={{ background: '#fff', padding: 0 }}>
                       <ul>
-                          <li>Welcome！<span className="account">{this.state.user}</span></li>
+                          <li>欢迎登录！<span className="account">{this.state.user}</span></li>
                           <li>
                             <Dropdown overlay={menu}>
                                 <span style={{ marginRight: 24 }}>
@@ -71,7 +78,7 @@ var HomeComponent =  React.createClass({
                               </Dropdown>
                             
                           </li>
-                          <li><Link to="register">Exit</Link></li>
+                          <li onClick={this.exit}>退出</li>
                       </ul>
                   </Header>
                   <Content style={{ margin: '24px 16px 0' }}>
