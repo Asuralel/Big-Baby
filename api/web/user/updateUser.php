@@ -8,7 +8,7 @@
     $user_sign = isset($_REQUEST['user_sign']) ? $_REQUEST['user_sign'] : '';
     $id = isset($_REQUEST['id']) ? $_REQUEST['id'] : '';
 
-    $sql = "update user set user_name='$user_name',user_password='$user_password',user_gender='$user_gender',user_sign='$user_sign'  where id='$id'";
+    $sql = "update users set user_name='$user_name',user_password='$user_password',user_gender='$user_gender',user_sign='$user_sign'  where id='$id'";
 
     echo $sql;
     // 利用sql语句查询数据库

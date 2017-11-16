@@ -5,11 +5,11 @@
 	
 	$user_name = isset($_REQUEST['user_name']) ? $_REQUEST['user_name'] : '';
 	$user_gender = isset($_REQUEST['user_gender']) ? $_REQUEST['user_gender'] : '';
-	$user_tel = isset($_REQUEST['user_tel']) ? $_REQUEST['user_tel'] : '';
+	$user_phone = isset($_REQUEST['user_phone']) ? $_REQUEST['user_phone'] : '';
 	$user_address = isset($_REQUEST['user_address']) ? $_REQUEST['user_address'] : '';
 	$user_sign = isset($_REQUEST['user_sign']) ? $_REQUEST['user_sign'] : '';
 	$user_collect = isset($_REQUEST['user_collect']) ? $_REQUEST['user_collect'] : '';
-	$user_image = isset($_REQUEST['user_image']) ? $_REQUEST['user_image'] : '';
+	$head_image = isset($_REQUEST['head_image']) ? $_REQUEST['head_image'] : '';
 	$user_order = isset($_REQUEST['user_order']) ? $_REQUEST['user_order'] : '';
 	$user_account = isset($_REQUEST['user_account']) ? $_REQUEST['user_account'] : '';
 	$user_password = isset($_REQUEST['user_password']) ? $_REQUEST['user_password'] : '';
@@ -21,7 +21,7 @@
 
 	// 查看用户名是否已经存在
 
-	$sql = "select user_name from product where user_name='$user_name'";
+	$sql = "select user_name from users where user_name='$user_name'";
 	
 	
 	$result = $conn->query($sql);
@@ -45,7 +45,7 @@
 		 
 		// $password = password_hash($password,PASSWORD_DEFAULT);
 
-		$sql = "insert into user (user_name,user_password,user_tel,user_gender,user_address,user_identify,user_account,user_sign,user_collect,user_image,user_order,user_time) values('$user_name','$user_password','$user_tel','$user_gender','$user_address',$user_identify','$user_account','$user_sign','$user_collect','$user_image','$user_order','$user_time')";
+		$sql = "insert into user (user_name,user_password,user_phone,user_gender,user_address,user_identify,user_account,user_sign,user_collect,user_image,user_order,user_time) values('$user_name','$user_password','$user_phone','$user_gender','$user_address',$user_identify','$user_account','$user_sign','$user_collect','$user_image','$user_order','$user_time')";
 
 		echo "$sql";
 		// 获取查询结果

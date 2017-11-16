@@ -9,6 +9,8 @@ import order from '../modules/order/OrderReducer';
 import register from '../modules/register/RegisterReducer';
 import datagrid from "../modules/datagrid/dataGridReducer";
 import add from "../modules/datagrid/AddReducer";
+import buycar from "../modules/buycar/BuycarReducer";
+
 
 
 
@@ -22,7 +24,8 @@ const rootReducer = combineReducers({
     user,
     order,
     register,
-    add
+    add,
+    buycar
 })
 
 export default rootReducer

@@ -1,7 +1,10 @@
 // import loginToken from '../login/logintoken';
 import * as constants from '../../../../redux/commonConstant';
-
+import loginstate from '../../../login/logintoken'
 // console
+export  function loginInit(){
+    return loginstate()
+}
 export function MyActions(){
     var token = '';
     var tokenName

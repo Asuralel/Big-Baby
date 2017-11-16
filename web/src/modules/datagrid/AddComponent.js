@@ -13,7 +13,7 @@ class AddComponent extends React.Component {
         super(props)
     }
     componentDidMount(){
-        this.props.Init(this.props.addUrl)
+        this.props.Init(this.props.addUrl);
     }
     addHandler(){
         var arr = this.props.addUrl.split("/");
@@ -21,7 +21,11 @@ class AddComponent extends React.Component {
         for(var attr in this.props.data[0]){
             idx++;
         }
-        var id = this.props.data.length + 1;
+        var max=0;
+        this.props.data.forEach(function(item){
+            item['id']>max ? max=item['id'] : max;
+        })
+        var id = max + 1;
         var str = "";
         for(var i = 1;i<idx-1;i++){
             var num = "input" + i;
@@ -29,8 +33,9 @@ class AddComponent extends React.Component {
         }
         str += '&id=' + id;
         str = str.slice(1);
+        console.log(str)
+        this.props.add(arr[arr.length-2],str);
 
-        this.props.add(arr[arr.length-2],str)
 
     }
     close(e){
@@ -39,12 +44,11 @@ class AddComponent extends React.Component {
     render(){
         if(this.props.res=="ok"){
             alert("添加成功");
-            console.log(this.refs.add.parentNode);
             this.refs.add.parentNode.style.display = "none";
-            
-            return;
+            location.reload(true);
         }else if(this.props.res=="fail"){
             alert("添加失败");
+            return;
         }
         return(
               <div className="add" ref="add">

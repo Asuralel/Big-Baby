@@ -1,4 +1,4 @@
-import http from '../utils/HttpClient';
+// import http from '../utils/HttpClient';
 
 // export function ajaxMiddleware({ dispatch, getState }) {
     
@@ -44,6 +44,9 @@ import http from '../utils/HttpClient';
 //             );
 //     };
 // }
+
+import http from '../utils/HttpClient';
+
 export function ajaxMiddleware(middlewareAPI) {
     return function(dispatch){
         return function(action){

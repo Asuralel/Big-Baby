@@ -15,18 +15,31 @@ import loginToken from "../login/logintoken";
 
 class MyComponent extends React.Component {
     componentDidMount(){
-        this.props.MyActions()
+        
     }
-
-    componentDidUpdate(){
-        if(this.props.show=="false"){
-            var date = new Date();
-            date.setDate(date.getDate() -100);
-            document.cookie = "token=" + "" + ";expires=" + date.toUTCString();
+    constructor(props){
+        super(props);
+        this.state= {
+            show:false
         }
+        // this.masknoshow = this.masknoshow.bind(this);
+    }
+    componentWillMount(){
+        this.props.MyActions().then(response=>{
+            if(response){
+                const res =JSON.parse(response)
+                if(res.start==true){
+                    var token = '';
+                    var date = new Date();  
+                    date.setDate(date.getDate() +7);
+                    document.cookie = "token=" + JSON.stringify(res) + ";expires=" + date.toUTCString();
+                    this.setState({show:response});
+                }
+            }
+
+        })
     }
     quitLogin(e){
-
         if(e.target.className == 'QuitLogin'){
             var date = new Date();
             date.setDate(date.getDate() -100);
@@ -44,7 +57,7 @@ class MyComponent extends React.Component {
                     <div className="pMainHead">
                         <div><img src="./src/asset/login.jpg"/></div>
                         <div className="loginBox">
-                            <OnLineState loginShow={this.props.show}/>    
+                            <OnLineState loginShow={this.state.show}/>    
                         </div>
                     </div>     
                        
@@ -93,7 +106,7 @@ class MyComponent extends React.Component {
 
                     </div>
 
-                    <QuitLogin loginShow={this.props.show}/> 
+                    <QuitLogin loginShow={this.state.show}/> 
                 </div>
                 <FooterComponent />
             </div>

@@ -11,19 +11,16 @@
 
 	$sql = "select * from user where user_account='$account' and user_password='$password' and user_identify='管理员'";
 
-	// echo "$sql";
-
 	// 获取查询结果
 	$result = $conn->query($sql);
 
 	$row = $result->fetch_row();
 
 	// print_r($row[0]);
-
 	if($row[0]){
-		echo 'ok';
+		echo 'yes';
 	}else{
-		echo 'fail';
+		echo 'no';
 	}
 	
 

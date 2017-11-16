@@ -21,9 +21,3 @@ export function MyActions(){
           query: {token}
     }
 }
-export function userQuit(){
-    return {
-          type:'gg',
-          query: false
-      }
-}

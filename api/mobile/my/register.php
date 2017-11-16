@@ -8,7 +8,7 @@
     $user_sign = isset($_REQUEST['user_sign']) ? $_REQUEST['user_sign'] : '快去设置你的个性签名吧！';
     $user_collect = isset($_REQUEST['user_collect']) ? $_REQUEST['user_collect'] : 'false';
     $user_gender = isset($_REQUEST['user_gender']) ? $_REQUEST['user_gender'] : '保密';
-    $user_address = isset($_REQUEST['user_address']) ? $_REQUEST['user_address'] :[];
+    $user_address = isset($_REQUEST['user_address']) ? $_REQUEST['user_address'] :1;
     $head_image = isset($_REQUEST['head_image']) ? $_REQUEST['head_image'] : 'setheader.jpg';
     $user_order = isset($_REQUEST['user_order']) ? $_REQUEST['user_order'] : '您还没有订单呢！';
     $user_account = isset($_REQUEST['user_account']) ? $_REQUEST['user_account'] : "big-baby".$tel;
@@ -21,11 +21,14 @@
     }
     else{
         // $password = md5($password);是否对密码加密
+        // $sql = "insert into users (user_name,user_password,user_phone,user_sign, user_collect,user_gender,user_address,head_image,user_order,user_account) values('$username','$password','$tel','$user_sign','$user_collect','$user_gender','$user_address','$head_image','$user_order','$user_account')";
         $sql = "insert into users (user_name,user_password,user_phone,user_sign, user_collect,user_gender,user_address,head_image,user_order,user_account) values('$username','$password','$tel','$user_sign','$user_collect','$user_gender','$user_address','$head_image','$user_order','$user_account')";
 
-        if (excute($sql)) {
+
+        if(excute($sql)){
             echo "ok";
-        } else {
+        }
+        else{
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
     }
