@@ -14,15 +14,12 @@ import myOrderComponent from './modules/my/MyOrder/MyOeder';
 import myCollectComponent from './modules/my/myCollect/myCollect.js';
 import MySetComponent from './modules/my/myset/mySet';
 import AccSevurityComponent from './modules/my/accountSecurity/accSecurity';
-<<<<<<< HEAD
 import descComponent from './modules/details/descComponent.js';
 import ratingComponent from './modules/details/rating/ratingComponent.js'
-
-=======
 import RegisterComponent from './modules/register/registerComponent';
 import agreement from './modules/register/agreement';
 import address from './modules/my/myset/address/address'
->>>>>>> 98e358b3af686759d115b3c6b41b424bcbf70cf0
+
 export default (
     <Route path="/" component={AppComponent}>
         <Route path="register" component={RegisterComponent}/>
