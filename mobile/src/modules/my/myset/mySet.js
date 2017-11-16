@@ -9,57 +9,72 @@ import mysetcss from "./myset.scss";
 var baseURI = "/src/asset/"
 class MySetComponent extends React.Component{
     componentDidMount(){
-        // console.log(JSON.parse(this.props.show).username)
-        this.props.mysetinit(JSON.parse(this.props.show).username)
-        console.log(this.props.myMsg)
+        if(this.props.show){
+            this.props.mysetinit(JSON.parse(this.props.show).username)
+        }
+        
     }
     clickto(){
         
         hashHistory.push("/my/mySet/address")
     }
     render(){
-        return (
-            <div className="MySet">
-                <div className="personalHead">
-                    <div>
-                        <Historyback />
+        
+        if(this.props.myMsg){
+            let show = JSON.parse(this.props.myMsg)
+            return (
+                <div className="MySet">
+                    <div className="personalHead">
+                        <div>
+                            <Historyback />
+                        </div>
+                        <h3>设置</h3>
                     </div>
-                    <h3>设置</h3>
+                    <div className="setContent">
+                        <div>
+                            <span>头像</span>
+                            <span className="lastSpan">
+                            <img src={baseURI+show.handimgs}/>
+                            </span>
+                            <Icon type="right" />
+                        </div>
+                        <div>
+                            <span>昵称</span>
+                            <span className="lastSpan">
+                            {show.username}
+                            </span>
+                            <Icon type="right" />
+                        </div>
+                        <div>
+                            <span>性别</span>
+                            <span className="lastSpan">
+                            {show.gender}
+                            </span>
+                            <Icon type="right" />
+                        </div>
+                        <div>
+                            <span>个性签名</span>
+                            <span className="lastSpan">
+                            {show.sign}
+                            </span>
+                            <Icon type="right" />
+                        </div>
+                        <div className="address" onClick={this.clickto}>
+                            <span>收货地址</span>
+                            <span className="lastSpan">
+                            添加更多
+                            </span>
+                            <Icon type="right" />
+                        </div>
+                    </div>
                 </div>
-                <div className="setContent">
-                    <div>
-                        <span>头像</span>
-                        <span className="lastSpan">
-                        </span>
-                        <Icon type="right" />
-                    </div>
-                    <div>
-                        <span>昵称</span>
-                        <span className="lastSpan">
-                        </span>
-                        <Icon type="right" />
-                    </div>
-                    <div>
-                        <span>性别</span>
-                        <span className="lastSpan">
-                        </span>
-                        <Icon type="right" />
-                    </div>
-                    <div>
-                        <span>账户名</span>
-                        <span className="lastSpan">
-                        </span>
-                        <Icon type="right" />
-                    </div>
-                    <div className="address" onClick={this.clickto}>
-                        <span>收货地址</span>
-                        <span className="lastSpan">
-                        </span>
-                        <Icon type="right" />
-                    </div>
-                </div>
+            )
+        }else{
+            return <div>
+                            
+            出错了 <Link><Historyback /></Link>
             </div>
-        )
+        }
     }
 }
 

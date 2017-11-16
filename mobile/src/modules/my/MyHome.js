@@ -26,14 +26,15 @@ class MyComponent extends React.Component {
     }
     componentWillMount(){
         this.props.MyActions().then(response=>{
-            const res =JSON.parse(response)
-
-            if(res.start==true){
-                var token = '';
-                var date = new Date();  
-                date.setDate(date.getDate() +7);
-                document.cookie = "token=" + JSON.stringify(res) + ";expires=" + date.toUTCString();
-                this.setState({show:response});
+            if(response){
+                const res =JSON.parse(response)
+                if(res.start==true){
+                    var token = '';
+                    var date = new Date();  
+                    date.setDate(date.getDate() +7);
+                    document.cookie = "token=" + JSON.stringify(res) + ";expires=" + date.toUTCString();
+                    this.setState({show:response});
+                }
             }
 
         })
