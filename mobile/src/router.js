@@ -31,7 +31,7 @@ export default (
         <Route path="login" component={LoginComponent} />
         <Route path="buycar" component={BuycarComponent} />
         <Route path="account" component={AccountComponent} />
-        <Route path="pay" component={PayComponent} />
+        <Route path="pay/:order_num" component={PayComponent} />
         <Route path="home" component={homeComponent} />
         <Route path="my" component={myComponent} >
             <Route path='/my/myHome' component={myHome}/>
