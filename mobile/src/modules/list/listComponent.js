@@ -233,12 +233,12 @@ class listComponent extends React.Component {
 		if(li.className.indexOf('up') >= 0){
 			li.className = "current price-down";
 			this.setState({
-				goodList:this.state.goodList.sort((a,b) => {return b.product_price*b.product_discount - a.product_price*a.product_discount})
+				goodList:this.state.goodList.sort((a,b) => {return b.product_origin_price*b.product_discount - a.product_origin_price*a.product_discount})
 			});
 		}else{
 			li.className = "current price-up";
 			this.setState({
-				goodList:this.state.goodList.sort((a,b) => {return a.product_price*a.product_discount - b.product_price*b.product_discount})
+				goodList:this.state.goodList.sort((a,b) => {return a.product_origin_price*a.product_discount - b.product_origin_price*b.product_discount})
 			});
 		}
 	}
@@ -280,8 +280,8 @@ class listComponent extends React.Component {
 										<Link to={{pathname:'/details/',state:item.id}}>
 										<div className="img"><img src={item.product_image} /></div>
 										<div className="text">
-											<span className="now-price">￥{(item.product_price*item.product_discount).toFixed(0)}</span>
-											{item.product_discount !== '1'? (<span className="old-price">￥{item.product_price}</span>):null}
+											<span className="now-price">￥{(item.product_origin_price*item.product_discount).toFixed(0)}</span>
+											{item.product_discount !== '1'? (<span className="old-price">￥{item.product_origin_price}</span>):null}
 											<p className="desc">{item.product_name}</p>
 											<p className="sell-num">已售{item.product_sold_out}</p>
 										</div>

@@ -295,8 +295,8 @@ class detailsComponent extends React.Component {
 							<p className="text">{this.state.detailGood.product_name}</p>
 							<div className="extra">
 								<div className="price">
-									<span className="now-price">￥{(this.state.detailGood.product_price*1*this.state.detailGood.product_discount).toFixed(0)}</span>
-									{this.state.detailGood.product_discount !== '1' ? <span className="old-price">￥{this.state.detailGood.product_price}</span> : null}
+									<span className="now-price">￥{(this.state.detailGood.product_origin_price*1*this.state.detailGood.product_discount).toFixed(0)}</span>
+									{this.state.detailGood.product_discount !== '1' ? <span className="old-price">￥{this.state.detailGood.product_origin_price}</span> : null}
 								</div>
 								<div className="sell-num">已售 {this.state.detailGood.product_sold_out}</div>
 							</div>
@@ -305,7 +305,7 @@ class detailsComponent extends React.Component {
 								<span className="title">活动：</span>
 								<ul className="main-cont">
 									{false?null:<li><span className="name">100元</span><span className="text">正价商品满1000-100以上通用券</span></li>}
-									{this.state.detailGood.product_discount == '1'?null:<li><span className="name">直降</span><span className="text">已优惠{(this.state.detailGood.product_price*(1-this.state.detailGood.product_discount)).toFixed(0)}元</span></li>}
+									{this.state.detailGood.product_discount == '1'?null:<li><span className="name">直降</span><span className="text">已优惠{(this.state.detailGood.product_origin_price*(1-this.state.detailGood.product_discount)).toFixed(0)}元</span></li>}
 								</ul>
 							</div>
 							<SplitGap />
@@ -354,7 +354,7 @@ class detailsComponent extends React.Component {
 								<img src={this.state.detailGood.product_image} />
 								<div className="text">
 									<p>{this.state.detailGood.product_name}</p>
-									<span className="price">￥{this.state.detailGood.product_price*this.state.detailGood.product_discount}</span>
+									<span className="price">￥{this.state.detailGood.product_origin_price*this.state.detailGood.product_discount}</span>
 								</div>
 								<Icon  className="hide-good-choice" type="close" onClick={this.hideGoodChoice.bind(this)}/>
 							</div>
