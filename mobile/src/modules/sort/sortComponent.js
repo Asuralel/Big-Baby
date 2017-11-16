@@ -120,7 +120,7 @@ class sortComponent extends React.Component {
 	componentWillMount(){
 		//loading模块
 		this.setState({showLoading:true});
-		httpAjax.get("http://localhost:4444/api/mobile/sort/sort.php").then((res) => {
+		httpAjax.get("http://localhost:888/api/mobile/sort/sort.php").then((res) => {
 //			console.log(22,JSON.parse(res.text));
 			this.setState({goodTypeList:JSON.parse(res.text),showLoading:false});
 			document.querySelector('#leftMenu li').click();

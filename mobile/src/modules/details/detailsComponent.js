@@ -8,12 +8,14 @@ const Search = Input.Search;
 import httpAjax from "superagent"
 
 
+
 //自定义
 import './details.scss'
 import Hbicon from '../buycar/HistorybackComponent.js'
 import LinksMask from '../common/linksMask/linksMaskComponent.js'
 import SplitGap from '../common/splitGap/splitGap.js'
 import Loading from '../common/loading/loadingComponent.js'
+import {IMGURL} from '../common/commonUrl.js'
 
 
 class detailsComponent extends React.Component {
@@ -155,7 +157,7 @@ class detailsComponent extends React.Component {
 	componentWillMount(){
 		//loading模块
 		this.setState({showLoading:true});
-		httpAjax.get("http://localhost:4444/api/mobile/sort/product.php").query('?type=getDetails&value='+this.props.location.state).then((res) => {
+		httpAjax.get("http://localhost:888/api/mobile/sort/product.php").query('?type=getDetails&value='+this.props.location.state).then((res) => {
 			let resObj = JSON.parse(res.text)[0];
 			console.log(resObj);
 			this.setState({
@@ -226,6 +228,7 @@ class detailsComponent extends React.Component {
 		if(!isLogin){
 			hashHistory.push('/login');
 		}else{
+			console.log(sessionStorage.getItem('user'))
 			console.log('发请求到购物车接口')
 		}
 	}
@@ -351,7 +354,7 @@ class detailsComponent extends React.Component {
 				    <div className="goods-choice hide-good-choice" onClick={this.hideGoodChoice.bind(this)} style={{height:this.state.goodChoiceHeight}}>
 						<div className="choice-cont" style={{bottom:this.state.goodChoiceBottom}}>
 							<div className="top">
-								<img src={this.state.detailGood.product_image} />
+								<img src={IMGURL+"/product/"+this.state.detailGood.product_image} />
 								<div className="text">
 									<p>{this.state.detailGood.product_name}</p>
 									<span className="price">￥{this.state.detailGood.product_origin_price*this.state.detailGood.product_discount}</span>

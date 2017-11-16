@@ -160,7 +160,7 @@ class listComponent extends React.Component {
 		}else{
 			query = "?type=listType&value="+this.props.params.goodType.split(':')[1];
 		}
-		httpAjax.get("http://localhost:4444/api/mobile/sort/product.php"+query).then((res) => {
+		httpAjax.get("http://localhost:888/api/mobile/sort/product.php"+query).then((res) => {
 			let resObj = JSON.parse(res.text);
 //			console.log(resObj);
 			this.setState({
@@ -174,7 +174,7 @@ class listComponent extends React.Component {
      if(nextProps.params.goodType && nextProps.params.goodType != this.props.params.goodType) {
      	this.setState({showLoading:true});
         let query = "?type=listName&value="+nextProps.params.goodType.split('s-')[1];
-        httpAjax.get("http://localhost:4444/api/mobile/sort/product.php"+query).then((res) => {
+        httpAjax.get("http://localhost:888/api/mobile/sort/product.php"+query).then((res) => {
 			let resObj = JSON.parse(res.text);
 			this.setState({
 				goodList:JSON.parse(res.text),
@@ -278,7 +278,7 @@ class listComponent extends React.Component {
 								return (
 									<li key={idx}>
 										<Link to={{pathname:'/details/',state:item.id}}>
-										<div className="img"><img src={item.product_image} /></div>
+										<div className="img"><img src={IMGURL+"/product/"+item.product_image} /></div>
 										<div className="text">
 											<span className="now-price">￥{(item.product_origin_price*item.product_discount).toFixed(0)}</span>
 											{item.product_discount !== '1'? (<span className="old-price">￥{item.product_origin_price}</span>):null}
