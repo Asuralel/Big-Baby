@@ -12,7 +12,6 @@ export function ajaxMiddleware({ dispatch, getState }) {
             url
         } = action;
         
-
         // if (!types) {
         //     // Normal action: pass it on
         //     return next(action);
@@ -34,11 +33,10 @@ export function ajaxMiddleware({ dispatch, getState }) {
         }
         
         const [requestType, successType, failureType] = types;
-
         dispatch(Object.assign({}, { query }, { payload }, {
             type: requestType,
         }));
-
+        
         return http[method](url, query, payload)
             .then(
                 response => dispatch(Object.assign({}, { query }, { payload }, {

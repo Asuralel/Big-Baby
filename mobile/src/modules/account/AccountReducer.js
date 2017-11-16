@@ -3,16 +3,16 @@ import * as types from '../../redux/commonConstant'
 export default function(state = {loading: false}, action){
     let reState = JSON.parse(JSON.stringify(state))
     switch(action.type){
-        case types.REQUEST:
+        case 'ACCOUNT_REQUEST':
             reState.loading = true
             break
-        case types.SUCCESS:
+        case 'ACCOUNT_SUCCESS':
             reState.data = JSON.parse(action.body)
             // console.log(reState.data)
             reState.lastFetched = action.lastFetched
             reState.loading = false
             break
-        case types.FAILURE:
+        case 'ACCOUNT_FAILURE':
             reState.error = action.error
             reState.loading = false
             break

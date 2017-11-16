@@ -17,8 +17,6 @@ const EditableCell = ({ editable, value, onChange }) => (
   </div>
 );
 
-
-
 var titles = [];
 export default class DatagridComponent extends Component{
     constructor(props) {
@@ -45,7 +43,6 @@ export default class DatagridComponent extends Component{
       })
     }
       
-
       fetch = (params = {}) => {
         this.setState({ loading: true });
         http.get(this.props.url,{
@@ -55,13 +52,10 @@ export default class DatagridComponent extends Component{
             var res = JSON.parse(res);
             var datas = res;
             var total = res.total
-            
             var columns = [];
             datas.forEach(function(item,idx){
               item['key'] = String(idx);
             })
-            console.log(datas)
-            
             if(this.props.title){
               titles =this.props.title.split(',');
             }else{
@@ -132,7 +126,6 @@ export default class DatagridComponent extends Component{
         http.get(this.props.delete_url,`id=${data[index].id}`).then(()=>{
           this.setState({ data: data.filter(item => item !== data[index]) });
         })
-
       }
       handleAdd = () => {
         this.setState({showAdd:"block"})

@@ -5,7 +5,7 @@
     header("Access-Control-Allow-Origin: *");
 
     // 编写查询sql语句
-    $sql = 'select * from user';
+    $sql = 'select * from users';
 
     // 利用sql语句查询数据库
     // 查询结果集
