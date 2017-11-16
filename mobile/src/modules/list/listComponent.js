@@ -1,22 +1,26 @@
 //react系列
 import React from 'react';
-import {Link} from 'react-router'
+import {Link,hashHistory} from 'react-router'
 
 //第三方系列
 import {Icon,Input,BackTop} from 'antd';
-const Search = Input.Search;
+const Search = Input.Search
+import httpAjax from "superagent"
 
 //自定义系列
 import './list.scss'
 import Hbicon from '../buycar/HistorybackComponent.js'
 import LinksMask from '../common/linksMask/linksMaskComponent.js'
+import Loading from '../common/loading/loadingComponent.js'
+import {IMGURL} from '../common/commonUrl.js'
 
 class listComponent extends React.Component {
 	constructor(props){
         super(props);
         this.state={
         	isShowLinks:'none', //linksMaskComponent.js：公共模块导航相关属性
-        	goodList:[{
+        	showLoading:false	//loadingComponent.js：公共模块导航相关属性
+        /*	goodList:[{
         		goodId:'1',
         		img:'http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204429888197885_240.jpg',
         		name:'克罗德曼 布艺/松木框架 床架 AFB-607',
@@ -128,6 +132,7 @@ class listComponent extends React.Component {
         		nowPrice:180,
         		oldPrice:240
         	}]
+        */
         }
     }
 	//linksMaskComponent.js：公共模块导航相关方法
@@ -144,14 +149,50 @@ class listComponent extends React.Component {
 	
 	
 	//列表页自身模块
-	componentDidMount(){
-		this.setState({
-			defaultGoodList:this.state.goodList
+	//请求数据
+	componentWillMount(){
+//		console.log(this.props.params.goodType);
+		//loading模块
+		this.setState({showLoading:true});
+		let query = "";
+		if(this.props.params.goodType.indexOf('s-') >= 0){
+			query = "?type=listName&value="+this.props.params.goodType.split('s-')[1];
+		}else{
+			query = "?type=listType&value="+this.props.params.goodType.split(':')[1];
+		}
+		httpAjax.get("http://localhost:888/api/mobile/sort/product.php"+query).then((res) => {
+			let resObj = JSON.parse(res.text);
+//			console.log(resObj);
+			this.setState({
+				goodList:JSON.parse(res.text),
+				defaultGoodList:JSON.parse(res.text),
+				showLoading:false
+			});
 		});
 	}
+	componentWillReceiveProps(nextProps) {
+     if(nextProps.params.goodType && nextProps.params.goodType != this.props.params.goodType) {
+     	this.setState({showLoading:true});
+        let query = "?type=listName&value="+nextProps.params.goodType.split('s-')[1];
+        httpAjax.get("http://localhost:888/api/mobile/sort/product.php"+query).then((res) => {
+			let resObj = JSON.parse(res.text);
+			this.setState({
+				goodList:JSON.parse(res.text),
+				defaultGoodList:JSON.parse(res.text),
+				showLoading:false
+			});
+			this.defaultList(0);
+		});
+     } 
+  }
+//	componentDidMount(){
+//		this.setState({
+//			defaultGoodList:this.state.goodList
+//		});
+//	}
 	defaultList(idx,e){
 		this.setState({
-			goodList:this.state.goodList.sort((a,b) => {return a.goodId - b.goodId})
+			goodList:this.state.goodList.sort((a,b) => {return a.Id - b.id})
 		});
 		let li = null;
 		this.refs.filterList.querySelectorAll('li').forEach((item,index) => {
@@ -166,7 +207,7 @@ class listComponent extends React.Component {
 	}
 	sellNumList(idx,e){
 		this.setState({
-			goodList:this.state.goodList.sort((a,b) => {return b.sellNum - a.sellNum})
+			goodList:this.state.goodList.sort((a,b) => {return b.product_sold_out - a.product_sold_out})
 		});
 		let li = null;
 		this.refs.filterList.querySelectorAll('li').forEach((item,index) => {
@@ -192,12 +233,12 @@ class listComponent extends React.Component {
 		if(li.className.indexOf('up') >= 0){
 			li.className = "current price-down";
 			this.setState({
-				goodList:this.state.goodList.sort((a,b) => {return b.nowPrice - a.nowPrice})
+				goodList:this.state.goodList.sort((a,b) => {return b.product_origin_price*b.product_discount - a.product_origin_price*a.product_discount})
 			});
 		}else{
 			li.className = "current price-up";
 			this.setState({
-				goodList:this.state.goodList.sort((a,b) => {return a.nowPrice - b.nowPrice})
+				goodList:this.state.goodList.sort((a,b) => {return a.product_origin_price*a.product_discount - b.product_origin_price*b.product_discount})
 			});
 		}
 	}
@@ -217,7 +258,7 @@ class listComponent extends React.Component {
                 <div className="list-head">
 					<div className="list-search">
 						<Hbicon className="sort-hb"/>
-						<Search className="sort-sh" placeholder="请输入搜索关键字" onSearch={value => console.log(value)} />
+						<Search className="sort-sh" placeholder="请输入搜索关键字" onSearch={value => value.trim()===''?null:hashHistory.push("/list/:s-"+value)} />
 						<Icon className="sort-links" type="ellipsis" onClick={this.showLinks.bind(this)}/>
 					</div>
 					<div className="list-filter">
@@ -233,16 +274,16 @@ class listComponent extends React.Component {
 				<div className="list-cont">
 					<ul ref="goodList">
 						{
-							this.state.goodList.map((item,idx) => {
+							!this.state.goodList?null:!this.state.goodList.length?<div className="none-goods"><img src={IMGURL+"buycar.png"} /><p>抱歉，没有找到符合条件的商品</p></div>:this.state.goodList.map((item,idx) => {
 								return (
 									<li key={idx}>
-										<Link to={{pathname:'/details/',state:item.goodId}}>
-										<div className="img"><img src={item.img} /></div>
+										<Link to={{pathname:'/details/',state:item.id}}>
+										<div className="img"><img src={IMGURL+"/product/"+item.product_image} /></div>
 										<div className="text">
-											<span className="now-price">￥{item.nowPrice}</span>
-											{item.oldPrice? (<span className="old-price">￥{item.oldPrice}</span>):null}
-											<p className="desc">{item.name}</p>
-											<p className="sell-num">已售{item.sellNum}</p>
+											<span className="now-price">￥{(item.product_origin_price*item.product_discount).toFixed(0)}</span>
+											{item.product_discount !== '1'? (<span className="old-price">￥{item.product_origin_price}</span>):null}
+											<p className="desc">{item.product_name}</p>
+											<p className="sell-num">已售{item.product_sold_out}</p>
 										</div>
 										</Link>
 									</li>
@@ -255,6 +296,7 @@ class listComponent extends React.Component {
 			    <BackTop style={{right:0,bottom:0}}>
 			      <div className="ant-back-top-inner"><Icon type="up-circle-o"  style={{ fontSize: 28, color: '#555555',backgroundColor:'#fff',borderRadius:'50%' }}/></div>
 			    </BackTop>
+			    <Loading showLoading={this.state.showLoading}/>
             </div>
         )
     }

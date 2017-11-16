@@ -3,10 +3,12 @@ import * as constants from '../../redux/commonConstant'
 export function payInit(obj){
     return {
         types: ['PAY_REQUEST', 'PAY_SUCCESS', 'PAY_FAILURE'],
-        path: 'account/account.php',
+        path: 'pay/pay.php',
         method: 'get',
         query:{
-            username:obj.username
+            order_num:obj.order_num,
+            order_status:obj.order_status,
+            makesure:obj.makesure ? obj.makesure : null
         }
     }
  
