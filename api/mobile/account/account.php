@@ -27,7 +27,10 @@
             '$order_status',
             '$order_address')";   
     if(excute($sql)){
-        echo "ok";
+        $sql = "DELETE FROM buycar where username = '$user_name'";
+        if(excute($sql)){
+            echo "ok";
+        }
     }else{
         echo "false";
     } 
