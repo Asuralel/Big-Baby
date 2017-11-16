@@ -36,6 +36,7 @@
     .pOrder{
         &>div:last-child{font-size:16px;padding:10px 0;
             overflow:hidden;
+            a{color:#333;}
             div{width:25%;
                 float:left;
                 i{text-align:center;display:block;}
