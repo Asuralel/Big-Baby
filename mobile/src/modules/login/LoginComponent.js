@@ -7,36 +7,40 @@ import Goback from "../buycar/HistorybackComponent";
 import {Icon,Button, notification } from 'antd';
 import SpinnerComponent from "../spinner/SpinnerComponent";
 import * as loginActions from "./LoginAction";
-var verification;
+import MaskComponent from "./Mask";
+
+
 class loginComponent extends React.Component{
+    constructor(props){
+        super(props);
+        this.state= {
+            maskshow:false
+        }
+        this.masknoshow = this.masknoshow.bind(this);
+    }
+
     loginMsg(){
         
         const username = this.refs.username.value;
         const password = this.refs.password.value;
-        this.props.login(username, password);
-    }
-    componentDidUpdate(){
-        console.log(this.props.token)
-        if(this.props.token){
-            if(this.props.token.start==true){
-                console.log(this.props.token)
-                var token = '';
-                var date = new Date();  
-                date.setDate(date.getDate() +7);
-                document.cookie = "token=" + JSON.stringify(this.props.token) + ";expires=" + date.toUTCString();
+        this.props.login(username, password).then(response => {
+            const res =JSON.parse(response)
+            if(res.start==true){
+                sessionStorage.setItem('user', response);
                 hashHistory.push('/home')
-            }
-            return
-        }else{
-            if(verification){
-                verification = false;
-                notification.open({
-                    message: "请输入正确的账号、密码"
-                });
-                return
-            }
-            verification = true;
-        }
+            }else if(res.start=="用户不存在"){
+               this.setState({maskshow:'用户不存在'});
+            }else if(res.start=="密码错误"){
+               this.setState({maskshow:'密码错误'});
+            }   
+            
+        });
+    }
+    masknoshow(){
+        this.setState({maskshow:false})
+    }
+    componentWillReceiveProps(){
+        
     }
     render(){
 
@@ -59,6 +63,7 @@ class loginComponent extends React.Component{
                     <div ><span><Link to="/ ">忘记密码?</Link></span></div>
                 </div>
                 <SpinnerComponent show={this.props.loading}/>
+                <MaskComponent maskshow={this.state.maskshow} masknoshow={this.masknoshow} />
             </div>
 
         )

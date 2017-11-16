@@ -1,14 +1,27 @@
 import React from 'react'
 import {connect} from "react-redux"
-import {Link} from 'react-router'
+import {Link, hashHistory} from 'react-router'
 import {Icon } from 'antd';
 
 import * as EditAtions from "./editAction.js"
 import Historyback from "../../../../buycar/HistorybackComponent" 
 import myaddress from "./addressedit.scss";
+import MaskComponent from "../../../../login/Mask";
+
 class MyEditComponent extends React.Component{
     componentDidMount(){
 
+    }
+    constructor(props){
+        super(props);
+        this.state= {
+            maskshow:false
+        }
+        this.masknoshow = this.masknoshow.bind(this);
+    }
+     masknoshow(){
+            this.setState({maskshow:false});
+            hashHistory.push("my/mySet/address")
     }
     saveAddress(){
         const obj ={
@@ -16,7 +29,9 @@ class MyEditComponent extends React.Component{
             tel : this.refs.tel.value,
             detaddress : this.refs.detaddress.value
         }
-        this.props.addressInit(JSON.stringify(obj),JSON.parse(this.props.token).username)
+        this.props.addressInit(JSON.stringify(obj),JSON.parse(this.props.token).username).then(response => {
+           this.setState({maskshow:'添加成功'});
+        })
     }
     render(){
         return (
@@ -33,6 +48,7 @@ class MyEditComponent extends React.Component{
                     <div><label>详细地址:</label><input type="text" ref="detaddress"/></div>
                     <div ><span onClick={this.saveAddress.bind(this)}>保存</span></div>
                 </div>
+                <MaskComponent maskshow={this.state.maskshow} masknoshow={this.masknoshow} />
             </div>
         )
     }

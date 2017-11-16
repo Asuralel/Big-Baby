@@ -17,11 +17,6 @@ const EditableCell = ({ editable, value, onChange }) => (
   </div>
 );
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 8a9609ad39d29a00d64c1d36f3eade7a6c7367c1
 var titles = [];
 export default class DatagridComponent extends Component{
     constructor(props) {
@@ -133,17 +128,6 @@ export default class DatagridComponent extends Component{
         })
       }
       handleAdd = () => {
-        const { count, data } = this.state;
-        const newData = {
-          key: count,
-          name: `Edward King ${count}`,
-          age: 32,
-          address: `London, Park Lane no. ${count}`,
-        };
-        this.setState({
-          data: [...data, newData],
-          count: count + 1,
-        });
         this.setState({showAdd:"block"})
       }
 

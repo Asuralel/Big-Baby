@@ -22,7 +22,6 @@ import RegisterComponent from './modules/register/registerComponent';
 import agreement from './modules/register/agreement';
 import address from './modules/my/myset/address/address';
 import myEdit from './modules/my/myset/address/addressEdit/addressEdit'
-
 export default (
     <Route path="/" component={AppComponent}>
         <Route path="register" component={RegisterComponent}/>
@@ -33,7 +32,7 @@ export default (
         <Route path="home" component={homeComponent} />
         <Route path="my" component={myComponent} >
             <Route path='/my/myHome' component={myHome}/>
-            <Route path='/my/myOrder' component={myOrderComponent}/>
+            <Route path='/my/myOrder/:key' component={myOrderComponent}/>
             <Route path='/my/myCollect' component={myCollectComponent}/>
             <Route path='/my/mySet' component={MySetComponent} />
             <Route path='/my/mySecurity' component={AccSevurityComponent}/>

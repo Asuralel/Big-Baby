@@ -3,21 +3,17 @@
 
 	include '../../common/connect.php';
 	
-	$username = isset($_REQUEST['user_name']) ? $_REQUEST['user_name'] : '';
-	$password = isset($_REQUEST['user_password']) ? $_REQUEST['user_password'] : '123456';
-	$gender = isset($_REQUEST['user_gender']) ? $_REQUEST['user_gender'] : '';
-	$phone = isset($_REQUEST['user_phone']) ? $_REQUEST['user_phone'] : '';
-	$address = isset($_REQUEST['user_address']) ? $_REQUEST['user_address'] : '';
-	$account = isset($_REQUEST['user_account']) ? $_REQUEST['user_account'] : '';
-	$identify = isset($_REQUEST['user_identify']) ? $_REQUEST['user_identify'] : '';
-	$user_id = isset($_REQUEST['user_id']) ? $_REQUEST['user_id'] : '';
-	$arr=rand(1,1000);
-	$id = isset($_REQUEST['id']) ? $_REQUEST['id'] : $arr;
+	$id = isset($_REQUEST['id']) ? $_REQUEST['id'] : '';
+	$username = isset($_REQUEST['username']) ? $_REQUEST['username'] : '';
+	$account = isset($_REQUEST['account']) ? $_REQUEST['account'] : '';
+	$list = isset($_REQUEST['list']) ? $_REQUEST['list'] : '';
+
 
 	// 查看用户名是否已经存在
-	$sql = "select user_name from users where user_name='$username'";
-	
 
+	$sql = "select account from buycar where account='$account'";
+	
+	
 	$result = $conn->query($sql);
 	if($result->num_rows>0){
 		echo "fail";
@@ -39,7 +35,7 @@
 		 
 		// $password = password_hash($password,PASSWORD_DEFAULT);
 
-		$sql = "insert into users (id,user_id,user_name,user_password,user_gender,user_phone,user_address,user_identify,user_account) values ('$id','$user_id','$username','$password','$gender','$phone','$address','$identify','$account')";
+		$sql = "insert into buycar (id,username,account,list) values('$id','$username','$account','$list')";
 
 		// 获取查询结果
 		$result = $conn->query($sql);

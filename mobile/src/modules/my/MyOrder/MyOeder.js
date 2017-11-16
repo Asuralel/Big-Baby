@@ -4,10 +4,17 @@ import { Tabs } from 'antd';
 const TabPane = Tabs.TabPane;
 import {Link} from 'react-router'
 
-
 import Historyback from "../../buycar/HistorybackComponent" 
 import orderscss from "./myOrder.scss"
 class MyOrderComponent extends React.Component{
+    onChange(key){
+        console.log(key)
+
+    }
+    componentDidMount(){
+
+        console.log(this.props.params.key)
+    }
     render(){
         return (
             <div className="MyOrder">
@@ -17,7 +24,7 @@ class MyOrderComponent extends React.Component{
                     </div>
                     <h3>我的订单</h3>
                 </div>
-                <Tabs defaultActiveKey="1">
+                <Tabs defaultActiveKey={this.props.params.key} onChange={this.onChange}>
                     <TabPane tab="待付款" key="1">
                         <div className="goShop">
                             <div className="noGoods">
@@ -25,6 +32,7 @@ class MyOrderComponent extends React.Component{
                                 <p>您没有相关订单</p>
                                 <Link to="/home"><span>去添点宝贝</span></Link>
                             </div>
+                            <span>66666666666666</span>
                         </div>
                     </TabPane>
                     <TabPane tab="待发货" key="2">
