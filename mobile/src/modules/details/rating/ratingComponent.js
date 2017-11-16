@@ -57,7 +57,7 @@ export default class ratingComponent extends React.Component{
 		this.setState({ratingList:newList})
 	}
 	timeFormat(time){
-		return new Date(time).toLocaleString().replace(/上午|下午/,' ')
+		return new Date(time).toLocaleString().replace(/上午|下午/,'	 ')
 	}
 	render(){
 		return (

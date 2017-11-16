@@ -7,7 +7,8 @@ export default function(state = {loading: false}, action){
             reState.loading = true
             break
         case 'ACCOUNT_SUCCESS':
-            reState.data = JSON.parse(action.body)
+            console.log(action)
+            reState.data = action.body = 'ok' ? 'ok' : JSON.parse(action.body)
             // console.log(reState.data)
             reState.lastFetched = action.lastFetched
             reState.loading = false

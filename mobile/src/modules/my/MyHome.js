@@ -29,7 +29,7 @@ class MyComponent extends React.Component {
             if(response){
                 const res =JSON.parse(response)
                 if(res.start==true){
-                    console.log(sessionStorage.getItem('user'))
+                    // console.log(sessionStorage.getItem('user'))
                     sessionStorage.setItem('user', response);
                     this.setState({show:response});
                 }

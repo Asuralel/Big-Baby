@@ -6,7 +6,14 @@ export function accountInit(obj){
         path: 'account/account.php',
         method: 'get',
         query:{
-            username:obj.username
+                order_num:obj.order_num,
+                user_name:obj.user_name ,
+                order_product:JSON.stringify(obj.order_product),
+                order_phone:obj.order_phone,
+                order_total_price:obj.order_total_price,
+                order_date:obj.order_date,
+                order_status:obj.order_status,
+                order_address:obj.order_address
         }
     }
  
