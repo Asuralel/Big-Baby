@@ -177,7 +177,7 @@ class detailsComponent extends React.Component {
 				userObj:userObj,
 				isHasCollect:false,
 				userCollect:[],
-				carNums:2
+				carNums:0
 			});
 			if(this.state.userObj){
 				let userCollect = this.state.userObj.user_collect.split(',');
@@ -185,6 +185,18 @@ class detailsComponent extends React.Component {
 				let isHasCollect = userCollect.some(item => {return item === resObj.id});
 				if(isHasCollect){this.refs.favorLi.className = "add-favor has-favor";}
 				this.setState({userCollect:userCollect,isHasCollect:isHasCollect});
+				
+				//购物车
+				httpAjax.get("http://localhost:888/api/mobile/buycar/buycar.php")
+				.query('username='+this.state.userObj.username)
+				.then((res) => {
+					var buycarLi  = JSON.parse(res.text).length == 0 ? [] : JSON.parse(JSON.parse(res.text)[0].list);
+					var carNums=0;
+					buycarLi.forEach(function(item){
+						carNums += item.amount;
+					});
+					this.setState({carNums:carNums});
+				});
 			}
 		});
 //		console.log('商品Id',this.props.location.state);
@@ -253,7 +265,10 @@ class detailsComponent extends React.Component {
 		}
 	}
 	//购物车相关
-	addCart(){
+	addCart(e){
+		if(e.target.className=="bottom cart-bot"){
+			this.setState({goodChoiceHeight:'0',goodChoiceBottom:'-100%'})
+		}
 		if(!this.state.userObj){
 			hashHistory.push('/login');
 		}else{
@@ -265,6 +280,7 @@ class detailsComponent extends React.Component {
 				amount:this.state.goodsNum,
 				product_image:this.state.detailGood.product_image
 			}
+			this.setState({carNums:this.state.goodsNum+this.state.carNums});
 			httpAjax.get("http://localhost:888/api/mobile/buycar/buycar.php")
 			.query('username='+'1')
 			.then((res) => {
@@ -303,6 +319,7 @@ class detailsComponent extends React.Component {
 				amount:this.state.goodsNum,
 				product_image:this.state.detailGood.product_image
 			}
+			this.setState({carNums:this.state.goodsNum+this.state.carNums});
 			httpAjax.get("http://localhost:888/api/mobile/buycar/buycar.php")
 			.query('username='+this.state.userObj.username)
 			.then((res) => {
@@ -479,7 +496,7 @@ class detailsComponent extends React.Component {
 									</div>
 								</div>
 							</div>
-							<div className="bottom" onClick={this.addCart.bind(this)}>加入购物车</div>
+							<div className="bottom cart-bot" onClick={this.addCart.bind(this)}>加入购物车</div>
 						</div>
 					</div>
 				}
