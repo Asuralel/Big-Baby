@@ -6,6 +6,7 @@ import React from 'react'
 
 //自定义
 import SplitGap from '../common/splitGap/splitGap.js'
+import {IMGURL} from '../common/commonUrl.js'
 
 export default class DescComponet extends React.Component{
 	render(){
@@ -15,7 +16,7 @@ export default class DescComponet extends React.Component{
 				<div className="desc-cont">
 					{
 						this.props.location.state.imgArr.map((item,idx) => {
-							return (<img src={item} />)
+							return (<img src={IMGURL+"product/"+item+'.jpg'} />)
 						})
 					}
 				</div>
