@@ -75,7 +75,8 @@ class BuycarComponent extends React.Component {
 
         var order_num = '' + year + month + date + parseInt(Math.random() * 100000);
         var accountList = JSON.parse(sessionStorage.getItem('accountList')).account; 
-        var buycarLi = JSON.parse(sessionStorage.getItem('buycarLi'));       
+        var buycarLi = JSON.parse(sessionStorage.getItem('buycarLi'));   
+        console.log(buycarLi)    
         for(var i = 0;i<accountList.length;i++){
             for(var j =0;j<buycarLi.length;j++){
                 if(accountList[i].product_name == buycarLi[j].product_name){
@@ -96,6 +97,8 @@ class BuycarComponent extends React.Component {
                         order_address:this.state.user.user_address
                     }
         this.props.accountInit(obj).then(()=>{
+            // sessionStorage.removeItem('buycarLi');
+            // sessionStorage.removeItem('accountList');
              hashHistory.push('pay/' + order_num);
         });
     }

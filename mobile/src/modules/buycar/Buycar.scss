@@ -21,7 +21,7 @@
         .account{flex:2;background-color:#f46e65;color:#fff;font-size:18px;line-height:50px;text-align:center;}
 
     }
-    #bcmain{flex:1;background-color:#f4f4f4;position:relative;border-top:1px solid #AAAAAA;border-bottom:1px solid #AAAAAA;
+    #bcmain{flex:1;background-color:#f4f4f4;position:relative;border-top:1px solid #AAAAAA;border-bottom:1px solid #AAAAAA;height:100%;overflow-y: scroll;
         .nothing{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;
             img{width:50%;}
             p{color:#999999;margin-top:2%;margin-bottom:4%;}

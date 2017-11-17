@@ -265,10 +265,10 @@ class detailsComponent extends React.Component {
 				product_image:this.state.detailGood.product_image
 			}
 			httpAjax.get("http://localhost:888/api/mobile/buycar/buycar.php")
-			.query('username='+'1')
+			.query('username='+this.state.userObj.username)
 			.then((res) => {
-//				console.log(JSON.parse(res.text))
-				var buycarLi  = JSON.parse(res.text).length == 0 ? [] : JSON.parse(JSON.parse(res.text)[0].list);
+				// console.log(JSON.parse(res.text).length)
+				var buycarLi  = JSON.parse(res.text).length <= 0 ? [] : JSON.parse(JSON.parse(res.text)[0].list);
 				var carhas=false;
 				buycarLi.forEach(function(item){
 					if(item.product_name == carli.product_name){
@@ -282,7 +282,7 @@ class detailsComponent extends React.Component {
 				httpAjax.get("http://localhost:888/api/mobile/buycar/buycar.php")
 				.query('username='+this.state.userObj.username+'&list='+JSON.stringify(buycarLi))
 				.then((res) => {
-//					console.log(res.text)
+					// console.log(JSON.parse(res.text))
 					})
 //								
 			});
