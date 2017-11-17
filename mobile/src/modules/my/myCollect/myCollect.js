@@ -9,21 +9,17 @@ import {Icon } from 'antd';
 
 var baseURI = './src/asset/product/';
 class MyCollectComponent extends React.Component{
-    // componentWillMount(){
-        
-    //     if(this.props.show){
-    //         this.props.collectGoods(JSON.parse(this.props.show).username);
-    //     }
-    // }
+    
     componentWillMount(){
-        var data = JSON.parse(this.props.show)
-        let goodsId=data.user_collect.split(',').splice(0)
-        console.log(goodsId)
-        this.props.collectGoods(JSON.stringify(goodsId)).then(response=>{
-            var res = JSON.parse(response);
-            for(var i = 0 ; i<res.length;i++){
+        this.props.collectInit().then(response=>{
+            var data = JSON.parse(this.props.show)
+            let goodsId=data.user_collect.split(',').splice(0)
+            this.props.collectGoods(JSON.stringify(goodsId)).then(response=>{
+                var res = JSON.parse(response);
+                for(var i = 0 ; i<res.length;i++){
 
-            }
+                }
+            })
         })
 
     }
@@ -42,10 +38,13 @@ class MyCollectComponent extends React.Component{
                     <div className="collectContent1">
                     {
                         data.map(function(item, index){
+                            // {baseURI+item.product_image}
+                            console.log(item.id)
                             return (
 
                                 <div className="collectgoods">
-                                    <div><img src={baseURI+item.product_image}/></div>
+                                    <div><Link to={{pathname:'/details/',state:item.id}}>
+                                    <img src="./src/asset/l3.jpg"/></Link></div>
                                     <div>
                                         <div>{item.product_name}</div>
                                         <div>

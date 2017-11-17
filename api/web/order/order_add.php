@@ -3,7 +3,7 @@
 
 	include '../../common/connect.php';
 	
-	$order_name = isset($_REQUEST['order_name']) ? $_REQUEST['order_name'] : '';
+	$order_num = isset($_REQUEST['order_num']) ? $_REQUEST['order_num'] : '';
 	$user_name = isset($_REQUEST['user_name']) ? $_REQUEST['user_name'] : '';
 	$user_num = isset($_REQUEST['user_num']) ? $_REQUEST['user_num'] : '';
 	$order_address = isset($_REQUEST['order_address']) ? $_REQUEST['order_address'] : '';
@@ -20,7 +20,7 @@
 
 	// 查看用户名是否已经存在
 
-	$sql = "select order_num from order where order_num='$order_num'";
+	$sql = "select order_num from `order` where order_num='$order_num'";
 	
 	
 	$result = $conn->query($sql);
@@ -44,9 +44,8 @@
 		 
 		// $password = password_hash($password,PASSWORD_DEFAULT);
 
-		$sql = "insert into user (id,order_num,user_name,order_product,order_phone,order_total_price,order_date,order_status,order_address) values('$id',$order_num','$user_name','$order_product','$order_phone','$order_total_price',$order_date','$order_status','$order_address')";
+		$sql = "insert into `order` (id,order_num,user_name,order_product,order_phone,order_total_price,order_date,order_status,order_address) values('$id','$order_num','$user_name','$order_product','$order_phone','$order_total_price','$order_date','$order_status','$order_address')";
 
-		echo "$sql";
 		// 获取查询结果
 		$result = $conn->query($sql);
 

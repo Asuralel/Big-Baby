@@ -1,5 +1,5 @@
 import * as constants from '../../redux/commonConstant'
-
+import loginstate from '../login/logintoken.js';
 export function buycarInit(obj){
     return {
         types: ['BUYCAR_REQUEST', 'BUYCAR_SUCCESS', 'BUYCAR_FAILURE'],
@@ -12,4 +12,7 @@ export function buycarInit(obj){
         }
     }
  
+}
+export function loginState(obj){
+   return loginstate ();
 }

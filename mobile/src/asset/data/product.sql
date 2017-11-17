@@ -20,19 +20,19 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product` (
-  `product_id` int(10) NOT NULL,
+  `id` int(10) NOT NULL,
   `product_type` varchar(255) DEFAULT NULL,
   `product_name` varchar(255) DEFAULT NULL,
-  `product_orign_price` varchar(255) DEFAULT NULL,
+  `product_price` varchar(255) DEFAULT NULL,
   `product_discount` varchar(255) DEFAULT NULL,
-  `product_inventory` int(10) DEFAULT NULL,
+  `product_inventory` varchar(255) DEFAULT NULL,
   `product_description` varchar(255) DEFAULT NULL,
   `product_image` varchar(255) DEFAULT NULL,
   `product_rate` varchar(255) DEFAULT NULL,
   `product_spec` varchar(255) DEFAULT NULL,
   `product_color` varchar(255) DEFAULT NULL,
   `product_brand` varchar(255) DEFAULT NULL,
-  `product_sold_out` int(10) DEFAULT NULL,
+  `product_sold_out` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`product_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 

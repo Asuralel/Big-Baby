@@ -13,7 +13,7 @@ class AddComponent extends React.Component {
         super(props)
     }
     componentDidMount(){
-        this.props.Init(this.props.addUrl);
+        // this.props.Init(this.props.addUrl);
     }
     addHandler(){
         var arr = this.props.addUrl.split("/");
@@ -29,6 +29,7 @@ class AddComponent extends React.Component {
         var str = "";
         for(var i = 1;i<idx-1;i++){
             var num = "input" + i;
+            // console.log(i)
             str += `&${this.refs[num].refs.input.id}=${this.refs[num].refs.input.value}`
         }
         str += '&id=' + id;

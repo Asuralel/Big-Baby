@@ -8,7 +8,11 @@ export function MyActions(){
           query: {token}
     }
 }
+export function collectInit(){
+  return loginToken()
+}
 export function collectGoods(goodsId){
+  
     return {
           types: ['GOODS_REQUEST', 'GOODS_SUCCESS', 'GOODS_FAILURE'],
           path: 'my/selectGoods.php',

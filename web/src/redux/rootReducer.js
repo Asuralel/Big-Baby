@@ -28,4 +28,5 @@ const rootReducer = combineReducers({
     buycar
 })
 
+// console.log(rootReducer);
 export default rootReducer
