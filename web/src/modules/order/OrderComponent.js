@@ -19,7 +19,7 @@ class OrderComponent extends React.Component{
                 <DatagridComponent url="http://localhost/big_baby/api//web/order/order.php" 
                 delete_url="http://localhost/big_baby/api//web/order/deleteOrder.php"  
                 update_url="http://localhost/big_baby/api//web/order/updateOrder.php" 
-                title='order_num,order_phone,order_status,order_address,order_total_price,user_name'/>
+                title='order_num,user_name,order_phone,order_status,order_address,order_total_price'/>
             )
     }
 }
