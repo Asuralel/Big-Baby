@@ -60,48 +60,52 @@ nav{
         .hei{color:black;font-weight:bold;}
         .red{color:red;font-weight:bold;}
         .remen{
-            .remen-hot{
                 .hot{width:100%; overflow:hidden;
                     img{width:187px; height:100px;}
                     div{width:50%;float:left;}
                     .hei{padding-top:20px;font-weight:bold;}
-                    .h1{height:200px;border-top:1px solid #E7E7E7;border-bottom:1px solid #E7E7E7;
+                    .h0{height:200px;border-top:1px solid #E7E7E7;border-bottom:1px solid #E7E7E7;
                         p{padding-left:10px;font-size: 14px;line-height: 24px;}
+                        img{margin-top:30px;}
                     }
-                    .h2{
+                    .h1{
                         .red{top:380px;}
                     }
-                    .h3{
+                    .h2{
                         .red{top:480px;}
                     }
-                    .h2,.h3{border-left:1px solid #E7E7E7;border-top:1px solid #E7E7E7;height:100px;
+                    .h1,.h2{border-left:1px solid #E7E7E7;border-top:1px solid #E7E7E7;height:100px;
                        p{position:absolute;padding-left:10px;font-size: 14px;line-height: 24px;}
+                       img{width:50%;float:right;}
                     }
                 }
-            }
         }
         .jiaju{
             position:relative;
-            .jiaju-furniture{overflow:hidden;}
+            .jiaju-furniture{overflow:hidden;
+                a{
+                    display:block;
+                }
+            }
             p{position:absolute;padding-left:10px;font-size: 14px;}
             .hei{font-weight:bold;}
-            .hui{top:60px;}
+            .hui{top:60px;color:#ccc}
             .red{padding-left: 7px;top:86px;}
-            .h1{float:left;height:100px;width:50%;overflow:hidden;border-top:1px solid #E7E7E7;
+            .h0{float:left;height:100px;width:50%;overflow:hidden;border-top:1px solid #E7E7E7;
                 border-bottom:1px solid #E7E7E7;
                 .hei{top: 34px;}
                 img{width:50%;height:100px;float:right;}
             }
-            .h2{float:right;height:200px;width:50%;border-top:1px solid #E7E7E7;border-left:1px solid #E7E7E7;
+            .h1{float:right;height:200px;width:50%;border-top:1px solid #E7E7E7;border-left:1px solid #E7E7E7;
                 .hei{top: 34px;}
-                img{padding-top:80px;}
+                img{padding-top:80px;width:100%}
                 p{position:absolute;padding-left:10px;font-size: 14px;}
             }
-            .h3{height:100px; float:left;overflow:hidden;
+            .h2{height:100px; float:left;overflow:hidden;width:50%;
                 p{position:absolute;padding-left:10px;font-size: 14px;}
                 .hui{top:150px; }
                 .red{top:178px;}
-                img{width:100%; height:100px;float:right;}
+                img{width:50%; height:100px;float:right;}
             }
         }
         .xinpin{
@@ -112,10 +116,9 @@ nav{
                         padding-left:10px;font-size:14px;
                         p{position: absolute;}
                         .hei{top:14px;}
-                        .hui{top:42px;}
+                        .hui{top:42px;color:#ccc}
                         .red{top:72px;}
                         img{
-                            width:100%;
                             height:100px;
                             float:right;
                         }
@@ -126,19 +129,22 @@ nav{
     }
 }
 main{
-    padding-left:10px;
-    >span{
-        display:block;
-    }
+    // padding-left:10px;
+    display:flex;
     .like{
+        // padding-left:10px;
        overflow:hidden;
-       >span{
-        display:block;
+       >p{line-height:23px;
+            .lan{
+                background-color:#108ee9;
+                margin-right:10px;
+            }
        }
+       .blue{color:#108ee9;background-color:white;border-radius:50%;width:18px;}
         ul{
-            width:50%;
+            width:43%;
             float:left;
-            padding-right:10px;
+            margin-left:15px;
             li{
                 font-size:14px;
                 color:black;
@@ -151,7 +157,7 @@ main{
                 p{
                     display: -webkit-box; /** 对象作为伸缩盒子模型显示 **/
                     -webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
-                    -webkit-line-clamp:2; /** 显示的行数 **/
+                    -webkit-line-clamp:1; /** 显示的行数 **/
                     overflow: hidden;  /** 隐藏超出的内容 **/
                 }
             }

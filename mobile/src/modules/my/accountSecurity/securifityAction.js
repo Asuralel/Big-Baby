@@ -1,5 +1,6 @@
 // import loginToken from '../login/logintoken';
-import loginstate from '../../../login/logintoken'
+// import * as constants from '../../../../redux/commonConstant';
+import loginstate from '../../login/logintoken'
 
 export  function loginInit(){
     return loginstate()
@@ -20,11 +21,5 @@ export function delAdz(data){
         path: 'my/delAddress.php',
         method: 'post',
         query: {id,username}
-    }
-}
-export function choose(data){
-    return {
-        type:'CHOOSE',
-        query: {data}
     }
 }

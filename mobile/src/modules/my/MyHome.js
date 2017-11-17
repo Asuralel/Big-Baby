@@ -44,9 +44,23 @@ class MyComponent extends React.Component {
             hashHistory.push('/home')
         }
     }
+    linkTo(e){
+        var loginstate = JSON.parse(this.props.show)
+        if(loginstate.start){
+            if(e.target.id=="myCollect"){
+                hashHistory.push("/my/myCollect")
+            }else if(e.target.id=="myset"){
+                hashHistory.push("/my/mySet")
+            }else if(e.target.id=="mySecurity"){
+                hashHistory.push("/my/mySecurity")
+            }
+        }else{
+            hashHistory.push("/login")
+        }
+    }
     render(){
         return(
-            <div className="personalBox">
+            <div className="personalBox" onClick={this.linkTo.bind(this)}>
                 <div className="personalHead">
                     <h3>我</h3>
                 </div>
@@ -83,21 +97,21 @@ class MyComponent extends React.Component {
                         <Link to="/buycar"><div className="rightIcon">
                             <Icon type="shopping-cart" style={{ fontSize: 20, color: '#F55959'}}/>&nbsp;&nbsp;我的购物车<span><Icon type="right" /></span>
                         </div></Link>
-                        <Link to="/my/myCollect"><div className="rightIcon">
+                        <div className="rightIcon" id="myCollect">
                            <Icon type="heart" style={{ fontSize: 20, color: '#FA578E'}}/> &nbsp;&nbsp;我的收藏<span><Icon type="right" /></span>
-                           </div></Link>
+                           </div>
                         <div className="rightIcon">
                             <Icon type="phone" style={{ fontSize: 20, color: '#1FAFF8'}}/>&nbsp;&nbsp;我的通话<span><Icon type="right" /></span>
                         </div>
 
                     </div>
                     <div className="pAbout">
-                        <Link to="/my/mySet"><div className="rightIcon">
+                        <div className="rightIcon" id="myset">
                             <Icon type="setting" style={{ fontSize: 20, color: '#FA624E'}}/>&nbsp;&nbsp;个人设置<span><Icon type="right" /></span>
-                        </div></Link>
-                        <Link to="/my/mySecurity"><div className="rightIcon">
+                        </div>
+                        <div className="rightIcon" id="mySecurity">
                            <Icon type="safety" style={{ fontSize: 20, color: '#58bc58'}}/> &nbsp;&nbsp;账户安全<span><Icon type="right" /></span>
-                        </div></Link>
+                        </div>
                         <div className="rightIcon">
                             <Icon type="menu-unfold" style={{ fontSize: 20, color: '#58bc58'}}/>&nbsp;&nbsp;关于大宝家具<span><Icon type="right" /></span>
                         </div >

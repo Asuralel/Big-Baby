@@ -11,7 +11,11 @@ export default function(state = {loading: false}, action){
             reState.loading = false  
             break; 
         case 'EDIT_FAILURE':
+
             break;
+        case 'SETPAS__SUCCESS':
+            reState.setPasMsg= action.body;
+            reState.loading = false
         default :
             reState.loading = false  
     }

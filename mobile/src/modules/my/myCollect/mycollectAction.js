@@ -20,3 +20,12 @@ export function collectGoods(goodsId){
           query: {goodsId}
     }
 }
+export function DelCollect(str,goodsId,username){
+  
+    return {
+          types: ['GOODS_REQUEST', 'GOODS_SUCCESS', 'GOODS_FAILURE'],
+          path: 'my/DelCollect.php',
+          method: 'post',
+          query: {str,goodsId,username}
+    }
+}
