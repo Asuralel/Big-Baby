@@ -241,6 +241,9 @@ class detailsComponent extends React.Component {
 	}
 	//收藏相关
 	changeFavor(){
+		if(!this.state.userObj){
+			hashHistory.push('/login');
+		}
 		let favor = this.refs.favorLi;
 		let colletGoods = this.state.userCollect;
 		if(this.state.isHasCollect){
