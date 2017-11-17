@@ -64,8 +64,14 @@ class BuycarComponent extends React.Component {
         var year = now.getFullYear();
         var month = now.getMonth()+1;
         var date = now.getDate(); 
+        var hour = now.getHours();
+        var min = now.getMinutes();
+        var sec = now.getSeconds();
         month = month<10 ? '0'+month : month;
-        date = date<10 ? '0'+date : date; 
+        date = date<10 ? '0'+date : date;
+        hour = hour<10 ? '0'+hour : hour;
+        min = min<10 ? '0'+min : min;
+        sec = sec<10 ? '0'+sec : sec; 
 
         var order_num = '' + year + month + date + parseInt(Math.random() * 100000);
         var accountList = JSON.parse(sessionStorage.getItem('accountList')).account; 
@@ -85,7 +91,7 @@ class BuycarComponent extends React.Component {
                         buycarLi:buycarLi.length > 0 ? JSON.stringify(buycarLi) : null,
                         order_phone:this.state.user.tel,
                         order_total_price:this.state.totalPrice,
-                        order_date:'' + year + month + date,
+                        order_date:year + '年' + month + '月' + date + '日 ' + hour + ':' + min + ':' + sec,
                         order_status:'待付款',
                         order_address:this.state.user.user_address
                     }
