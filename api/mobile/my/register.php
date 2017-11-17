@@ -21,8 +21,8 @@
     }
     else{
         // $password = md5($password);是否对密码加密
-        $sql = "insert into users (user_name,user_password,user_phone,user_sign, user_collect,user_gender,user_address,head_image,user_order,user_account)  values('$username','$password','$tel','$user_sign','$user_collect','$user_gender','$user_address','$head_image','$user_order','$user_account')";
-        echo $sql;
+        $sql = "insert into users (user_name,user_password,user_phone,user_sign,user_collect,user_gender,head_image,user_order,user_account) values
+        ('$username','$password','$tel','$user_sign','$user_collect','$user_gender','$head_image','$user_order','$user_account')";
         if (excute($sql)) {
             echo "ok";
         }

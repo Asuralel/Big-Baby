@@ -6,7 +6,7 @@
     $id = isset($_REQUEST['id']) ? $_REQUEST['id'] : '';
     // 编写查询sql语句
     $sql = "delete from `order` where id='$id'";
-    echo $sql;
+
     // 利用sql语句查询数据库
     // 查询结果集
     $result = $conn->query($sql);

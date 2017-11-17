@@ -10,12 +10,11 @@ var baseURI = "/src/asset/"
 class MySetComponent extends React.Component{
     
     componentWillMount(){
-        this.props.loginInit()
+        this.props.loginInit().then(response=>{
+            this.props.mysetinit(JSON.parse(response).username)
+        })
     }
     componentDidMount(){
-        if(this.props.show){
-            this.props.mysetinit(JSON.parse(this.props.show).username)
-        }
     }
     clickto(){
         

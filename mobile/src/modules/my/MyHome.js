@@ -22,16 +22,17 @@ class MyComponent extends React.Component {
         this.state= {
             show:false
         }
-        // this.masknoshow = this.masknoshow.bind(this);
     }
     componentWillMount(){
         this.props.MyActions().then(response=>{
             if(response){
                 const res =JSON.parse(response)
                 if(res.start==true){
-                    // console.log(sessionStorage.getItem('user'))
                     sessionStorage.setItem('user', response);
                     this.setState({show:response});
+                }else{
+                    sessionStorage.removeItem('user');
+                    
                 }
             }
 

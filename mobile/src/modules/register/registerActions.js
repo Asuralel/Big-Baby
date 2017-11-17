@@ -1,4 +1,4 @@
-// import * as constants from '../../redux/commonConstant'
+
 
 export function register(obj){
     return {

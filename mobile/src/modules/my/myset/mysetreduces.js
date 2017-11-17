@@ -15,6 +15,18 @@ export default function(state = {loading: false}, action){
             reState.error = action.error
             reState.loading = false
             break;
+        case 'GOODS_REQUEST':
+            reState.loading = true
+            break;
+        case 'GOODS_SUCCESS':
+            reState.goodsId = action.body;
+            reState.lastFetched = action.lastFetched
+            reState.loading = false
+            break;
+        case 'GOODS_FAILURE':
+            reState.error = action.error
+            reState.loading = false
+            break;
         default :
             reState.loading = false  
     }
