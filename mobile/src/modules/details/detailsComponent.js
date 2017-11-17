@@ -176,7 +176,8 @@ class detailsComponent extends React.Component {
 				showLoading:false,
 				userObj:userObj,
 				isHasCollect:false,
-				userCollect:[]
+				userCollect:[],
+				carNums:2
 			});
 			if(this.state.userObj){
 				let userCollect = this.state.userObj.user_collect.split(',');
@@ -424,7 +425,7 @@ class detailsComponent extends React.Component {
 					<ul>
 						<li className="to-home"><Link to="/home"><Icon type="home"  style={{ fontSize: 20, color: '#555555' }}/>首页</Link></li>
 						<li className="add-favor" onClick={this.changeFavor.bind(this)} ref="favorLi"><Icon type="star-o"  style={{ fontSize: 20, color: '#555555' }}/><Icon type="star"  style={{ fontSize: 20, color: '#FFCE42' }}/><span>收藏</span></li>
-						<li className="cart-list"><Link to="/buycar"><Icon type="shopping-cart"  style={{ fontSize: 20, color: '#555555' }}/>购物车</Link></li>
+						<li className="cart-list"><Link to="/buycar"><Icon type="shopping-cart"  style={{ fontSize: 20, color: '#555555' }}/>购物车</Link>{!this.state.carNums?null:<span className="car-nums">{this.state.carNums}</span>}</li>
 					</ul>
 					<ul>
 						<li className="add-cart" onClick={this.addCart.bind(this)}>加入购物车</li>
