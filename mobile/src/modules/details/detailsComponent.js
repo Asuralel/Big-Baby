@@ -157,7 +157,7 @@ class detailsComponent extends React.Component {
 	componentWillMount(){
 		//用户登录相关
 		let userObj = JSON.parse(sessionStorage.getItem('user'));
-//		console.log(userObj)
+		console.log(this.props.location.state)
 		//loading模块
 		this.setState({showLoading:true});
 		httpAjax.get("http://localhost:888/api/mobile/sort/product.php").query('?type=getDetails&value='+this.props.location.state).then((res) => {
@@ -257,7 +257,8 @@ class detailsComponent extends React.Component {
 			hashHistory.push('/login');
 		}else{
 			let carli = {
-				username:'this.state.userObj.username',
+				username:this.state.userObj.username,
+
 				product_id:this.state.detailGood.id,
 				product_name:this.state.detailGood.product_name,
 				product_origin_price:(this.state.detailGood.product_origin_price*this.state.detailGood.product_discount).toFixed(0),
