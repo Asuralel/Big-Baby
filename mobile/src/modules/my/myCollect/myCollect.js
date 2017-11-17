@@ -32,6 +32,7 @@ class MyCollectComponent extends React.Component{
         })
         str = goodsId.join(',')
         this.props.DelCollect(str,JSON.stringify(goodsId),JSON.parse(this.props.show).username)
+        console.log(this.prop.show)
     }
     render(){
         if(this.props.goodsdata){

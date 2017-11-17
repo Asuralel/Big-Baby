@@ -23,8 +23,17 @@ class MyaddressComponent extends React.Component{
         }
         else if(e.target.className=="chooseaddress"){
             let num = e.target.attributes["data-idx"].nodeValue;
-            console.log()
-            this.props.choose(JSON.parse(this.props.addressData)[num]);
+            // this.props.choose(JSON.parse(this.props.addressData)[num]);
+            var data =JSON.parse(this.props.addressData)[num]
+            var user = JSON.parse(sessionStorage.getItem('user'));
+            console.log(sessionStorage.getItem('user'))
+            user.user_address=data.address;
+            user.tel =data.tel
+            var datadsada=JSON.stringify(user);
+            console.log(datadsada)
+            sessionStorage.setItem('user',datadsada)
+            // sessionStorage.setItem('user', response)
+            hashHistory.push("account")
         }
     }
     render(){
