@@ -257,16 +257,37 @@ class detailsComponent extends React.Component {
 			hashHistory.push('/login');
 		}else{
 			let carli = {
-				username:this.state.userObj.username,
+				username:'this.state.userObj.username',
 				product_id:this.state.detailGood.id,
 				product_name:this.state.detailGood.product_name,
-				product_price:(this.state.detailGood.product_origin_price*this.state.detailGood.product_discount).toFixed(0),
-				product_nums:this.state.goodsNum,
-				product_image:this.state.detailGood.product_image,
-				addcar:true
+				product_origin_price:(this.state.detailGood.product_origin_price*this.state.detailGood.product_discount).toFixed(0),
+				amount:this.state.goodsNum,
+				product_image:this.state.detailGood.product_image
 			}
-			console.log(JSON.stringify(carli));
-			console.log('发请求到购物车接口')
+			httpAjax.get("http://localhost:888/api/mobile/buycar/buycar.php")
+			.query('username='+'1')
+			.then((res) => {
+//				console.log(JSON.parse(res.text))
+				var buycarLi  = JSON.parse(res.text).length == 0 ? [] : JSON.parse(JSON.parse(res.text)[0].list);
+				var carhas=false;
+				buycarLi.forEach(function(item){
+					if(item.product_name == carli.product_name){
+						item.amount += carli.amount;
+						carhas=true;
+					}
+				})
+				if(!carhas){
+					buycarLi.push(carli);
+				}
+				httpAjax.get("http://localhost:888/api/mobile/buycar/buycar.php")
+				.query('username='+this.state.userObj.username+'&list='+JSON.stringify(buycarLi))
+				.then((res) => {
+//					console.log(res.text)
+					})
+//								
+			});
+//			console.log(JSON.stringify(carli));
+//			console.log('发请求到购物车接口')
 		}
 	}
 	buyNow(){
@@ -277,14 +298,34 @@ class detailsComponent extends React.Component {
 				username:this.state.userObj.username,
 				product_id:this.state.detailGood.id,
 				product_name:this.state.detailGood.product_name,
-				product_price:(this.state.detailGood.product_origin_price*this.state.detailGood.product_discount).toFixed(0),
-				product_nums:this.state.goodsNum,
-				product_image:this.state.detailGood.product_image,
-				addcar:true
+				product_origin_price:(this.state.detailGood.product_origin_price*this.state.detailGood.product_discount).toFixed(0),
+				amount:this.state.goodsNum,
+				product_image:this.state.detailGood.product_image
 			}
-			console.log(JSON.stringify(carli))
-			console.log('发请求到购物车接口;并在回调里跳到购物车页面');
-			hashHistory.push('/buycar');
+			httpAjax.get("http://localhost:888/api/mobile/buycar/buycar.php")
+			.query('username='+this.state.userObj.username)
+			.then((res) => {
+				var buycarLi  = JSON.parse(res.text).length == 0 ? [] : JSON.parse(JSON.parse(res.text)[0].list);
+				var carhas=false;
+				buycarLi.forEach(function(item){
+					if(item.product_name == carli.product_name){
+						item.amount += carli.amount;
+						carhas=true;
+					}
+				})
+				if(!carhas){
+					buycarLi.push(carli);
+				}
+//				console.log(buycarLi)
+				httpAjax.get("http://localhost:888/api/mobile/buycar/buycar.php")
+				.query('username='+this.state.userObj.username+'&list='+JSON.stringify(buycarLi))
+				.then((res) => {
+					hashHistory.push('/buycar');
+					})
+//								
+			});
+//			console.log(JSON.stringify(carli));
+//			console.log('发请求到购物车接口')
 		}
 	}
 	
@@ -338,7 +379,7 @@ class detailsComponent extends React.Component {
 							<Carousel autoplay className="img-list">
 								{
 									JSON.parse(this.state.detailGood.product_banner_imgs).map((img,idx) => {
-										return (<div key={idx}><img src={img} /></div>)
+										return (<div key={idx}><img src={IMGURL+"product/"+img+'.jpg'} /></div>)
 									})
 								}
 							</Carousel>
