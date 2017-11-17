@@ -1,21 +1,19 @@
 import React from 'react'
-import {Link} from 'react-router'
-
+import {Link,hashHistory} from 'react-router'
 
 import FooterComponent from '../common/footer/footerComponent'
-
+import ComSearch from '../common/comSearch/comSearchComponent.js'
 
 import './home.scss'
-import {  Icon , Button , BackTop , Carousel} from 'antd';
-
+import {  Icon , Button , BackTop , Carousel,Input} from 'antd';
+const Search = Input.Search 
 class homeComponent extends React.Component {
     render(){
         return(
             <div className="home">
                 <header>
                     <div className="header-top">
-                            <Icon type="search" className="search"/>
-                            <input type="text" value="搜索商品" />
+						<ComSearch />
                     </div>
                         <Carousel autoplay className="slideshow">
                            <div><img src="./src/asset/l1.jpg"/></div>

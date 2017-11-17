@@ -20,8 +20,11 @@ import descComponent from './modules/details/descComponent.js';
 import ratingComponent from './modules/details/rating/ratingComponent.js'
 import RegisterComponent from './modules/register/registerComponent';
 import agreement from './modules/register/agreement';
-import address from './modules/my/myset/address/address';
+import address from './modules/my/myset/address/address'
 import myEdit from './modules/my/myset/address/addressEdit/addressEdit'
+
+
+
 export default (
     <Route path="/" component={AppComponent}>
         <Route path="register" component={RegisterComponent}/>

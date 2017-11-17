@@ -1,21 +1,6 @@
 header{
-        .header-top{
-            background-color:#Da0000;position:fixed;top:0;left:0;width:100%;height:50px;z-index:9;
-
-            .search{
-                position:absolute;
-                left:56px;
-                top:20px;
-            }
-            input{
-                border-radius:5px;
-                margin-left:50px;
-                margin-top:10px;
-                width:72%;
-                height:30px;
-                border:none;
-                padding-left:20px;
-            }
+        .header-top{background-color:#Da0000;position:fixed;top:0;left:0;width:100%;height:50px;z-index:9;display: flex;justify-content: center;
+            .sort-sh{height:100%;width:70%;display: flex;align-items: center;height:30px;margin-top:10px;}
         }
         .ant-carousel{
             margin-top:50px;
