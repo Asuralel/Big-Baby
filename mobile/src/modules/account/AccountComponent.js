@@ -24,6 +24,7 @@ class BuycarComponent extends React.Component {
             accountList:[]
         }
         this.topay = this.topay.bind(this);
+        this.goAddress = this.goAddress.bind(this);
     }
 
     componentWillMount(){
@@ -55,6 +56,12 @@ class BuycarComponent extends React.Component {
         this.setState({
             isShowLinks:'none'
         });
+    }
+
+    goAddress(){
+        if(!this.state.addressOK){
+            hashHistory.push('/my/mySet/address');
+        }
     }
 
     topay(){
@@ -101,6 +108,7 @@ class BuycarComponent extends React.Component {
             // sessionStorage.removeItem('accountList');
              hashHistory.push('pay/' + order_num);
         });
+
     }
 
     render(){
@@ -118,7 +126,7 @@ class BuycarComponent extends React.Component {
                         <p className='dizhi'><label for="dizhi">地址：</label><input id="dizhi" type="text" value={this.state.user.user_address} /></p> :
                         
                     </div>
-                    <div className = 'address' style={{display:this.state.addressOK ? 'none' : 'block'}}><p className="add"><span>+</span>请添加收货地址</p></div>
+                    <div onClick={this.goAddress} className = 'address' style={{display:this.state.addressOK ? 'none' : 'block'}}><p className="add"><span>+</span>请添加收货地址</p></div>
                     <div className='blank'></div>
                     <ul className="accountList">
                             {
