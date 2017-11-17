@@ -12,6 +12,7 @@ import './list.scss'
 import Hbicon from '../buycar/HistorybackComponent.js'
 import LinksMask from '../common/linksMask/linksMaskComponent.js'
 import Loading from '../common/loading/loadingComponent.js'
+import ComSearch from '../common/comSearch/comSearchComponent.js'
 import {IMGURL} from '../common/commonUrl.js'
 
 class listComponent extends React.Component {
@@ -258,7 +259,7 @@ class listComponent extends React.Component {
                 <div className="list-head">
 					<div className="list-search">
 						<Hbicon className="sort-hb"/>
-						<Search className="sort-sh" placeholder="请输入搜索关键字" onSearch={value => value.trim()===''?null:hashHistory.push("/list/:s-"+value)} />
+						<ComSearch />
 						<Icon className="sort-links" type="ellipsis" onClick={this.showLinks.bind(this)}/>
 					</div>
 					<div className="list-filter">
@@ -278,7 +279,7 @@ class listComponent extends React.Component {
 								return (
 									<li key={idx}>
 										<Link to={{pathname:'/details/',state:item.id}}>
-										<div className="img"><img src={IMGURL+"/product/"+item.product_image} /></div>
+										<div className="img"><img src={IMGURL+"product/"+item.product_image} /></div>
 										<div className="text">
 											<span className="now-price">￥{(item.product_origin_price*item.product_discount).toFixed(0)}</span>
 											{item.product_discount !== '1'? (<span className="old-price">￥{item.product_origin_price}</span>):null}
