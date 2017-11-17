@@ -15,6 +15,9 @@ export default function(state = {loading: false}, action){
             reState.error = action.error
             reState.loading = false
             break;
+        case "HOME_SUCCESS":
+            reState.homedata = action.body
+            reState.loading = false
         default :
             reState.loading = false  
     }

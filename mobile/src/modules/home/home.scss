@@ -127,14 +127,15 @@ nav{
 }
 main{
     padding-left:10px;
-    >span{
-        display:block;
-    }
     .like{
        overflow:hidden;
-       >span{
-        display:block;
+       >p{line-height:23px;
+            .lan{
+                background-color:#108ee9;
+                margin-right:10px;
+            }
        }
+       .blue{color:#108ee9;background-color:white;border-radius:50%;width:18px;}
         ul{
             width:50%;
             float:left;

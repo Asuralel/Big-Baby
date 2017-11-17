@@ -1,14 +1,21 @@
 import React from 'react'
 import {Link,hashHistory} from 'react-router'
-
+import {connect} from "react-redux"
 import FooterComponent from '../common/footer/footerComponent'
 
 
 import './home.scss'
 import {  Icon , Button , BackTop , Carousel,Input} from 'antd';
+import * as homeActions from "./homeAction.js";
+
 const Search = Input.Search
 
 class homeComponent extends React.Component {
+    componentWillMount(){
+        this.props.homeInit().then(res=>{
+            console.log(res)
+        })
+    }
     render(){
         return(
             <div className="home">
@@ -57,7 +64,7 @@ class homeComponent extends React.Component {
                             </div>
                         </div>
                         <div className="jiaju">
-                            <span className="title-hong"><i>　</i>家具城</span>
+                            <span className="title-hong"><i>　</i>畅销商品</span>
                                 <div className="jiaju-furniture">
                                     <div className="h1">
                                         <p className="hei">简美风茶几</p>
@@ -114,7 +121,7 @@ class homeComponent extends React.Component {
                 <p className="f4f4f4"> 　</p>
                 <main>
                     <div className="like">
-                        <span>猜你喜欢</span>
+                    <p><span className="lan"><Icon type="star" className="blue"/></span><span>猜你喜欢</span></p>
                         <ul>
                             <li><img src="./src/asset/like5.jpg"/></li>
                             <li><p>[凯撒豪庭]美式田园 名师力荐 优质实木内架 内置高密度海绵 全真皮沙发套装(1+2+3)</p></li>
@@ -156,4 +163,9 @@ class homeComponent extends React.Component {
     }
 }
 
-export default homeComponent
+const MyState = function(state){
+    return {
+        data:state.myset.homedata
+    }
+}
+export default connect(MyState, homeActions)(homeComponent)
