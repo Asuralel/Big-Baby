@@ -19,12 +19,10 @@ class homeComponent extends React.Component {
         })
     }
     render(){
-            
         if(this.props.data){
             const data =JSON.parse(this.props.data)
             console.log(data)
             return(
-
                 <div className="home">
                     <header>
                         <div className="header-top">
@@ -45,27 +43,26 @@ class homeComponent extends React.Component {
                             </ul>
                         </div>
                     </header>
+                    <p className="f4f4f4">　</p>
                     <nav>
                         <div>
                             <div className="remen">
-                                <p className="f4f4f4">　</p>
                                 <span className="title-hong"><i>　</i>热门活动</span>
-                                <div className="remen-hot">
-                                    <div className="hot">
-                                        {
-                                            data.disc.map(function(item,idx){
-                                                return (
-                                                    <Link to={{pathname:'/details/',state:item.id}}>
-                                                    <div className="h1">
-                                                        <p className="hei">团购大趴</p>
-                                                        <p className="red">好货低至1折</p>
-                                                        <img src={baseURL+item.product_image}/>
-                                                    </div>
-                                                    </Link>
-                                                )
-                                            })
-                                        }
-                                    </div>
+                                <div className="hot">
+                                    {
+                                        data.disc.map(function(item,idx){
+                                            console.log(idx)
+                                            return (
+                                                <Link to={{pathname:'/details/',state:item.id}}>
+                                                <div className={"h"+idx}>
+                                                    <p className="hei">团购大趴</p>
+                                                    <p className="red">好货低至1折</p>
+                                                    <img src={baseURL+item.product_image}/>
+                                                </div>
+                                                </Link>
+                                            )
+                                        })
+                                    }
                                 </div>
                             </div>
                             <div className="jiaju">
@@ -75,9 +72,9 @@ class homeComponent extends React.Component {
                                         data.sold.map(function(item,idx){
                                             return (
                                             <Link to={{pathname:'/details/',state:item.id}}>
-                                            <div className="h1">
+                                            <div className={"h"+idx}>
                                                 <p className="hei">{item.product_brand}</p>
-                                                <p className="hui">{item.product_description}</p>
+                                                <p className="hui">赶快抢购！</p>
                                                 <p className="red">￥<span className="price">{item.product_origin_price}</span></p>
                                                 <img src={baseURL+item.product_image}/>
                                             </div>
@@ -96,14 +93,14 @@ class homeComponent extends React.Component {
                                 {
                                     data.time.map(function(item,idx){
                                         return(
+                                            <ul className={"h"+idx}>
                                             <Link to={{pathname:'/details/',state:item.id}}>
-                                            <ul className="h1">
                                                 <li><p className="hei">{item.product_brand}</p></li>
-                                                <li><p className="hui">{item.product_description}</p></li>
+                                                <li><p className="hui">立即下单</p></li>
                                                 <li><p className="red">￥<span className="price">1250</span></p></li>
                                                 <li><img src={baseURL+item.product_image}/></li>
-                                            </ul>
                                             </Link>
+                                            </ul>
                                         )
                                     })
                                 }
