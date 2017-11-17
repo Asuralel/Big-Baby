@@ -1,7 +1,6 @@
 import React from 'react'
 import {Link,hashHistory} from 'react-router'
 
-
 import FooterComponent from '../common/footer/footerComponent'
 import ComSearch from '../common/comSearch/comSearchComponent.js'
 
