@@ -245,7 +245,7 @@ class detailsComponent extends React.Component {
 		let colletGoods = this.state.userCollect;
 		if(this.state.isHasCollect){
 			favor.className = "add-favor";
-			this.setState({isHasCollec:false});
+			this.setState({isHasCollect:false});
 			colletGoods.forEach((item,idx,arr) => {
 				if(item == this.state.detailGood.id){
 					arr.splice(idx,1);
@@ -253,7 +253,7 @@ class detailsComponent extends React.Component {
 			})
 		}else{
 			favor.className = "add-favor has-favor";
-			this.setState({isHasCollec:true});
+			this.setState({isHasCollect:true});
 			colletGoods.push(this.state.detailGood.id)
 		}
 		this.setState({userCollect:colletGoods});
