@@ -28,8 +28,8 @@ class BuycarComponent extends React.Component {
 
     componentWillMount(){
         var user = JSON.parse(sessionStorage.getItem('user'));
-        console.log(user)
-        var accountList = JSON.parse(sessionStorage.getItem('accountList')).account;       
+        var accountList = JSON.parse(sessionStorage.getItem('accountList')).account; 
+        var buycarLi = JSON.parse(sessionStorage.getItem('buycarLi'));       
         var totalPrice = 0;
         var addressOK = false;
         if(accountList.length > 0){
@@ -38,7 +38,7 @@ class BuycarComponent extends React.Component {
             })
         };
         if(user.tel && user.user_address){
-            console.log(1)
+            // console.log(1)
             addressOK = true;
         }
 
@@ -67,18 +67,28 @@ class BuycarComponent extends React.Component {
         month = month<10 ? '0'+month : month;
         date = date<10 ? '0'+date : date; 
 
-        var order_num = '' + year + month + date + parseInt(Math.random() * 100000);   
+        var order_num = '' + year + month + date + parseInt(Math.random() * 100000);
+        var accountList = JSON.parse(sessionStorage.getItem('accountList')).account; 
+        var buycarLi = JSON.parse(sessionStorage.getItem('buycarLi'));       
+        for(var i = 0;i<accountList.length;i++){
+            for(var j =0;j<buycarLi.length;j++){
+                if(accountList[i].product_name == buycarLi[j].product_name){
+                    buycarLi.splice(j,1);
+                }  
+            }
+        } 
+        console.log(buycarLi)
         const obj = {
                         order_num:order_num,
                         user_name:this.state.user.username ,
                         order_product:this.state.accountList,
+                        buycarLi:buycarLi.length > 0 ? JSON.stringify(buycarLi) : null,
                         order_phone:this.state.user.tel,
                         order_total_price:this.state.totalPrice,
                         order_date:'' + year + month + date,
                         order_status:'待付款',
                         order_address:this.state.user.user_address
                     }
-        // console.log(obj)
         this.props.accountInit(obj).then(()=>{
              hashHistory.push('pay/' + order_num);
         });
