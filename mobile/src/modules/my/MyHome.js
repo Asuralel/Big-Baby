@@ -28,10 +28,6 @@ class MyComponent extends React.Component {
             if(response){
                 const res =JSON.parse(response)
                 if(res.start==true){
-<<<<<<< HEAD
-=======
-                    // console.log(sessionStorage.getItem('user'))
->>>>>>> ed6fe12b71e44fbb62816702729b1b3b5a61629c
                     sessionStorage.setItem('user', response);
                     this.setState({show:response});
                 }else{
