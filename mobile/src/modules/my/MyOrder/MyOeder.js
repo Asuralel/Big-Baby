@@ -251,7 +251,7 @@ class MyOrderComponent extends React.Component{
                                             <div className="waitpay_b">共{this.state.order_product[2][idx].length}件商品 合计<span>￥{this.state.totalprice[2][idx]}</span></div>
                                             <div className="waitpay_handle">
                                             <Link to={"/pay/"+item.order_num}><Button type="danger" ghost>确认收货</Button></Link>
-                                            <Button type="primary" ghost>取消订单</Button>
+                                            <Button type="primary" ghost>请求退款</Button>
                                             </div>
                                         </div>
                                     )
