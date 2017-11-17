@@ -46,7 +46,10 @@ class MyComponent extends React.Component {
     }
     linkTo(e){
         var loginstate = JSON.parse(this.props.show)
-        if(loginstate.start){
+        console.log(loginstate.start)
+        if(loginstate.start=="用户不存在"){
+            hashHistory.push("/login")
+        }else{
             if(e.target.id=="myCollect"){
                 hashHistory.push("/my/myCollect")
             }else if(e.target.id=="myset"){
@@ -54,8 +57,6 @@ class MyComponent extends React.Component {
             }else if(e.target.id=="mySecurity"){
                 hashHistory.push("/my/mySecurity")
             }
-        }else{
-            hashHistory.push("/login")
         }
     }
     render(){
