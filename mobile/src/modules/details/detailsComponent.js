@@ -257,7 +257,7 @@ class detailsComponent extends React.Component {
 			hashHistory.push('/login');
 		}else{
 			let carli = {
-				username:'this.state.userObj.username',
+				username:this.state.userObj.username,
 				product_id:this.state.detailGood.id,
 				product_name:this.state.detailGood.product_name,
 				product_origin_price:(this.state.detailGood.product_origin_price*this.state.detailGood.product_discount).toFixed(0),
