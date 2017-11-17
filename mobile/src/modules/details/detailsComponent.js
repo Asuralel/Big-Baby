@@ -155,11 +155,14 @@ class detailsComponent extends React.Component {
 	
 	//详情页自身相关模块
 	componentWillMount(){
+		//用户登录相关
+		let userObj = JSON.parse(sessionStorage.getItem('user'));
+//		console.log(userObj)
 		//loading模块
 		this.setState({showLoading:true});
 		httpAjax.get("http://localhost:888/api/mobile/sort/product.php").query('?type=getDetails&value='+this.props.location.state).then((res) => {
 			let resObj = JSON.parse(res.text)[0];
-			console.log(resObj);
+//			console.log(resObj);
 			this.setState({
 				detailGood:resObj,
 				goodsSize:0,
@@ -170,8 +173,18 @@ class detailsComponent extends React.Component {
 				showIndex:'block',
 				goodChoiceOpacity:'0',
 				goodChoiceBottom:'-100%',
-				showLoading:false
+				showLoading:false,
+				userObj:userObj,
+				isHasCollect:false,
+				userCollect:[]
 			});
+			if(this.state.userObj){
+				let userCollect = this.state.userObj.user_collect.split(',');
+				console.log(userCollect,resObj.id,this.state.userObj.user_collect)
+				let isHasCollect = userCollect.some(item => {return item === resObj.id});
+				if(isHasCollect){this.refs.favorLi.className = "add-favor has-favor";}
+				this.setState({userCollect:userCollect,isHasCollect:isHasCollect});
+			}
 		});
 //		console.log('商品Id',this.props.location.state);
 //		this.setState({
@@ -216,10 +229,26 @@ class detailsComponent extends React.Component {
 	//收藏相关
 	changeFavor(){
 		let favor = this.refs.favorLi;
-		if(favor.className === "add-favor has-favor"){
+		let colletGoods = this.state.userCollect;
+		if(this.state.isHasCollect){
 			favor.className = "add-favor";
+			this.setState({isHasCollec:false});
+			colletGoods.forEach((item,idx,arr) => {
+				if(item == this.state.detailGood.id){
+					arr.splice(idx,1);
+				}
+			})
 		}else{
 			favor.className = "add-favor has-favor";
+			this.setState({isHasCollec:true});
+			colletGoods.push(this.state.detailGood.id)
+		}
+		this.setState({userCollect:colletGoods});
+		if(this.state.userObj){
+//				console.log(this.state.userObj)
+			httpAjax.get("http://localhost:888/api/mobile/my/goodsCollect.php")
+			.query('username='+this.state.userObj.username+'&goodsId='+colletGoods.join(','))
+			.then((res) => {console.log(res.text)});
 		}
 	}
 	//购物车/订单相关
@@ -228,7 +257,6 @@ class detailsComponent extends React.Component {
 		if(!isLogin){
 			hashHistory.push('/login');
 		}else{
-			console.log(sessionStorage.getItem('user'))
 			console.log('发请求到购物车接口')
 		}
 	}

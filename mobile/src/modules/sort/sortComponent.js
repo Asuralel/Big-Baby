@@ -12,6 +12,7 @@ import './sort.scss'
 import Hbicon from '../buycar/HistorybackComponent.js'
 import LinksMask from '../common/linksMask/linksMaskComponent.js'
 import Loading from '../common/loading/loadingComponent.js'
+import ComSearch from '../common/comSearch/comSearchComponent.js'
 
 class sortComponent extends React.Component {
 	constructor(props){
@@ -153,7 +154,7 @@ class sortComponent extends React.Component {
             <div className="sort">
                 <div className="sort-head">
 					<Hbicon className="sort-hb"/>
-					<Search className="sort-sh" placeholder="请输入搜索关键字" onSearch={value => value.trim()===''?null:hashHistory.push("/list/:s-"+value)} />
+					<ComSearch />
 					<Icon className="sort-links" type="ellipsis" onClick={this.showLinks.bind(this)}/>
 				</div>
 				<div className="sort-cont">
