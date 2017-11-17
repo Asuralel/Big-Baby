@@ -13,7 +13,6 @@
         }else{
             $sql = $sql . "id = '$cars[$x]' or ";
         }
-        
     }
     echo json_encode(query($sql),JSON_UNESCAPED_UNICODE);
 
