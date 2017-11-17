@@ -27,6 +27,8 @@ export default function(state = {loading: false}, action){
             reState.error = action.error
             reState.loading = false
             break;
+        case 'CHOOSE':
+            reState.address=action.query.data
         default :
             reState.loading = false  
     }

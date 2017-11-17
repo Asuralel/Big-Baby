@@ -17,11 +17,12 @@ import myCollectComponent from './modules/my/myCollect/myCollect.js';
 import MySetComponent from './modules/my/myset/mySet';
 import AccSevurityComponent from './modules/my/accountSecurity/accSecurity';
 import descComponent from './modules/details/descComponent.js';
-import ratingComponent from './modules/details/rating/ratingComponent.js'
+import ratingComponent from './modules/details/rating/ratingComponent.js';
 import RegisterComponent from './modules/register/registerComponent';
 import agreement from './modules/register/agreement';
-import address from './modules/my/myset/address/address'
-import myEdit from './modules/my/myset/address/addressEdit/addressEdit'
+import address from './modules/my/myset/address/address';
+import myEdit from './modules/my/myset/address/addressEdit/addressEdit';
+import setpas from './modules/my/accountSecurity/setpassword';
 
 
 
@@ -42,6 +43,7 @@ export default (
             <Route path='/register/agreement' component = {agreement}/>
             <Route path = '/my/mySet/address' component = {address}/>
             <Route path="/my/mySet/edit" component={myEdit}/>
+            <Route path="/my/mySet/setpassword" component={setpas}/>
         </Route>
         <Route path="sort" component={sortComponent} />
         <Route path="list/:goodType" component={listComponent} />

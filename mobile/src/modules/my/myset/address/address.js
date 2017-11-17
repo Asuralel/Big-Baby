@@ -14,14 +14,17 @@ class MyaddressComponent extends React.Component{
             this.props.Myaddress(JSON.parse(response).username)
         })
     }
-    // constructor(props){
-    //     super(props);
-    //     addressData
-    // }
     delAddress(e){
         if(e.target.className=="delAddress"){
             let idx = e.target.attributes["data-id"].nodeValue;
-            this.props.delAdz(JSON.parse(this.props.addressData)[idx]);
+            this.props.delAdz(JSON.parse(this.props.addressData)[idx]).then(res=>{
+                console.log(res)
+            });
+        }
+        else if(e.target.className=="chooseaddress"){
+            let num = e.target.attributes["data-idx"].nodeValue;
+            console.log()
+            this.props.choose(JSON.parse(this.props.addressData)[num]);
         }
     }
     render(){
@@ -51,7 +54,11 @@ class MyaddressComponent extends React.Component{
                                                 </div>
                                                 <p>收货地址<span>{item.address}</span></p>
                                             </div>
-                                            <div><span data-id={index} className="delAddress">删除</span><span >修改</span></div>
+                                            <div className="chooseaddress" data-idx={index}>选择</div>
+                                            <div>
+                                                <span data-id={index} className="delAddress">删除</span><span>修改</span>
+                                            </div>
+
                                         </div>
                                     )
                                 })

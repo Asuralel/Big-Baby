@@ -14,5 +14,11 @@ export function addressInit(address,username){
           }
     }
 }
-export function userQuit(){
+export function setPas(wornpas,newpas,username){
+    return {
+          types: ['EDIT_REQUEST', 'SETPAS_SUCCESS', 'EDIT_FAILURE'],
+          path: 'my/setpas.php',
+          method: 'post',
+          query: {wornpas,newpas,username}
+    }
 }

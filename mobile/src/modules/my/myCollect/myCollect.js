@@ -38,13 +38,11 @@ class MyCollectComponent extends React.Component{
                     <div className="collectContent1">
                     {
                         data.map(function(item, index){
-                            // {baseURI+item.product_image}
-                            console.log(item.id)
                             return (
 
                                 <div className="collectgoods">
                                     <div><Link to={{pathname:'/details/',state:item.id}}>
-                                    <img src="./src/asset/l3.jpg"/></Link></div>
+                                    <img src={baseURI+item.product_image}/></Link></div>
                                     <div>
                                         <div>{item.product_name}</div>
                                         <div>
