@@ -10,6 +10,7 @@
     $order_date = isset($_REQUEST['order_date']) ? $_REQUEST['order_date'] : 1; 
     $order_status = isset($_REQUEST['order_status']) ? $_REQUEST['order_status'] : 1;
     $order_address = isset($_REQUEST['order_address']) ? $_REQUEST['order_address'] : 1; 
+    $buycarLi = isset($_REQUEST['buycarLi']) ? $_REQUEST['buycarLi'] : false; 
 
     $sql = "insert into `order` (
             order_num,
@@ -25,11 +26,24 @@
             '$order_total_price',
             '$order_date',
             '$order_status',
-            '$order_address')";   
+            '$order_address')";
+    
     if(excute($sql)){
-        $sql = "DELETE FROM buycar where username = '$user_name'";
-        if(excute($sql)){
-            echo "ok";
+        if($buycarLi){
+            $sql = "update buycar set list='$buycarLi' where username='$user_name'";
+            if(excute($sql)){
+                echo "true1";
+            }else{
+                echo "false1";
+            }
+        }else{
+            // echo "1";
+           $sql = "DELETE FROM buycar where username='$user_name'";
+            if(excute($sql)){
+                echo "true2";
+            }else{
+                echo "flase2";
+            }            
         }
     }else{
         echo "false";

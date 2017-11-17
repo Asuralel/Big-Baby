@@ -51,18 +51,18 @@ class BuycarComponent extends React.Component {
     }
     makesure(){
         console.log(1)
-        const obj = {order_num:this.state.order_num,order_status:'已付款',makesure:true};
+        const obj = {order_num:this.state.order_num,order_status:'代发货',makesure:true};
         this.props.payInit(obj).then((response)=>{
             // console.log(response)
-            if(response == 'true'){
-                console.log(2)
+            // if(response == 'true'){
+                // console.log(2)
                 this.setState({maskshow:true});
-                hashHistory.push('/my/myHome')
-            }
+            // }
         });
     }
     masknoshow(){
-        this.setState({maskshow:false})
+        this.setState({maskshow:false});
+        hashHistory.push('/my/myOrder/2')
     }
 
     render(){

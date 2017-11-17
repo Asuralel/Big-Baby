@@ -1,5 +1,5 @@
 import * as constants from '../../../redux/commonConstant';
-
+import loginstate from '../../login/logintoken'
 export function mysetinit(username){
     if(username){
         return {
@@ -9,4 +9,7 @@ export function mysetinit(username){
             query: {username}
         }
     }
+}
+export  function loginInit(){
+    return loginstate()
 }

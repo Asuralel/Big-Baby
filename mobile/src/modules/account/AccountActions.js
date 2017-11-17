@@ -9,6 +9,7 @@ export function accountInit(obj){
                 order_num:obj.order_num,
                 user_name:obj.user_name ,
                 order_product:JSON.stringify(obj.order_product),
+                buycarLi:obj.buycarLi,
                 order_phone:obj.order_phone,
                 order_total_price:obj.order_total_price,
                 order_date:obj.order_date,
