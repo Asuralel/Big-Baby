@@ -111,7 +111,7 @@ class homeComponent extends React.Component {
                     <p className="f4f4f4"> 　</p>
                     <main>
                         <div className="like">
-                        <p><span className="lan"><Icon type="star" className="blue"/></span><span>猜你喜欢</span></p>
+                        <p className="wg-t"><span className="lan"><Icon type="star" className="blue"/></span><span>猜你喜欢</span></p>
                             {
                                 data.limit.map(function(item,idx){
                                     return(

@@ -54,7 +54,12 @@ header{
 .f4f4f4{ background:#F4F4F4;width:100%;}
 nav{
     div{
-        .title-hong{display:block;height:24px;line-height:24px;
+        .title-hong{display: block;
+    height: 30px;
+    line-height: 30px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: #444;
             i{background-color:red; display:inline-block;width:2px;margin-right:8px;}
         }
         .hei{color:black;font-weight:bold;}
@@ -64,9 +69,10 @@ nav{
                     img{width:187px; height:100px;}
                     div{width:50%;float:left;}
                     .hei{padding-top:20px;font-weight:bold;}
-                    .h0{height:200px;border-top:1px solid #E7E7E7;border-bottom:1px solid #E7E7E7;
+                    .h0{text-align: center;height:200px;border-top:1px solid #E7E7E7;border-bottom:1px solid #E7E7E7;
                         p{padding-left:10px;font-size: 14px;line-height: 24px;}
-                        img{margin-top:30px;}
+                        img{width: 92%;border-radius: 3px;
+    margin-top: 6%;}
                     }
                     .h1{
                         .red{top:380px;}
@@ -75,8 +81,14 @@ nav{
                         .red{top:480px;}
                     }
                     .h1,.h2{border-left:1px solid #E7E7E7;border-top:1px solid #E7E7E7;height:100px;
+                        border-bottom: 1px solid #e7e7e7;
                        p{position:absolute;padding-left:10px;font-size: 14px;line-height: 24px;}
-                       img{width:50%;float:right;}
+                       img{width: 48%;
+    margin-right: 5px;
+    margin-top: 10%;
+    border-radius: 2px;
+    height: 50%;
+    float: right;}
                     }
                 }
         }
@@ -90,37 +102,57 @@ nav{
             p{position:absolute;padding-left:10px;font-size: 14px;}
             .hei{font-weight:bold;}
             .hui{top:60px;color:#ccc}
-            .red{padding-left: 7px;top:86px;}
+            .red{padding-left: 7px;top:80px;}
             .h0{float:left;height:100px;width:50%;overflow:hidden;border-top:1px solid #E7E7E7;
                 border-bottom:1px solid #E7E7E7;
                 .hei{top: 34px;}
-                img{width:50%;height:100px;float:right;}
+                img{width: 48%;
+    margin-right: 13px;
+    margin-top: 6%;
+    border-radius: 2px;
+    height: 74%;
+    float: right;}
             }
             .h1{float:right;height:200px;width:50%;border-top:1px solid #E7E7E7;border-left:1px solid #E7E7E7;
                 .hei{top: 34px;}
-                img{padding-top:80px;width:100%}
+                img{width: 92%;
+    margin-top: 41%;
+    /* padding-top: 20%; */
+    height: 60%;
+    border-radius: 3px;
+    margin-left: 4%;}
                 p{position:absolute;padding-left:10px;font-size: 14px;}
             }
             .h2{height:100px; float:left;overflow:hidden;width:50%;
-                p{position:absolute;padding-left:10px;font-size: 14px;}
+                p{position:absolute;padding-left:10px;font-size: 14px;padding-top: 8px;}
                 .hui{top:150px; }
                 .red{top:178px;}
-                img{width:50%; height:100px;float:right;}
+                img{width: 48%;
+    margin-right: 13px;
+    margin-top: 6%;
+    border-radius: 2px;
+    height: 74%;
+    float: right;}
             }
         }
         .xinpin{
-            .jiaju-recommend{overflow:hidden;
-                >ul{
+            .jiaju-recommend{overflow:hidden;border-top:1px solid #e7e7e7;
+                >ul{border-bottom:1px solid #e7e7e7;
+                &:nth-of-type(2n+1){border-right:1px solid #e7e7e7}
                     float:left;position:relative;width:50%;height:100px;
                     li{
                         padding-left:10px;font-size:14px;
                         p{position: absolute;}
-                        .hei{top:14px;}
+                        .hei{top:20px;}
                         .hui{top:42px;color:#ccc}
-                        .red{top:72px;}
+                        .red{top:64px;}
                         img{
-                            height:100px;
-                            float:right;
+                            width: 48%;
+    margin-right: 13px;
+    margin-top: 6%;
+    border-radius: 2px;
+    height: 74%;
+    float: right;
                         }
                     }
                 }
@@ -134,13 +166,20 @@ main{
     .like{
         // padding-left:10px;
        overflow:hidden;
+       .wg-t{display: block;
+    height: 30px;
+    line-height: 30px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: #444;
+    padding-left: 16px;}
        >p{line-height:23px;
             .lan{
                 background-color:#108ee9;
-                margin-right:10px;
+                margin-right:6px;
             }
        }
-       .blue{color:#108ee9;background-color:white;border-radius:50%;width:18px;}
+       .blue{color:#108ee9;background-color:white;border-radius:50%;width:16px;}
         ul{
             width:43%;
             float:left;
