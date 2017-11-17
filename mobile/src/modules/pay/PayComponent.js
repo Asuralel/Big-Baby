@@ -51,7 +51,7 @@ class BuycarComponent extends React.Component {
     }
     makesure(){
         console.log(1)
-        const obj = {order_num:this.state.order_num,order_status:'代发货',makesure:true};
+        const obj = {order_num:this.state.order_num,order_status:'待发货',makesure:true};
         this.props.payInit(obj).then((response)=>{
             // console.log(response)
             // if(response == 'true'){
