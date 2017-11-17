@@ -119,7 +119,10 @@
                         i:first-of-type{display: none;}
                     }
                 }
-                &.cart-list a{color:#5A555A;}
+                &.cart-list{position: relative;
+                    a{color:#5A555A;}
+                    .car-nums{position: absolute;left:29px;top: -6px;padding: 2px 4px;line-height: 12px;border-radius: 8px;background-color: #DA0000;color: #fff;}
+                } 
                 &.add-cart,&.buy-now{background-color: #FFCE42;height: 100%;line-height: 50px;color:#fff;font-size: 14px;letter-spacing: 2px;}
                 &.buy-now{background-color: #DA0000;}
             }

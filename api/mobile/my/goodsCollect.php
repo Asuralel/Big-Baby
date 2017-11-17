@@ -6,10 +6,12 @@
     $GoodsId = isset($_REQUEST['goodsId']) ? $_REQUEST['goodsId'] : 1;
     // echo "$username";
 
+
+//  echo $cont;
     $sql1 = "update users set user_collect='$GoodsId' where user_name='$username'";
+
     if(excute($sql1)){
         echo "ok";
     }
-
 
 ?>
