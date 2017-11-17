@@ -1,4 +1,4 @@
 
-export const IMGURL = './src/asset/product/';
+export const IMGURL = './src/asset/';
 
 
