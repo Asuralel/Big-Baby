@@ -10,7 +10,7 @@ import HistorybackComponent from "../buycar/HistorybackComponent.js";
 import MaskComponent from "./MaskComponent";
 import LinksMask  from "../common/linksMask/linksMaskComponent";
 import './Pay.scss';
-import * as commonUrl from '../common/commonUrl.js';
+import * as commonUrl from '../common/commonUrl1.js';
 
 class BuycarComponent extends React.Component {
     constructor(props){

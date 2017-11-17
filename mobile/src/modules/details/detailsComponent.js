@@ -157,7 +157,7 @@ class detailsComponent extends React.Component {
 	componentWillMount(){
 		//用户登录相关
 		let userObj = JSON.parse(sessionStorage.getItem('user'));
-//		console.log(userObj)
+		console.log(this.props.location.state)
 		//loading模块
 		this.setState({showLoading:true});
 		httpAjax.get("http://localhost:888/api/mobile/sort/product.php").query('?type=getDetails&value='+this.props.location.state).then((res) => {

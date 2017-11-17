@@ -3,7 +3,7 @@ import {connect} from "react-redux"
 import { Tabs ,Button, message} from 'antd';
 const TabPane = Tabs.TabPane;
 import {Link} from 'react-router'
-import * as commonUrl from '../../common/commonUrl.js';
+import * as commonUrl from '../../common/commonUrl1.js';
 import Historyback from "../../buycar/HistorybackComponent" 
 import orderscss from "./myOrder.scss"
 import http from "../../../utils/HttpClient.js"
