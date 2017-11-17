@@ -180,7 +180,7 @@ class detailsComponent extends React.Component {
 			});
 			if(this.state.userObj){
 				let userCollect = this.state.userObj.user_collect.split(',');
-				console.log(userCollect,resObj.id,this.state.userObj.user_collect)
+//				console.log(userCollect,resObj.id,this.state.userObj.user_collect)
 				let isHasCollect = userCollect.some(item => {return item === resObj.id});
 				if(isHasCollect){this.refs.favorLi.className = "add-favor has-favor";}
 				this.setState({userCollect:userCollect,isHasCollect:isHasCollect});
@@ -251,21 +251,40 @@ class detailsComponent extends React.Component {
 			.then((res) => {console.log(res.text)});
 		}
 	}
-	//购物车/订单相关
+	//购物车相关
 	addCart(){
-		const isLogin = true;
-		if(!isLogin){
+		if(!this.state.userObj){
 			hashHistory.push('/login');
 		}else{
+			let carli = {
+				username:this.state.userObj.username,
+				product_id:this.state.detailGood.id,
+				product_name:this.state.detailGood.product_name,
+				product_price:(this.state.detailGood.product_origin_price*this.state.detailGood.product_discount).toFixed(0),
+				product_nums:this.state.goodsNum,
+				product_image:this.state.detailGood.product_image,
+				addcar:true
+			}
+			console.log(JSON.stringify(carli));
 			console.log('发请求到购物车接口')
 		}
 	}
 	buyNow(){
-		const isLogin = false;
-		if(!isLogin){
+		if(!this.state.userObj){
 			hashHistory.push('/login');
 		}else{
-			console.log('发请求到购物车接口;并跳到订单结算页面')
+			let carli = {
+				username:this.state.userObj.username,
+				product_id:this.state.detailGood.id,
+				product_name:this.state.detailGood.product_name,
+				product_price:(this.state.detailGood.product_origin_price*this.state.detailGood.product_discount).toFixed(0),
+				product_nums:this.state.goodsNum,
+				product_image:this.state.detailGood.product_image,
+				addcar:true
+			}
+			console.log(JSON.stringify(carli))
+			console.log('发请求到购物车接口;并在回调里跳到购物车页面');
+			hashHistory.push('/buycar');
 		}
 	}
 	
