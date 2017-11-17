@@ -180,7 +180,7 @@ class detailsComponent extends React.Component {
 			});
 			if(this.state.userObj){
 				let userCollect = this.state.userObj.user_collect.split(',');
-				console.log(userCollect,resObj.id,this.state.userObj.user_collect)
+//				console.log(userCollect,resObj.id,this.state.userObj.user_collect)
 				let isHasCollect = userCollect.some(item => {return item === resObj.id});
 				if(isHasCollect){this.refs.favorLi.className = "add-favor has-favor";}
 				this.setState({userCollect:userCollect,isHasCollect:isHasCollect});
@@ -251,21 +251,81 @@ class detailsComponent extends React.Component {
 			.then((res) => {console.log(res.text)});
 		}
 	}
-	//购物车/订单相关
+	//购物车相关
 	addCart(){
-		const isLogin = true;
-		if(!isLogin){
+		if(!this.state.userObj){
 			hashHistory.push('/login');
 		}else{
-			console.log('发请求到购物车接口')
+			let carli = {
+				username:'this.state.userObj.username',
+				product_id:this.state.detailGood.id,
+				product_name:this.state.detailGood.product_name,
+				product_origin_price:(this.state.detailGood.product_origin_price*this.state.detailGood.product_discount).toFixed(0),
+				amount:this.state.goodsNum,
+				product_image:this.state.detailGood.product_image
+			}
+			httpAjax.get("http://localhost:888/api/mobile/buycar/buycar.php")
+			.query('username='+'1')
+			.then((res) => {
+//				console.log(JSON.parse(res.text))
+				var buycarLi  = JSON.parse(res.text).length == 0 ? [] : JSON.parse(JSON.parse(res.text)[0].list);
+				var carhas=false;
+				buycarLi.forEach(function(item){
+					if(item.product_name == carli.product_name){
+						item.amount += carli.amount;
+						carhas=true;
+					}
+				})
+				if(!carhas){
+					buycarLi.push(carli);
+				}
+				httpAjax.get("http://localhost:888/api/mobile/buycar/buycar.php")
+				.query('username='+this.state.userObj.username+'&list='+JSON.stringify(buycarLi))
+				.then((res) => {
+//					console.log(res.text)
+					})
+//								
+			});
+//			console.log(JSON.stringify(carli));
+//			console.log('发请求到购物车接口')
 		}
 	}
 	buyNow(){
-		const isLogin = false;
-		if(!isLogin){
+		if(!this.state.userObj){
 			hashHistory.push('/login');
 		}else{
-			console.log('发请求到购物车接口;并跳到订单结算页面')
+			let carli = {
+				username:this.state.userObj.username,
+				product_id:this.state.detailGood.id,
+				product_name:this.state.detailGood.product_name,
+				product_origin_price:(this.state.detailGood.product_origin_price*this.state.detailGood.product_discount).toFixed(0),
+				amount:this.state.goodsNum,
+				product_image:this.state.detailGood.product_image
+			}
+			httpAjax.get("http://localhost:888/api/mobile/buycar/buycar.php")
+			.query('username='+this.state.userObj.username)
+			.then((res) => {
+				var buycarLi  = JSON.parse(res.text).length == 0 ? [] : JSON.parse(JSON.parse(res.text)[0].list);
+				var carhas=false;
+				buycarLi.forEach(function(item){
+					if(item.product_name == carli.product_name){
+						item.amount += carli.amount;
+						carhas=true;
+					}
+				})
+				if(!carhas){
+					buycarLi.push(carli);
+				}
+//				console.log(buycarLi)
+				httpAjax.get("http://localhost:888/api/mobile/buycar/buycar.php")
+				.query('username='+this.state.userObj.username+'&list='+JSON.stringify(buycarLi))
+				.then((res) => {
+					hashHistory.push('/buycar');
+					})
+//								
+			});
+//			console.log(JSON.stringify(carli));
+//			console.log('发请求到购物车接口')
 		}
 	}
 	
@@ -319,7 +379,7 @@ class detailsComponent extends React.Component {
 							<Carousel autoplay className="img-list">
 								{
 									JSON.parse(this.state.detailGood.product_banner_imgs).map((img,idx) => {
-										return (<div key={idx}><img src={img} /></div>)
+										return (<div key={idx}><img src={IMGURL+"product/"+img+'.jpg'} /></div>)
 									})
 								}
 							</Carousel>

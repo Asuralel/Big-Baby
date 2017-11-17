@@ -16,17 +16,34 @@ class MyCollectComponent extends React.Component{
             let goodsId=data.user_collect.split(',').splice(0)
             this.props.collectGoods(JSON.stringify(goodsId)).then(response=>{
                 var res = JSON.parse(response);
-                for(var i = 0 ; i<res.length;i++){
-
-                }
+                console.log(this.props.show)
             })
         })
 
     }
+    delAddress(e){
+        let idx = e.target.attributes["data-num"].nodeValue;
+        let goodsId=JSON.parse(this.props.show).user_collect.split(',').splice(0);
+        var str ="" 
+        goodsId.forEach(function(item,index){
+            if(item==idx){
+                goodsId.splice(index,1);
+            }
+            if(index==goodsId.length-1){
+                str+=item;
+            }else{
+                
+                str+=item+','
+            }
+            
+        })
+        console.log(str)
+        this.props.DelCollect(str,JSON.stringify(goodsId),JSON.parse(this.props.show).username)
+    }
     render(){
-        console.log()
         if(this.props.goodsdata){
             let data = JSON.parse(this.props.goodsdata)
+            console.log(data)
             return (
                 <div className="MyCollect">
                     <div className="personalHead">
@@ -37,10 +54,10 @@ class MyCollectComponent extends React.Component{
                     </div>
                     <div className="collectContent1">
                     {
-                        data.map(function(item, index){
+                        data.map((item, index)=>{
                             return (
 
-                                <div className="collectgoods">
+                                <div className="collectgoods" >
                                     <div><Link to={{pathname:'/details/',state:item.id}}>
                                     <img src={baseURI+item.product_image}/></Link></div>
                                     <div>
@@ -48,7 +65,7 @@ class MyCollectComponent extends React.Component{
                                         <div>
                                             <span>￥{item.product_origin_price}</span>
                                             <span>已售：{item.product_sold_out}</span>
-                                            <Icon type="delete" />
+                                            <Icon type="delete" data-num={item.id} onClick={this.delAddress.bind(this)}/>
                                         </div>
                                     </div>
 
