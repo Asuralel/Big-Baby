@@ -379,7 +379,7 @@ class detailsComponent extends React.Component {
 							<Carousel autoplay className="img-list">
 								{
 									JSON.parse(this.state.detailGood.product_banner_imgs).map((img,idx) => {
-										return (<div key={idx}><img src={img} /></div>)
+										return (<div key={idx}><img src={IMGURL+"product/"+img+'.jpg'} /></div>)
 									})
 								}
 							</Carousel>
