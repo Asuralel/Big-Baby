@@ -9,7 +9,7 @@ export default {
     product_name: '商品名称',
     product_type: '商品类型',
     product_color: '商品颜色',
-    product_price: '商品价格',
+    product_origin_price: '商品价格',
     product_discount:'商品折扣',
     product_description:'商品简介',
     product_rate:"商品评价",

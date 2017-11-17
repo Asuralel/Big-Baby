@@ -1,1 +1,3 @@
-export const IMGURL = './src/asset/'
+
+export const IMGURL = './src/asset/';
+

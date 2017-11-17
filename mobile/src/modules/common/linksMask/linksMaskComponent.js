@@ -14,7 +14,7 @@ export default class LinksMask extends React.Component{
 		}
 	}
 	hideLinksMask(event){
-		this.props.childHideLinks()
+		this.props.childHideLinks();
 	}
 	render(){
 		return (
