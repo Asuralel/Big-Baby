@@ -36,6 +36,7 @@
                         'handimgs'=>query($sql1)[0]->head_image,
                         'tel'=>query($sql1)[0]->user_phone,
                         'user_address'=>query($sql1)[0]->user_address,
+                        'user_collect'=>query($sql1)[0]->user_collect,
                     );
                     echo json_encode($res,JSON_UNESCAPED_UNICODE);
                 }else{
@@ -58,6 +59,7 @@
                 'handimgs'=>query($sql1)[0]->head_image,
                 'tel'=>query($sql1)[0]->user_phone,
                 'user_address'=>query($sql1)[0]->user_address,
+                'user_collect'=>query($sql1)[0]->user_collect,
             );
             echo json_encode($res,JSON_UNESCAPED_UNICODE);
         }else{

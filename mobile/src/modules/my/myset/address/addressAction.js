@@ -1,32 +1,25 @@
 // import loginToken from '../login/logintoken';
 import * as constants from '../../../../redux/commonConstant';
 import loginstate from '../../../login/logintoken'
-// console
+
 export  function loginInit(){
     return loginstate()
 }
-export function MyActions(){
-    var token = '';
-    var tokenName
-    var cookies = document.cookie;
-    var arr_cookie = cookies.split('; '); 
-    arr_cookie.forEach(function(item){ 
-        var temp = item.split('=');
-        if(temp[0] === 'token'){
-            tokenName = temp[0]
-            token = temp[1];
-        }
-    });
+export function Myaddress(username){
     return {
-          types: [constants.REQUEST, constants.SUCCESS, constants.FAILURE],
-          path: 'my/login.php',
-          method: 'post',
-          query: {token}
+        types: ['ADDRES_REQUEST', 'ADDRES_SUCCESS', 'ADDRES_FAILURE'],
+        path: 'my/address.php',
+        method: 'post',
+        query: {username}
     }
 }
-export function userQuit(){
+export function delAdz(data){
+    var id = data.id;
+    var username = data.username;
     return {
-          type:'gg',
-          query: false
-      }
+        types: ['ADDRES_REQUEST', 'ADDRES_SUCCESS', 'ADDRES_FAILURE'],
+        path: 'my/delAddress.php',
+        method: 'post',
+        query: {id,username}
+    }
 }

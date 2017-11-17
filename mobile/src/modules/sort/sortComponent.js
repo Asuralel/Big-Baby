@@ -12,6 +12,8 @@ import './sort.scss'
 import Hbicon from '../buycar/HistorybackComponent.js'
 import LinksMask from '../common/linksMask/linksMaskComponent.js'
 import Loading from '../common/loading/loadingComponent.js'
+import ComSearch from '../common/comSearch/comSearchComponent.js'
+import {IMGURL} from '../common/commonUrl.js'
 
 class sortComponent extends React.Component {
 	constructor(props){
@@ -22,6 +24,10 @@ class sortComponent extends React.Component {
         	/*goodTypeList:[{
         		name:'卧室',
         		type:'0',
+        		
+        		[{"img":"wab11","text":"床","goodType":0},{"img":"wbb11","text":"床垫","goodType":1},{"img":"wcb11","text":"床头柜","goodType":2},{"img":"wdb11","text":"衣柜","goodType":3}]
+        		
+        		
         		goodTypes:[{
         			img:'http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204429888197885_240.jpg',
         			text:'床架1',
@@ -138,7 +144,7 @@ class sortComponent extends React.Component {
 //		console.log(arr)
 		//动态生成右侧对应列表
 		let rightListHtml = arr.map((item) => {
-			return `<li><a href="#/list/:${item.goodType}"><img src="${item.img}" /><span>${item.text}</span></a></li>`;
+			return `<li><a href="#/list/:${item.goodType}"><img src="${IMGURL}product/${item.img}.jpg" /><span>${item.text}</span></a></li>`;
 		}).join('');
 		this.refs.rightList.innerHTML = rightListHtml;
 	}
@@ -153,7 +159,7 @@ class sortComponent extends React.Component {
             <div className="sort">
                 <div className="sort-head">
 					<Hbicon className="sort-hb"/>
-					<Search className="sort-sh" placeholder="请输入搜索关键字" onSearch={value => value.trim()===''?null:hashHistory.push("/list/:s-"+value)} />
+					<ComSearch />
 					<Icon className="sort-links" type="ellipsis" onClick={this.showLinks.bind(this)}/>
 				</div>
 				<div className="sort-cont">

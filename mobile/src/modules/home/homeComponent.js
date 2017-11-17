@@ -1,21 +1,19 @@
 import React from 'react'
 import {Link,hashHistory} from 'react-router'
 
-
 import FooterComponent from '../common/footer/footerComponent'
-
+import ComSearch from '../common/comSearch/comSearchComponent.js'
 
 import './home.scss'
 import {  Icon , Button , BackTop , Carousel,Input} from 'antd';
-const Search = Input.Search
-
+const Search = Input.Search 
 class homeComponent extends React.Component {
     render(){
         return(
             <div className="home">
                 <header>
                     <div className="header-top">
-                        <Search className="sort-sh" placeholder="请输入搜索关键字" onSearch={value => value.trim()===''?null:hashHistory.push("/list/:s-"+value)} />                         
+						<ComSearch />
                     </div>
                         <Carousel autoplay className="slideshow">
                            <div><img src="./src/asset/l1.jpg"/></div>

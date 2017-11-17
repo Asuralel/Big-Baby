@@ -8,21 +8,28 @@ import * as registerActions from './registerActions';
 import registerss from "./register.scss";
 import Goback from "../buycar/HistorybackComponent";
 import SpinnerComponent from '../spinner/SpinnerComponent';
+import MaskComponent from "../login/Mask";
 
 class RegisterComponent extends React.Component {
     componentDidMount(){
         
     }
-    componentDidUpdate(){
-        console.log(this.props.logindata)
-        if(this.props.logindata=='ok'){
-            console.log(666)
-            hashHistory.push('/login')
-        }else if(this.props.logindata=='false'){
-            notification.open({
-               message: '用户名存在'
-             });
+    constructor(props){
+        super(props);
+        this.state= {
+            maskshow:false
         }
+        this.masknoshow = this.masknoshow.bind(this);
+    }
+    masknoshow(){
+        this.setState({maskshow:false})
+    }
+    componentDidUpdate(){
+        // if(this.props.logindata=='ok'){
+        //     hashHistory.push('/login')
+        // }else if(this.props.logindata=='false'){
+        //     this.setState({maskshow:'用户已存在'});
+        // }
     }
     regChange(){
         const tel = this.refs.tel.value;
@@ -37,7 +44,14 @@ class RegisterComponent extends React.Component {
                 username:username,
                 tel:tel
             }
-            this.props.register(obj)
+            this.props.register(obj).then(response=>{
+                let res = response
+                if(res=='ok'){
+                    hashHistory.push('/login')
+                }else if(response=='false'){
+                    this.setState({maskshow:'用户已存在'});
+                }
+            })
         }
     }
     reBtnStyle(blon){
@@ -106,6 +120,7 @@ class RegisterComponent extends React.Component {
                 </div>
                 <div className="registerBtn"><span onClick={this.regChange.bind(this)} ref="registerBtn">免费注册</span></div>
                 <SpinnerComponent show={this.props.loading}/>
+                <MaskComponent maskshow={this.state.maskshow} masknoshow={this.masknoshow} />
             </div>
         )
     }
