@@ -42,7 +42,7 @@ var HomeComponent =  React.createClass({
                 <Sider
                   breakpoint="lg"
                   collapsedWidth="0"
-                  onCollapse={(collapsed, type) => { console.log(collapsed, type); }}
+                  onCollapse={(collapsed, type) => {  }}
                 >
                   <div className="logo">
                     <h1>BIGBABY</h1>

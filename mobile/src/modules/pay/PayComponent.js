@@ -16,8 +16,27 @@ class BuycarComponent extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-                        isShowLinks:'none'
+                    isShowLinks:'none',
+                    order_status:'待付款',
+                    totalPri:0,
+                    maskshow:false,
+                    order_num:0
+                    };
+        this.masknoshow = this.masknoshow.bind(this);
+        this.makesure = this.makesure.bind(this);
+    }
+
+    componentWillMount(){
+        console.log(this.props.params.order_num)
+        const obj ={
+                    order_num:this.props.params.order_num
                     }
+        this.props.payInit(obj).then((response)=>{
+            console.log(JSON.parse(response)[0]);
+            var order = JSON.parse(response)[0];
+            this.setState({order_status:order.order_status,totalPri:order.order_total_price,order_num:this.props.params.order_num});
+            // console.log(this.state.totalPri)
+        })  
     }
 
     showLinks(){
@@ -30,16 +49,32 @@ class BuycarComponent extends React.Component {
             isShowLinks:'none'
         });
     }
+    makesure(){
+        console.log(1)
+        const obj = {order_num:this.state.order_num,order_status:'已付款',makesure:true};
+        this.props.payInit(obj).then((response)=>{
+            // console.log(response)
+            if(response == 'true'){
+                console.log(2)
+                this.setState({maskshow:true});
+                hashHistory.push('/my/myHome')
+            }
+        });
+    }
+    masknoshow(){
+        this.setState({maskshow:false})
+    }
 
     render(){
         return(
-            <div id="account">
-                <header id="acheader">
+            <div id="pay">
+                <header id="payheader">
                     <HistorybackComponent />
                     <h2 onClick={this.topay}>在线支付</h2>
                     <Icon className="sort-links" type="ellipsis" onClick={this.showLinks.bind(this)}/>
                 </header>
-                <main id="acmain">
+                <main id="paymain">
+                    <span onClick={this.makesure}>确认支付</span>
                 </main>
                 <SpinnerComponent show = {this.props.loading} />
                 <MaskComponent maskshow={this.state.maskshow} masknoshow={this.masknoshow} />
@@ -52,6 +87,6 @@ class BuycarComponent extends React.Component {
 
 const mapStateToProps = state => ({
     loading: state.login.loading,
-    accountList:state.account.data ? JSON.parse(state.account.data[0].account) : []
+    // accountList:state.account.data ? JSON.parse(state.account.data[0].account) : []
 })
 export default connect(mapStateToProps, BuycarActions)(BuycarComponent)

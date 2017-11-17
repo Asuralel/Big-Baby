@@ -1,23 +1,3 @@
-// export default function AddReducer(state = {}, action){
-//     var reState = JSON.parse(JSON.stringify(state));
-//     switch(action.type){
-//         case 'BeforeRequest':
-//             reState.loading = true;
-//             break;
-//         case 'Requested':
-//             reState.loading = false;
-//             reState.res = action.body;
-//             break;
-//         default:
-//             reState.loading = false;
-//     }
-//     console.log(action)
-//     return reState ;
-// }
-
-
-
-
 
 //处理 ajax 返回数据和一些状态管理
 //发起 ajax 请求前 => show up loading
