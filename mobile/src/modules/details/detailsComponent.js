@@ -176,8 +176,7 @@ class detailsComponent extends React.Component {
 				showLoading:false,
 				userObj:userObj,
 				isHasCollect:false,
-				userCollect:[],
-				carNums:0
+				userCollect:[]
 			});
 			if(this.state.userObj){
 				let userCollect = this.state.userObj.user_collect.split(',');
@@ -185,18 +184,6 @@ class detailsComponent extends React.Component {
 				let isHasCollect = userCollect.some(item => {return item === resObj.id});
 				if(isHasCollect){this.refs.favorLi.className = "add-favor has-favor";}
 				this.setState({userCollect:userCollect,isHasCollect:isHasCollect});
-				
-				//购物车
-				httpAjax.get("http://localhost:888/api/mobile/buycar/buycar.php")
-				.query('username='+this.state.userObj.username)
-				.then((res) => {
-					var buycarLi  = JSON.parse(res.text).length == 0 ? [] : JSON.parse(JSON.parse(res.text)[0].list);
-					var carNums=0;
-					buycarLi.forEach(function(item){
-						carNums += item.amount;
-					});
-					this.setState({carNums:carNums});
-				});
 			}
 		});
 //		console.log('商品Id',this.props.location.state);
@@ -241,14 +228,11 @@ class detailsComponent extends React.Component {
 	}
 	//收藏相关
 	changeFavor(){
-		if(!this.state.userObj){
-			hashHistory.push('/login');
-		}
 		let favor = this.refs.favorLi;
 		let colletGoods = this.state.userCollect;
 		if(this.state.isHasCollect){
 			favor.className = "add-favor";
-			this.setState({isHasCollect:false});
+			this.setState({isHasCollec:false});
 			colletGoods.forEach((item,idx,arr) => {
 				if(item == this.state.detailGood.id){
 					arr.splice(idx,1);
@@ -256,7 +240,7 @@ class detailsComponent extends React.Component {
 			})
 		}else{
 			favor.className = "add-favor has-favor";
-			this.setState({isHasCollect:true});
+			this.setState({isHasCollec:true});
 			colletGoods.push(this.state.detailGood.id)
 		}
 		this.setState({userCollect:colletGoods});
@@ -268,28 +252,23 @@ class detailsComponent extends React.Component {
 		}
 	}
 	//购物车相关
-	addCart(e){
-		if(e.target.className=="bottom cart-bot"){
-			this.setState({goodChoiceHeight:'0',goodChoiceBottom:'-100%'})
-		}
+	addCart(){
 		if(!this.state.userObj){
 			hashHistory.push('/login');
 		}else{
 			let carli = {
 				username:this.state.userObj.username,
-
 				product_id:this.state.detailGood.id,
 				product_name:this.state.detailGood.product_name,
 				product_origin_price:(this.state.detailGood.product_origin_price*this.state.detailGood.product_discount).toFixed(0),
 				amount:this.state.goodsNum,
 				product_image:this.state.detailGood.product_image
 			}
-			this.setState({carNums:this.state.goodsNum+this.state.carNums});
 			httpAjax.get("http://localhost:888/api/mobile/buycar/buycar.php")
-			.query('username='+'1')
+			.query('username='+this.state.userObj.username)
 			.then((res) => {
-//				console.log(JSON.parse(res.text))
-				var buycarLi  = JSON.parse(res.text).length == 0 ? [] : JSON.parse(JSON.parse(res.text)[0].list);
+				// console.log(JSON.parse(res.text).length)
+				var buycarLi  = JSON.parse(res.text).length <= 0 ? [] : JSON.parse(JSON.parse(res.text)[0].list);
 				var carhas=false;
 				buycarLi.forEach(function(item){
 					if(item.product_name == carli.product_name){
@@ -303,9 +282,8 @@ class detailsComponent extends React.Component {
 				httpAjax.get("http://localhost:888/api/mobile/buycar/buycar.php")
 				.query('username='+this.state.userObj.username+'&list='+JSON.stringify(buycarLi))
 				.then((res) => {
-//					console.log(res.text)
-					})
-//								
+					// console.log(JSON.parse(res.text))
+					})						
 			});
 //			console.log(JSON.stringify(carli));
 //			console.log('发请求到购物车接口')
@@ -323,7 +301,6 @@ class detailsComponent extends React.Component {
 				amount:this.state.goodsNum,
 				product_image:this.state.detailGood.product_image
 			}
-			this.setState({carNums:this.state.goodsNum+this.state.carNums});
 			httpAjax.get("http://localhost:888/api/mobile/buycar/buycar.php")
 			.query('username='+this.state.userObj.username)
 			.then((res) => {
@@ -446,7 +423,7 @@ class detailsComponent extends React.Component {
 					<ul>
 						<li className="to-home"><Link to="/home"><Icon type="home"  style={{ fontSize: 20, color: '#555555' }}/>首页</Link></li>
 						<li className="add-favor" onClick={this.changeFavor.bind(this)} ref="favorLi"><Icon type="star-o"  style={{ fontSize: 20, color: '#555555' }}/><Icon type="star"  style={{ fontSize: 20, color: '#FFCE42' }}/><span>收藏</span></li>
-						<li className="cart-list"><Link to="/buycar"><Icon type="shopping-cart"  style={{ fontSize: 20, color: '#555555' }}/>购物车</Link>{!this.state.carNums?null:<span className="car-nums">{this.state.carNums}</span>}</li>
+						<li className="cart-list"><Link to="/buycar"><Icon type="shopping-cart"  style={{ fontSize: 20, color: '#555555' }}/>购物车</Link></li>
 					</ul>
 					<ul>
 						<li className="add-cart" onClick={this.addCart.bind(this)}>加入购物车</li>
@@ -500,7 +477,7 @@ class detailsComponent extends React.Component {
 									</div>
 								</div>
 							</div>
-							<div className="bottom cart-bot" onClick={this.addCart.bind(this)}>加入购物车</div>
+							<div className="bottom" onClick={this.addCart.bind(this)}>加入购物车</div>
 						</div>
 					</div>
 				}

@@ -203,7 +203,8 @@ class BuycarComponent extends React.Component {
                             account:this.state.accountList
                         }
             sessionStorage.setItem('accountList',JSON.stringify(obj));
-            sessionStorage.setItem('buycarLi',JSON.stringify(this.state.buycarLi));
+            console.log(this.props.buycarLi)
+            sessionStorage.setItem('buycarLi',JSON.stringify(this.props.buycarLi));
             hashHistory.push('account');
         }
     }

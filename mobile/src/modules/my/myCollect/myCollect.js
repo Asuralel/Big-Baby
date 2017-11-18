@@ -22,23 +22,33 @@ class MyCollectComponent extends React.Component{
 
     }
     delAddress(e){
+        // let idx = e.target.attributes["data-num"].nodeValue;
+        // let goodsId=JSON.parse(this.props.show).user_collect.split(',').splice(0);
+        // var str ="" 
+        // goodsId.forEach(function(item,index){
+        //     if(item==idx){
+        //         goodsId.splice(index,1);
+        //     }
+        //     if(index==goodsId.length-1){
+        //         str+=item;
+        //     }else{
+                
+        //         str+=item+','
+        //     }
+            
+        // })
         let idx = e.target.attributes["data-num"].nodeValue;
-        let goodsId=JSON.parse(this.props.show).user_collect.split(',').splice(0);
+        let goodsId=JSON.parse(this.props.show).user_collect.split(',');
         var str ="" 
         goodsId.forEach(function(item,index){
             if(item==idx){
                 goodsId.splice(index,1);
             }
-            if(index==goodsId.length-1){
-                str+=item;
-            }else{
-                
-                str+=item+','
-            }
-            
         })
-        console.log(str)
+        str = goodsId.join(',')
         this.props.DelCollect(str,JSON.stringify(goodsId),JSON.parse(this.props.show).username)
+        console.log(str)
+        // this.props.DelCollect(str,JSON.stringify(goodsId),JSON.parse(this.props.show).username)
     }
     render(){
         if(this.props.goodsdata){
