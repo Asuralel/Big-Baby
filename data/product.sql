@@ -1,3 +1,47 @@
+/*
+Navicat MySQL Data Transfer
+
+Source Server         : big_baby
+Source Server Version : 50714
+Source Host           : localhost:3306
+Source Database       : big_baby
+
+Target Server Type    : MYSQL
+Target Server Version : 50714
+File Encoding         : 65001
+
+Date: 2017-11-18 09:07:56
+*/
+
+SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for `product`
+-- ----------------------------
+DROP TABLE IF EXISTS `product`;
+CREATE TABLE `product` (
+  `id` varchar(255) DEFAULT NULL,
+  `product_type` varchar(255) DEFAULT NULL,
+  `product_name` varchar(255) DEFAULT NULL,
+  `product_origin_price` varchar(255) DEFAULT NULL,
+  `product_discount` varchar(255) DEFAULT NULL,
+  `product_inventory` varchar(255) DEFAULT NULL,
+  `product_description` varchar(255) DEFAULT NULL,
+  `product_image` varchar(255) DEFAULT NULL,
+  `product_rate` varchar(255) DEFAULT NULL,
+  `product_spec` varchar(255) DEFAULT NULL,
+  `product_color` varchar(255) DEFAULT NULL,
+  `product_brand` varchar(255) DEFAULT NULL,
+  `product_sold_out` varchar(255) DEFAULT NULL,
+  `product_banner_imgs` varchar(1000) DEFAULT NULL,
+  `product_desc` varchar(1999) DEFAULT NULL,
+  `product_ratings` varchar(9999) DEFAULT NULL,
+  `product_up_time` varchar(255) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of product
+-- ----------------------------
 INSERT INTO `product` VALUES ('7', '0', '英伦高尔夫 1.8米床 头层牛皮 实木框架 丽斯达牛皮面床架', '4980', '0.5', '452', '大宝出品，必属精品', 'wab71.jpg', '5', '1.5米/1.8米/2.1米/2.4米', '黑色/棕色/小麦色', '罗曼蒂克', '12', '[\"wab71\",\"wab72\",\"wab73\"]', '{\"imgArr\":[\"wad71\",\"wad72\"]}', '{\"typeArr\":[\"全部评价\",\"满意\",\"一般\",\"不满意\",\"晒图\"],\"ratingList\":[{\"iconType\":\"1\",\"name\":\"18814098979\",\"time\":150373271649,\"starNum\":4,\"text\":\"款式很喜欢，跟图片一样，以后来大宝家具买可以放心了\",\"goodImgs\":[]},{\"iconType\":\"1\",\"name\":\"18814023979\",\"time\":140373271649,\"starNum\":5,\"text\":\"款式很喜欢\",\"goodImgs\":[]},{\"iconType\":\"1\",\"name\":\"18845798979\",\"time\":150273271649,\"starNum\":5,\"text\":\"喜欢\",\"goodImgs\":[\"http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204429888197885_360.jpg\"]},{\"iconType\":\"1\",\"name\":\"1566798979\",\"time\":150573271649,\"starNum\":3,\"text\":\"还好吧\",\"goodImgs\":[]},{\"iconType\":\"1\",\"name\":\"15614598979\",\"time\":140373271649,\"starNum\":1,\"text\":\"不好\",\"goodImgs\":[]},{\"iconType\":\"1\",\"name\":\"18889798979\",\"time\":144373271649,\"starNum\":5,\"text\":\"款式很喜欢，跟图片一样，以后来大宝家具买可以放心了\",\"goodImgs\":[\"http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204429888197885_360.jpg\"]},{\"iconType\":\"1\",\"name\":\"18819098979\",\"time\":148373271649,\"starNum\":5,\"text\":\"款式很喜欢，跟图片一样，以后来大宝家具买可以放心了\",\"goodImgs\":[]},{\"iconType\":\"1\",\"name\":\"18816698979\",\"time\":147373271649,\"starNum\":2,\"text\":\"款式还不错\",\"goodImgs\":[\"http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204414104485113_360.jpg\",\"http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204429888197885_360.jpg\"]},{\"iconType\":\"1\",\"name\":\"18816788979\",\"time\":1410625593567,\"starNum\":1,\"text\":\"款式很low\",\"goodImgs\":[\"http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204414104485113_360.jpg\"]},{\"iconType\":\"1\",\"name\":\"18817098979\",\"time\":1415640673567,\"starNum\":3,\"text\":\"款式很一般呀\",\"goodImgs\":[]},{\"iconType\":\"1\",\"name\":\"18867798979\",\"time\":1509640593567,\"starNum\":5,\"text\":\"款式很喜欢，跟图片一样，以后来大宝家具买可以放心了\",\"goodImgs\":[\"http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204414104485113_360.jpg\",\"http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204429888197885_360.jpg\"]}]}', '1403732716497');
 INSERT INTO `product` VALUES ('1', '0', '柚至臻 柚木+桐木 1.8米床', '16000', '0.6', '43', '大宝出品，必属精品', 'wab11.jpg', '5', '1.5米/1.8米/2.1米/2.4米', '黑色/棕色/小麦色', '罗曼蒂克', '22', '[\"wab11\",\"wab12\",\"wab13\"]', '{\"imgArr\":[\"wad11\",\"wad12\",\"wad13\",\"wad14\"]}', '{\"typeArr\":[\"全部评价\",\"满意\",\"一般\",\"不满意\",\"晒图\"],\"ratingList\":[{\"iconType\":\"1\",\"name\":\"18814098979\",\"time\":150373271649,\"starNum\":4,\"text\":\"款式很喜欢，跟图片一样，以后来大宝家具买可以放心了\",\"goodImgs\":[]},{\"iconType\":\"1\",\"name\":\"18814023979\",\"time\":140373271649,\"starNum\":5,\"text\":\"款式很喜欢\",\"goodImgs\":[]},{\"iconType\":\"1\",\"name\":\"18845798979\",\"time\":150273271649,\"starNum\":5,\"text\":\"喜欢\",\"goodImgs\":[\"http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204429888197885_360.jpg\"]},{\"iconType\":\"1\",\"name\":\"1566798979\",\"time\":150573271649,\"starNum\":3,\"text\":\"还好吧\",\"goodImgs\":[]},{\"iconType\":\"1\",\"name\":\"15614598979\",\"time\":140373271649,\"starNum\":1,\"text\":\"不好\",\"goodImgs\":[]},{\"iconType\":\"1\",\"name\":\"18889798979\",\"time\":144373271649,\"starNum\":5,\"text\":\"款式很喜欢，跟图片一样，以后来大宝家具买可以放心了\",\"goodImgs\":[\"http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204429888197885_360.jpg\"]},{\"iconType\":\"1\",\"name\":\"18819098979\",\"time\":148373271649,\"starNum\":5,\"text\":\"款式很喜欢，跟图片一样，以后来大宝家具买可以放心了\",\"goodImgs\":[]},{\"iconType\":\"1\",\"name\":\"18816698979\",\"time\":147373271649,\"starNum\":2,\"text\":\"款式还不错\",\"goodImgs\":[\"http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204414104485113_360.jpg\",\"http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204429888197885_360.jpg\"]},{\"iconType\":\"1\",\"name\":\"18816788979\",\"time\":1410625593567,\"starNum\":1,\"text\":\"款式很low\",\"goodImgs\":[\"http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204414104485113_360.jpg\"]},{\"iconType\":\"1\",\"name\":\"18817098979\",\"time\":1415640673567,\"starNum\":3,\"text\":\"款式很一般呀\",\"goodImgs\":[]},{\"iconType\":\"1\",\"name\":\"18867798979\",\"time\":1509640593567,\"starNum\":5,\"text\":\"款式很喜欢，跟图片一样，以后来大宝家具买可以放心了\",\"goodImgs\":[\"http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204414104485113_360.jpg\",\"http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204429888197885_360.jpg\"]}]}', '1401732716497');
 INSERT INTO `product` VALUES ('2', '0', '克罗德曼 布艺/松木框架 高箱床 AFB-123', '5700', '1', '766', '大宝出品，必属精品', 'wab21.jpg', '3', '1.5米/1.8米/2.1米/2.4米', '黑色/棕色/小麦色', '罗曼蒂克', '6721', '[\"wab21\",\"wab22\",\"wab23\"]', '{\"imgArr\":[\"wad21\",\"wad22\",\"wad23\"]}', '{\"typeArr\":[\"全部评价\",\"满意\",\"一般\",\"不满意\",\"晒图\"],\"ratingList\":[{\"iconType\":\"1\",\"name\":\"18814098979\",\"time\":150373271649,\"starNum\":4,\"text\":\"款式很喜欢，跟图片一样，以后来大宝家具买可以放心了\",\"goodImgs\":[]},{\"iconType\":\"1\",\"name\":\"18814023979\",\"time\":140373271649,\"starNum\":5,\"text\":\"款式很喜欢\",\"goodImgs\":[]},{\"iconType\":\"1\",\"name\":\"18845798979\",\"time\":150273271649,\"starNum\":5,\"text\":\"喜欢\",\"goodImgs\":[\"http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204429888197885_360.jpg\"]},{\"iconType\":\"1\",\"name\":\"1566798979\",\"time\":150573271649,\"starNum\":3,\"text\":\"还好吧\",\"goodImgs\":[]},{\"iconType\":\"1\",\"name\":\"15614598979\",\"time\":140373271649,\"starNum\":1,\"text\":\"不好\",\"goodImgs\":[]},{\"iconType\":\"1\",\"name\":\"18889798979\",\"time\":144373271649,\"starNum\":5,\"text\":\"款式很喜欢，跟图片一样，以后来大宝家具买可以放心了\",\"goodImgs\":[\"http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204429888197885_360.jpg\"]},{\"iconType\":\"1\",\"name\":\"18819098979\",\"time\":148373271649,\"starNum\":5,\"text\":\"款式很喜欢，跟图片一样，以后来大宝家具买可以放心了\",\"goodImgs\":[]},{\"iconType\":\"1\",\"name\":\"18816698979\",\"time\":147373271649,\"starNum\":2,\"text\":\"款式还不错\",\"goodImgs\":[\"http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204414104485113_360.jpg\",\"http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204429888197885_360.jpg\"]},{\"iconType\":\"1\",\"name\":\"18816788979\",\"time\":1410625593567,\"starNum\":1,\"text\":\"款式很low\",\"goodImgs\":[\"http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204414104485113_360.jpg\"]},{\"iconType\":\"1\",\"name\":\"18817098979\",\"time\":1415640673567,\"starNum\":3,\"text\":\"款式很一般呀\",\"goodImgs\":[]},{\"iconType\":\"1\",\"name\":\"18867798979\",\"time\":1509640593567,\"starNum\":5,\"text\":\"款式很喜欢，跟图片一样，以后来大宝家具买可以放心了\",\"goodImgs\":[\"http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204414104485113_360.jpg\",\"http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204429888197885_360.jpg\"]}]}', '1402732716497');
