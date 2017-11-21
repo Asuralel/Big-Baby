@@ -161,7 +161,7 @@ class listComponent extends React.Component {
 		}else{
 			query = "?type=listType&value="+this.props.params.goodType.split(':')[1];
 		}
-		httpAjax.get("http://localhost:888/api/mobile/sort/product.php"+query).then((res) => {
+		httpAjax.get("http://10.3.137.248:888/api/mobile/sort/product.php"+query).then((res) => {
 			let resObj = JSON.parse(res.text);
 //			console.log(resObj);
 			this.setState({
@@ -175,7 +175,7 @@ class listComponent extends React.Component {
      if(nextProps.params.goodType && nextProps.params.goodType != this.props.params.goodType) {
      	this.setState({showLoading:true});
         let query = "?type=listName&value="+nextProps.params.goodType.split('s-')[1];
-        httpAjax.get("http://localhost:888/api/mobile/sort/product.php"+query).then((res) => {
+        httpAjax.get("http://10.3.137.248:888/api/mobile/sort/product.php"+query).then((res) => {
 			let resObj = JSON.parse(res.text);
 			this.setState({
 				goodList:JSON.parse(res.text),

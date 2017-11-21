@@ -27,9 +27,11 @@ class MyaddressComponent extends React.Component{
             // this.props.choose(JSON.parse(this.props.addressData)[num]);
             var data =JSON.parse(this.props.addressData)[num]
             var user = JSON.parse(sessionStorage.getItem('user'));
+            console.log(sessionStorage.getItem('user'))
             user.user_address=data.address;
             user.tel =data.tel
-            sessionStorage.setItem('user')
+            var datadsada=JSON.stringify(user);
+            sessionStorage.setItem('user',datadsada)
             hashHistory.push("account")
         }
     }
