@@ -160,7 +160,7 @@ class detailsComponent extends React.Component {
 		console.log(this.props.location.state)
 		//loading模块
 		this.setState({showLoading:true});
-		httpAjax.get("http://localhost:888/api/mobile/sort/product.php").query('?type=getDetails&value='+this.props.location.state).then((res) => {
+		httpAjax.get("http://10.3.137.248:888/api/mobile/sort/product.php").query('?type=getDetails&value='+this.props.location.state).then((res) => {
 			let resObj = JSON.parse(res.text)[0];
 //			console.log(resObj);
 			this.setState({
@@ -246,7 +246,7 @@ class detailsComponent extends React.Component {
 		this.setState({userCollect:colletGoods});
 		if(this.state.userObj){
 //				console.log(this.state.userObj)
-			httpAjax.get("http://localhost:888/api/mobile/my/goodsCollect.php")
+			httpAjax.get("http://10.3.137.248:888/api/mobile/my/goodsCollect.php")
 			.query('username='+this.state.userObj.username+'&goodsId='+colletGoods.join(','))
 			.then((res) => {console.log(res.text)});
 		}
@@ -264,7 +264,7 @@ class detailsComponent extends React.Component {
 				amount:this.state.goodsNum,
 				product_image:this.state.detailGood.product_image
 			}
-			httpAjax.get("http://localhost:888/api/mobile/buycar/buycar.php")
+			httpAjax.get("http://10.3.137.248:888/api/mobile/buycar/buycar.php")
 			.query('username='+this.state.userObj.username)
 			.then((res) => {
 				// console.log(JSON.parse(res.text).length)
@@ -279,7 +279,7 @@ class detailsComponent extends React.Component {
 				if(!carhas){
 					buycarLi.push(carli);
 				}
-				httpAjax.get("http://localhost:888/api/mobile/buycar/buycar.php")
+				httpAjax.get("http://10.3.137.248:888/api/mobile/buycar/buycar.php")
 				.query('username='+this.state.userObj.username+'&list='+JSON.stringify(buycarLi))
 				.then((res) => {
 					// console.log(JSON.parse(res.text))
@@ -301,7 +301,7 @@ class detailsComponent extends React.Component {
 				amount:this.state.goodsNum,
 				product_image:this.state.detailGood.product_image
 			}
-			httpAjax.get("http://localhost:888/api/mobile/buycar/buycar.php")
+			httpAjax.get("http://10.3.137.248:888/api/mobile/buycar/buycar.php")
 			.query('username='+this.state.userObj.username)
 			.then((res) => {
 				var buycarLi  = JSON.parse(res.text).length == 0 ? [] : JSON.parse(JSON.parse(res.text)[0].list);
@@ -316,7 +316,7 @@ class detailsComponent extends React.Component {
 					buycarLi.push(carli);
 				}
 //				console.log(buycarLi)
-				httpAjax.get("http://localhost:888/api/mobile/buycar/buycar.php")
+				httpAjax.get("http://10.3.137.248:888/api/mobile/buycar/buycar.php")
 				.query('username='+this.state.userObj.username+'&list='+JSON.stringify(buycarLi))
 				.then((res) => {
 					hashHistory.push('/buycar');
