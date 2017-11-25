@@ -14,6 +14,7 @@ import LinksMask from '../common/linksMask/linksMaskComponent.js'
 import Loading from '../common/loading/loadingComponent.js'
 import ComSearch from '../common/comSearch/comSearchComponent.js'
 import {IMGURL} from '../common/commonUrl.js'
+import {API_URL} from '../common/commonApiUrl.js'
 
 class listComponent extends React.Component {
 	constructor(props){
@@ -21,120 +22,7 @@ class listComponent extends React.Component {
         this.state={
         	isShowLinks:'none', //linksMaskComponent.js：公共模块导航相关属性
         	showLoading:false	//loadingComponent.js：公共模块导航相关属性
-        /*	goodList:[{
-        		goodId:'1',
-        		img:'http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204429888197885_240.jpg',
-        		name:'克罗德曼 布艺/松木框架 床架 AFB-607',
-        		sellNum:96,
-        		nowPrice:7800
-        	},{
-        		goodId:'2',
-        		img:'http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204429888197885_240.jpg',
-        		name:'凯纳豪迪 柚木 移门衣柜 2012-A',
-        		sellNum:78,
-        		nowPrice:9800,
-        		oldPrice:10000
-        	},{
-        		goodId:'3',
-        		img:'http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204429888197885_240.jpg',
-        		name:'全能BMG8002系列文件柜大型全钢办公文件柜档案柜带锁抽屉',
-        		sellNum:46,
-        		nowPrice:2100,
-        		oldPrice:2400
-        	},{
-        		goodId:'4',
-        		img:'http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204429888197885_240.jpg',
-        		name:'欧卡诺定制不锈钢台面 酒红色 玻璃门板',
-        		sellNum:56,
-        		nowPrice:1780,
-        		oldPrice:2340
-        	},{
-        		goodId:'5',
-        		img:'http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204429888197885_240.jpg',
-        		name:'克罗德曼 布艺/松木框架 床架 AFB-607',
-        		sellNum:43,
-        		nowPrice:6500,
-        		oldPrice:7110
-        	},{
-        		goodId:'6',
-        		img:'http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204429888197885_240.jpg',
-        		name:'凯纳豪迪 柚木 移门衣柜 2012-A',
-        		sellNum:38,
-        		nowPrice:2800,
-        		oldPrice:3000
-        	},{
-        		goodId:'7',
-        		img:'http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204429888197885_240.jpg',
-        		name:'全能BMG8002系列文件柜大型全钢办公文件柜档案柜带锁抽屉',
-        		sellNum:92,
-        		nowPrice:1900,
-        		oldPrice:2200
-        	},{
-        		goodId:'8',
-        		img:'http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204429888197885_240.jpg',
-        		name:'欧卡诺定制不锈钢台面 酒红色 玻璃门板',
-        		sellNum:124,
-        		nowPrice:1290,
-        		oldPrice:2000
-        	},{
-        		goodId:'9',
-        		img:'http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204429888197885_240.jpg',
-        		name:'克罗德曼 布艺/松木框架 床架 AFB-607',
-        		sellNum:1,
-        		nowPrice:9100,
-        		oldPrice:10010
-        	},{
-        		goodId:'10',
-        		img:'http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204429888197885_240.jpg',
-        		name:'凯纳豪迪 柚木 移门衣柜 2012-A',
-        		sellNum:2,
-        		nowPrice:800,
-        		oldPrice:1000
-        	},{
-        		goodId:'11',
-        		img:'http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204429888197885_240.jpg',
-        		name:'全能BMG8002系列文件柜大型全钢办公文件柜档案柜带锁抽屉',
-        		sellNum:78,
-        		nowPrice:2900,
-        		oldPrice:3200
-        	},{
-        		goodId:'12',
-        		img:'http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204429888197885_240.jpg',
-        		name:'欧卡诺定制不锈钢台面 酒红色 玻璃门板',
-        		sellNum:189,
-        		nowPrice:1990,
-        		oldPrice:2370
-        	},{
-        		goodId:'13',
-        		img:'http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204429888197885_240.jpg',
-        		name:'克罗德曼 布艺/松木框架 床架 AFB-607',
-        		sellNum:45,
-        		nowPrice:1900,
-        		oldPrice:2210
-        	},{
-        		goodId:'14',
-        		img:'http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204429888197885_240.jpg',
-        		name:'凯纳豪迪 柚木 移门衣柜 2012-A',
-        		sellNum:78,
-        		nowPrice:6800,
-        		oldPrice:7000
-        	},{
-        		goodId:'15',
-        		img:'http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204429888197885_240.jpg',
-        		name:'全能BMG8002系列文件柜大型全钢办公文件柜档案柜带锁抽屉',
-        		sellNum:6,
-        		nowPrice:2800,
-        		oldPrice:2900
-        	},{
-        		goodId:'16',
-        		img:'http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204429888197885_240.jpg',
-        		name:'欧卡诺定制不锈钢台面 酒红色 玻璃门板',
-        		sellNum:147,
-        		nowPrice:180,
-        		oldPrice:240
-        	}]
-        */
-        }
+		}
     }
 	//linksMaskComponent.js：公共模块导航相关方法
 	showLinks(){
@@ -161,7 +49,7 @@ class listComponent extends React.Component {
 		}else{
 			query = "?type=listType&value="+this.props.params.goodType.split(':')[1];
 		}
-		httpAjax.get("http://10.3.137.248:888/api/mobile/sort/product.php"+query).then((res) => {
+		httpAjax.get(API_URL+"/mobile/sort/product.php"+query).then((res) => {
 			let resObj = JSON.parse(res.text);
 //			console.log(resObj);
 			this.setState({
@@ -175,7 +63,7 @@ class listComponent extends React.Component {
      if(nextProps.params.goodType && nextProps.params.goodType != this.props.params.goodType) {
      	this.setState({showLoading:true});
         let query = "?type=listName&value="+nextProps.params.goodType.split('s-')[1];
-        httpAjax.get("http://10.3.137.248:888/api/mobile/sort/product.php"+query).then((res) => {
+        httpAjax.get(API_URL+"/mobile/sort/product.php"+query).then((res) => {
 			let resObj = JSON.parse(res.text);
 			this.setState({
 				goodList:JSON.parse(res.text),
