@@ -63,7 +63,6 @@ module.exports = {
         })    
     ],
     devServer: {
-        stats: 'errors-only',
-        host:'10.3.137.248'
+        stats: 'errors-only'
     }	
 }
