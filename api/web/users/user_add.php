@@ -14,9 +14,9 @@
 	$user_account = isset($_REQUEST['user_account']) ? $_REQUEST['user_account'] : '';
 	$user_password = isset($_REQUEST['user_password']) ? $_REQUEST['user_password'] : '';
 	$user_identify = isset($_REQUEST['user_identify']) ? $_REQUEST['user_identify'] : '';
-	$user_time = isset($_REQUEST['user_time']) ? $_REQUEST['user_time'] : '';
-	$user_id = isset($_REQUEST['user_id']) ? $_REQUEST['user_id'] : '';
-	$arr=rand(1,1000);
+	$user_time = isset($_REQUEST['user_time']) ? $_REQUEST['user_time'] : date("Y/m/d h:i:s");
+	$arr=rand(1,10000);
+	$user_id = $arr;
 	$id = isset($_REQUEST['id']) ? $_REQUEST['id'] : $arr;
 
 

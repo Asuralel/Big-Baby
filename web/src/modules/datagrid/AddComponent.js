@@ -10,10 +10,11 @@ import { Input,Button} from 'antd';
 
 class AddComponent extends React.Component {
     constructor(props){
-        super(props)
+        super(props);
     }
     componentDidMount(){
         // this.props.Init(this.props.addUrl);
+        
     }
     addHandler(){
         var arr = this.props.addUrl.split("/");
@@ -30,8 +31,12 @@ class AddComponent extends React.Component {
         for(var i = 1;i<idx-1;i++){
             var num = "input" + i;
             // console.log(i)
+            if(this.refs[num].refs.input.id=="user_time"){
+                break;
+            }
             str += `&${this.refs[num].refs.input.id}=${this.refs[num].refs.input.value}`
         }
+        console.log(str);
         str += '&id=' + id;
         str = str.slice(1);
         console.log(str)
@@ -46,7 +51,7 @@ class AddComponent extends React.Component {
         if(this.props.res=="ok"){
             alert("添加成功");
             this.refs.add.parentNode.style.display = "none";
-            location.reload(true);
+            // location.reload(true);
         }else if(this.props.res=="fail"){
             alert("添加失败");
             return;

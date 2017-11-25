@@ -46,23 +46,28 @@ var HomeComponent =  React.createClass({
                 >
                   <div className="logo">
                     <h1>BIGBABY</h1>
+                    <p>后台管理系统</p>
                   </div>
-                  <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']}>
+                  <Menu theme="dark" mode="inline" defaultSelectedKeys={['5']}>
                     <Menu.Item key="1">
-                      <Icon type="video-camera" />
+                      <Icon type="appstore-o" />
                       <span className="nav-text"><Link to="product">商品管理</Link></span>
                     </Menu.Item>
                     <Menu.Item key="2">
-                      <Icon type="upload" />
+                      <Icon type="schedule" />
                       <span className="nav-text"><Link to="order">订单详情</Link></span>
                     </Menu.Item>
                     <Menu.Item key="3">
                       <Icon type="user" />
-                      <span className="nav-text"><Link to="user">用户管理</Link></span>
+                      <span className="nav-text"><Link to="user">管理员管理</Link></span>
                     </Menu.Item>
                     <Menu.Item key="4">
-                      <Icon type="user" />
-                      <span className="nav-text"><Link to="buycar">购物车</Link></span>
+                      <Icon type="shop" />
+                      <span className="nav-text"><Link to="buycar">购物车管理</Link></span>
+                    </Menu.Item>
+                    <Menu.Item key="5">
+                      <Icon type="team" />
+                      <span className="nav-text"><Link to="users">用户管理</Link></span>
                     </Menu.Item>
                   </Menu>
                 </Sider>

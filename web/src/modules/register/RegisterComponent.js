@@ -10,12 +10,18 @@ import { Input,Button} from 'antd';
 
 class RegisterComponent extends React.Component {
     constructor(props){
-        super(props)
+        super(props);
     }
     registerHandler(){
-        this.props.register(`user_account=${this.refs.account.refs.input.value}&user_name=${this.refs.username.refs.input.value}&user_password=${this.refs.password.refs.input.value}&user_gender=${this.refs.gender.refs.input.value}&user_phone=${this.refs.phone.refs.input.value}&user_address=${this.refs.address.refs.input.value}&user_identify=管理员`)
+        this.props.register(`user_account=${this.refs.account.refs.input.value}&user_name=${this.refs.username.refs.input.value}&user_password=${this.refs.password.refs.input.value}&user_gender=${this.refs.gender.refs.input.value}&user_phone=${this.refs.phone.refs.input.value}&user_identify=管理员`)
     }
     render(){
+        if(this.props.data=="ok"){
+            alert("注册成功");
+            hashHistory.push('/');
+        }else if(this.props.data=="fail"){
+            // alert("注册失败");
+        }
         return(
             <div className="register">
                 <h1>用户注册</h1>
@@ -39,10 +45,6 @@ class RegisterComponent extends React.Component {
                     <li>
                         <label htmlFor="phone">电话：</label>
                         <Input type="phone" placeholder="请输入您的电话" ref="phone" id="phone"/>
-                    </li>
-                    <li>
-                        <label htmlFor="address">地址：</label>
-                        <Input type="address" placeholder="请输入您的地址" ref="address" id="address"/>
                     </li>
                     <SpinnerComponent show={this.props.loading}/>
                     <li>
