@@ -13,8 +13,13 @@ class AccSevurity extends React.Component{
             console.log(res)
         })
     }
-    setpassword(){
-        hashHistory.push('/my/mySet/setpassword')
+    setpassword(e){
+        if(e.target.className=="setpas"){
+            hashHistory.push('/my/mySet/setpassword')
+        }else if(e.target.className=="settel"){
+            hashHistory.push('/my/mySet/mytel')
+        }
+        
     }
     render(){
         if(this.props.show){
@@ -27,22 +32,22 @@ class AccSevurity extends React.Component{
                         </div>
                         <h3>设置</h3>
                     </div>
-                    <div className="accContent">
-                        <div>
+                    <div className="accContent" onClick={this.setpassword.bind(this)}>
+                        <div className="settel">
                             <span><Icon type="mobile" style={{ fontSize: 20, color: '#FF9C00'}} />&nbsp;&nbsp;手机</span>
                             <span className="lastSpan">
                                 {Msgdata.tel}
                             </span>
                             <Icon type="right" />
                         </div>
-                        <div onClick={this.setpassword.bind(this)}>
+                        <div className ="setpas">
                             <span><Icon type="key" style={{ fontSize: 20, color: '#58bc58'}}/>&nbsp;&nbsp;登录密码</span>
                             <span className="lastSpan">
                                 设置
                             </span>
                             <Icon type="right" />
                         </div>
-                        <div>
+                        <div >
                             <span><Icon type="shop" style={{ fontSize: 20, color: '##2FB4F7'}}/>&nbsp;&nbsp;交易密码</span>
                             <span className="lastSpan">
                                 设置

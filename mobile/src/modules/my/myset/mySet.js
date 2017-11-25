@@ -16,9 +16,16 @@ class MySetComponent extends React.Component{
     }
     componentDidMount(){
     }
-    clickto(){
+    clickto(e){
         
-        hashHistory.push("/my/mySet/address")
+        if(e.target.className=="address"){
+            hashHistory.push("/my/mySet/address")
+        }else if(e.target.className=="mygender"){
+            hashHistory.push("/my/mySet/myset")
+        }else if(e.target.className == "mysign"){
+            hashHistory.push("/my/mySet/mysign")
+        }
+
     }
     render(){
         
@@ -32,7 +39,7 @@ class MySetComponent extends React.Component{
                         </div>
                         <h3>设置</h3>
                     </div>
-                    <div className="setContent">
+                    <div className="setContent" onClick={this.clickto}>
                         <div>
                             <span>头像</span>
                             <span className="lastSpan">
@@ -41,27 +48,27 @@ class MySetComponent extends React.Component{
                             <Icon type="right" />
                         </div>
                         <div>
-                            <span>昵称</span>
+                            <span>用户名</span>
                             <span className="lastSpan">
                             {show.username}
                             </span>
                             <Icon type="right" />
                         </div>
-                        <div>
+                        <div className="mygender">
                             <span>性别</span>
                             <span className="lastSpan">
                             {show.gender}
                             </span>
                             <Icon type="right" />
                         </div>
-                        <div>
+                        <div className="mysign">
                             <span>个性签名</span>
                             <span className="lastSpan">
                             {show.sign}
                             </span>
                             <Icon type="right" />
                         </div>
-                        <div className="address" onClick={this.clickto}>
+                        <div className="address" >
                             <span>收货地址</span>
                             <span className="lastSpan">
                             添加更多

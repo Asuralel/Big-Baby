@@ -22,21 +22,6 @@ class MyCollectComponent extends React.Component{
 
     }
     delAddress(e){
-        // let idx = e.target.attributes["data-num"].nodeValue;
-        // let goodsId=JSON.parse(this.props.show).user_collect.split(',').splice(0);
-        // var str ="" 
-        // goodsId.forEach(function(item,index){
-        //     if(item==idx){
-        //         goodsId.splice(index,1);
-        //     }
-        //     if(index==goodsId.length-1){
-        //         str+=item;
-        //     }else{
-                
-        //         str+=item+','
-        //     }
-            
-        // })
         let idx = e.target.attributes["data-num"].nodeValue;
         let goodsId=JSON.parse(this.props.show).user_collect.split(',');
         var str ="" 
@@ -47,11 +32,13 @@ class MyCollectComponent extends React.Component{
         })
         str = goodsId.join(',')
         this.props.DelCollect(str,JSON.stringify(goodsId),JSON.parse(this.props.show).username)
-        console.log(str)
-        // this.props.DelCollect(str,JSON.stringify(goodsId),JSON.parse(this.props.show).username)
     }
     render(){
-        if(this.props.goodsdata){
+        
+        if(!this.props.goodsdata){
+            return null
+        }
+        if(JSON.parse(this.props.goodsdata).length>0){
             let data = JSON.parse(this.props.goodsdata)
             console.log(data)
             return (
@@ -99,15 +86,12 @@ class MyCollectComponent extends React.Component{
                         <div></div>
                         <div>
                             <p>您还没有任何产品呢！</p>
-                            <span>看看好货</span>
-                            <Icon type="delete" />
+                            <span><Link to="/home">看看好货</Link></span>
                         </div>
                     </div>
                 </div>
-            )
-            
+            )  
         }
-        
     }
 }
 const MyState = function(state){

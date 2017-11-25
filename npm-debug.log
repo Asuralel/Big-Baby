@@ -4,6 +4,25 @@
 1 verbose cli   'start' ]
 2 info using npm@3.10.10
 3 info using node@v6.11.3
+<<<<<<< HEAD
+4 verbose config Skipping project config: C:\Users\Administrator/.npmrc. (matches userconfig)
+5 verbose stack Error: ENOENT: no such file or directory, open 'C:\Users\Administrator\package.json'
+5 verbose stack     at Error (native)
+6 verbose cwd C:\Users\Administrator\Desktop\big-baby\Big-Baby
+7 error Windows_NT 6.1.7601
+8 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "start"
+9 error node v6.11.3
+10 error npm  v3.10.10
+11 error path C:\Users\Administrator\package.json
+12 error code ENOENT
+13 error errno -4058
+14 error syscall open
+15 error enoent ENOENT: no such file or directory, open 'C:\Users\Administrator\package.json'
+16 error enoent ENOENT: no such file or directory, open 'C:\Users\Administrator\package.json'
+16 error enoent This is most likely not a problem with npm itself
+16 error enoent and is related to npm not being able to find a file.
+17 verbose exit [ -4058, true ]
+=======
 4 verbose stack Error: ENOENT: no such file or directory, open 'D:\Big-Baby\package.json'
 4 verbose stack     at Error (native)
 5 verbose cwd D:\Big-Baby
@@ -20,3 +39,4 @@
 15 error enoent This is most likely not a problem with npm itself
 15 error enoent and is related to npm not being able to find a file.
 16 verbose exit [ -4058, true ]
+>>>>>>> c6b1a4698359d64bb30d9a21dc9310b616d1d8a7

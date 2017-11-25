@@ -23,7 +23,9 @@ import agreement from './modules/register/agreement';
 import address from './modules/my/myset/address/address';
 import myEdit from './modules/my/myset/address/addressEdit/addressEdit';
 import setpas from './modules/my/accountSecurity/setpassword';
-
+import setSix from './modules/my/myset/mysix';
+import mysign from './modules/my/myset/mysign';
+import settel from './modules/my/myset/setTel'
 
 
 export default (
@@ -44,6 +46,10 @@ export default (
             <Route path = '/my/mySet/address' component = {address}/>
             <Route path="/my/mySet/edit" component={myEdit}/>
             <Route path="/my/mySet/setpassword" component={setpas}/>
+            <Route path="/my/mySet/myset" component={setSix}/>
+            <Route path="/my/mySet/mysign" component={mysign}/>
+            <Route path="/my/mySet/mytel" component={settel}/>
+
         </Route>
         <Route path="sort" component={sortComponent} />
         <Route path="list/:goodType" component={listComponent} />
