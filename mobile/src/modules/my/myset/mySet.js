@@ -41,7 +41,7 @@ class MySetComponent extends React.Component{
                             <Icon type="right" />
                         </div>
                         <div>
-                            <span>昵称</span>
+                            <span>用户名</span>
                             <span className="lastSpan">
                             {show.username}
                             </span>

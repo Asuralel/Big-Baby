@@ -32,10 +32,12 @@ class MyCollectComponent extends React.Component{
         })
         str = goodsId.join(',')
         this.props.DelCollect(str,JSON.stringify(goodsId),JSON.parse(this.props.show).username)
-        console.log(this.prop.show)
     }
     render(){
-        if(this.props.goodsdata){
+        if(!this.props.goodsdata){
+            return null
+        }
+        if(JSON.parse(this.props.goodsdata)>0){
             let data = JSON.parse(this.props.goodsdata)
             console.log(data)
             return (
@@ -84,14 +86,11 @@ class MyCollectComponent extends React.Component{
                         <div>
                             <p>您还没有任何产品呢！</p>
                             <span>看看好货</span>
-                            <Icon type="delete" />
                         </div>
                     </div>
                 </div>
-            )
-            
+            )  
         }
-        
     }
 }
 const MyState = function(state){

@@ -24,6 +24,7 @@ class BuycarComponent extends React.Component {
             accountList:[]
         }
         this.topay = this.topay.bind(this);
+        this.goAddress = this.goAddress.bind(this);
     }
 
     componentWillMount(){
@@ -57,6 +58,12 @@ class BuycarComponent extends React.Component {
         });
     }
 
+    goAddress(){
+        if(!this.state.addressOK){
+            hashHistory.push('/my/mySet/address');
+        }
+    }
+
     topay(){
         var now = new Date();
 
@@ -75,7 +82,8 @@ class BuycarComponent extends React.Component {
 
         var order_num = '' + year + month + date + parseInt(Math.random() * 100000);
         var accountList = JSON.parse(sessionStorage.getItem('accountList')).account; 
-        var buycarLi = JSON.parse(sessionStorage.getItem('buycarLi'));       
+        var buycarLi = JSON.parse(sessionStorage.getItem('buycarLi'));   
+        console.log(buycarLi)    
         for(var i = 0;i<accountList.length;i++){
             for(var j =0;j<buycarLi.length;j++){
                 if(accountList[i].product_name == buycarLi[j].product_name){
@@ -96,8 +104,11 @@ class BuycarComponent extends React.Component {
                         order_address:this.state.user.user_address
                     }
         this.props.accountInit(obj).then(()=>{
+            // sessionStorage.removeItem('buycarLi');
+            // sessionStorage.removeItem('accountList');
              hashHistory.push('pay/' + order_num);
         });
+
     }
 
     render(){
@@ -115,7 +126,7 @@ class BuycarComponent extends React.Component {
                         <p className='dizhi'><label for="dizhi">地址：</label><input id="dizhi" type="text" value={this.state.user.user_address} /></p> :
                         
                     </div>
-                    <div className = 'address' style={{display:this.state.addressOK ? 'none' : 'block'}}><p className="add"><span>+</span>请添加收货地址</p></div>
+                    <div onClick={this.goAddress} className = 'address' style={{display:this.state.addressOK ? 'none' : 'block'}}><p className="add"><span>+</span>请添加收货地址</p></div>
                     <div className='blank'></div>
                     <ul className="accountList">
                             {

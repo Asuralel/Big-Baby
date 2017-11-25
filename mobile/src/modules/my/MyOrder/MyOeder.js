@@ -12,7 +12,6 @@ class MyOrderComponent extends React.Component{
     constructor(props){
         super(props);
         this.state= {
-            iconloading: false,
             user_order:[[],[],[],[]],
             order_product:[[],[],[],[]],
             totalprice:[[],[],[],[]]
@@ -31,14 +30,17 @@ class MyOrderComponent extends React.Component{
 
     }
     onDelete(e){
-        this.setState({ iconLoading: true });
         const idx = e.target.getAttribute('data-index');
         console.log(this.state.user_order[0][idx].order_num)
         http.get('my/deleteOrder.php',`order_num=${this.state.user_order[0][idx].order_num}`).then((res)=>{
             if(res=='ok'){
                 var update = this.state.user_order;
+                var update1 = this.state.order_product;
+                var update2 = this.state.totalprice;
                 update[0].splice(idx,1);
-                this.setState({ iconLoading: false,user_order: update });
+                update1[0].splice(idx,1);
+                update2[0].splice(idx,1);
+                this.setState({ user_order: update,user_product: update1,user_totalprice: update2 });
                 message.success('已取消订单');
             }
         })
@@ -177,7 +179,7 @@ class MyOrderComponent extends React.Component{
                                             <div className="waitpay_b">共{this.state.order_product[0][idx].length}件商品 合计<span>￥{this.state.totalprice[0][idx]}</span></div>
                                             <div className="waitpay_handle">
                                             <Link to={"/pay/"+item.order_num}><Button type="danger" ghost>付款</Button></Link>
-                                            <Button data-index={idx} type="primary" ghost loading={this.state.iconLoading} onClick={this.onDelete.bind(this)}>取消订单</Button>
+                                            <Button data-index={idx} type="primary" ghost  onClick={this.onDelete.bind(this)}>取消订单</Button>
                                             </div>
                                         </div>
                                     )

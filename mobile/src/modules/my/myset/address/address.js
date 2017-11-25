@@ -8,7 +8,6 @@ import Historyback from "../../../buycar/HistorybackComponent"
 import myaddress from "./address.scss";
 import SpinnerComponent from "../../../spinner/SpinnerComponent";
 class MyaddressComponent extends React.Component{
-    
     componentWillMount(){
         this.props.loginInit().then(response=>{
             this.props.Myaddress(JSON.parse(response).username)
@@ -23,16 +22,13 @@ class MyaddressComponent extends React.Component{
         }
         else if(e.target.className=="chooseaddress"){
             let num = e.target.attributes["data-idx"].nodeValue;
-            // this.props.choose(JSON.parse(this.props.addressData)[num]);
             var data =JSON.parse(this.props.addressData)[num]
             var user = JSON.parse(sessionStorage.getItem('user'));
             console.log(sessionStorage.getItem('user'))
             user.user_address=data.address;
             user.tel =data.tel
             var datadsada=JSON.stringify(user);
-            console.log(datadsada)
             sessionStorage.setItem('user',datadsada)
-            // sessionStorage.setItem('user', response)
             hashHistory.push("account")
         }
     }

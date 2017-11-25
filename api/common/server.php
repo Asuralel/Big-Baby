@@ -4,7 +4,7 @@
 	 * 连接数据库函数
 	 */
 	function connect(){
-		$severname = '10.3.137.248:3306';
+		$severname = 'localhost:3306';
 		$username = 'root';
 		$password = '';
 		$dbname = 'big_baby';
