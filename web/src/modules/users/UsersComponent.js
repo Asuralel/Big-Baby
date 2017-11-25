@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import * as UserAction from './UserAction'
+import * as UsersAction from './UsersAction'
 import SpinnerComponent from '../spinner/SpinnerComponent';
 import DatagridComponent from '../datagrid/DatagridComponent';
 import {Router,Route,Link} from "react-router";
@@ -35,5 +35,5 @@ const mapStateToProps = function(state){
     }
 }
 
-export default connect(mapStateToProps, UserAction)(UserComponent)
+export default connect(mapStateToProps, UsersAction)(UsersComponent)
 
