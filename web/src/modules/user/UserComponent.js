@@ -7,11 +7,6 @@ import {Router,Route,Link} from "react-router";
 
 
 class UserComponent extends React.Component{
-    // componentDidMount(){
-        
-    //     this.props.UserInit();
-    // }
-
     render(){
         return (
             
@@ -19,14 +14,10 @@ class UserComponent extends React.Component{
                 <DatagridComponent url="http://localhost/big_baby/api//web/user/user.php" 
                 delete_url="http://localhost/big_baby/api//web/user/deleteUser.php"  
                 update_url="http://localhost/big_baby/api//web/user/updateUser.php" 
-                title='user_name,user_gender,user_phone,user_account,user_sign,user_collect'/>
+                title='user_name,user_gender,user_phone,user_account,user_password,user_time'/>
             )
     }
 }
-
-
-
-
 
 const mapStateToProps = function(state){
     return {

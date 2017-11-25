@@ -13,3 +13,27 @@ export function mysetinit(username){
 export  function loginInit(){
     return loginstate()
 }
+export function setSix(username,gender){
+    return {
+          types: ['EDIT_REQUEST', 'SETPAS_SUCCESS', 'EDIT_FAILURE'],
+          path: 'my/setpas.php',
+          method: 'post',
+          query: {username,gender}
+    }
+}
+export function setSign(username,signCont){
+    return {
+          types: ['EDIT_REQUEST', 'SETPAS_SUCCESS', 'EDIT_FAILURE'],
+          path: 'my/setpas.php',
+          method: 'post',
+          query: {username,signCont}
+    }
+}
+export function setTel(username,newtel){
+    return {
+          types: ['EDIT_REQUEST', 'SETPAS_SUCCESS', 'EDIT_FAILURE'],
+          path: 'my/setpas.php',
+          method: 'post',
+          query: {username,newtel}
+    }
+}

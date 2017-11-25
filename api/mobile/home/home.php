@@ -1,6 +1,6 @@
 <?php
-    include "../../common/server.php";
     header("Access-Control-Allow-Origin: *");
+    include "../../common/server.php";
 
     $sqlDisc = "select * from product order by product_discount*1 limit 0,3";  
     $resDisc = query($sqlDisc);

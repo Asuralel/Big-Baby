@@ -27,6 +27,8 @@ class MyaddressComponent extends React.Component{
             console.log(sessionStorage.getItem('user'))
             user.user_address=data.address;
             user.tel =data.tel
+            user.name =data.name;
+            // console 
             var datadsada=JSON.stringify(user);
             sessionStorage.setItem('user',datadsada)
             hashHistory.push("account")

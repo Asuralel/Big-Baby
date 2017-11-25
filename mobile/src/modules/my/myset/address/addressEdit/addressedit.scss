@@ -26,4 +26,22 @@
             border-bottom:0px none;padding-top:30px;
         }
     }
+    .setSix{
+        select{
+            option{
+                border: 0px none;
+                font-size:16px;
+            }
+            width: 65%;
+            height: 35px;
+            border: 0px none;
+                font-size:16px;
+
+        }
+    }
+    .mysign{
+        textarea{
+            font-size:16px;
+        }
+    }
 }

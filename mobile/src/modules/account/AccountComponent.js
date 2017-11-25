@@ -121,7 +121,7 @@ class BuycarComponent extends React.Component {
                 </header>
                 <main id="acmain">
                     <div className='address' style = {{display:this.state.addressOK ? 'block' : 'none'}}>
-                        <p className='username'><label for="username">收货人：</label><input type="text" id="username" value={this.state.user.username} /></p>
+                        <p className='username'><label for="username">收货人：</label><input type="text" id="username" value={this.state.user.name} /></p>
                         <p className='tel'><label for="tel">联系方式：</label><input id='tel' type="text" value={this.state.user.tel} /></p>
                         <p className='dizhi'><label for="dizhi">地址：</label><input id="dizhi" type="text" value={this.state.user.user_address} /></p> :
                         

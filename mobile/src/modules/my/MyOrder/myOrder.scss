@@ -24,7 +24,7 @@
         }
         .waitpay{
             
-            font-size:16px;
+            font-size:15px;
             margin-top:10px;
             padding:0px 0px 0px 12px;
             border-top:1px solid rgb(217, 217, 217);
@@ -32,12 +32,12 @@
             .waitpay_h{
                 height:40px;
                 border-bottom:1px solid rgb(217, 217, 217);
-                div{float:left;width:50%;height:40px;line-height:40px;
+                div{float:left;width:42%;height:40px;line-height:40px;font-size:14px;
                     span{
                         color:#aaa;
                     }
                 }
-                p{float:right;width:50%;text-align:right;padding-right:12px;height:40px;line-height:40px;color:#aaa;font-size:14px;}
+                p{float:right;width:58%;text-align:right;padding-right:12px;height:40px;line-height:40px;color:#aaa;font-size:14px;}
             }
             ul{
                 width:100%;display: inline;white-space: nowrap;overflow-x:scroll;float:left;overflow-y:hidden;

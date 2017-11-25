@@ -16,7 +16,6 @@ import LinksMask from '../common/linksMask/linksMaskComponent.js'
 import SplitGap from '../common/splitGap/splitGap.js'
 import Loading from '../common/loading/loadingComponent.js'
 import {IMGURL} from '../common/commonUrl.js'
-import {API_URL} from '../common/commonApiUrl.js'
 
 
 class detailsComponent extends React.Component {
@@ -25,7 +24,120 @@ class detailsComponent extends React.Component {
         this.state={
         	isShowLinks:'none', //linksMaskComponent.js：公共模块导航相关属性
         	showLoading:false	//loadingComponent.js：公共模块导航相关属性
-		}
+        	/*goodDetail:{
+        		good:{
+        			imgArr:['http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204429888197885_360.jpg',
+        					'http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204414095163293_360.jpg',
+        					'http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204414104485113_360.jpg',
+        					'http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204414098391572_360.jpg',
+        					'http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204414101449903_360.jpg'
+        			],
+        			name:'克罗德曼 布艺/松木框架 床架 AFB-607',
+        			nowPrice:7800,
+        			oldPrice:9800,
+        			sellNum:356
+        		},
+        		desc:{
+        			imgArr:['http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05223222234151228_1280.jpg',
+        					'http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05223222246543956_1280.jpg',
+        					'http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05223222255069538_1280.jpg',
+        					'http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05223222250796516_1280.jpg',
+        					'http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05223222238667729_1280.jpg',
+        					'http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05223222242553886_1280.jpg'
+        			]
+        		},
+        		ratings:{
+        			typeArr:['全部评价','满意','一般','不满意','晒图'],
+        			ratingList:[{
+        				iconType:'1',
+        				name:'18814098979',
+        				time:150373271649,
+        				starNum:4,
+        				text:'款式很喜欢，跟图片一样，以后来大宝家具买可以放心了',
+        				goodImgs:[]
+        			},{
+        				iconType:'1',
+        				name:'18814023979',
+        				time:140373271649,
+        				starNum:5,
+        				text:'款式很喜欢',
+        				goodImgs:[]
+        			},{
+        				iconType:'1',
+        				name:'18845798979',
+        				time:150273271649,
+        				starNum:5,
+        				text:'喜欢',
+        				goodImgs:['http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204429888197885_360.jpg'
+        				]
+        			},{
+        				iconType:'1',
+        				name:'1566798979',
+        				time:150573271649,
+        				starNum:3,
+        				text:'还好吧',
+        				goodImgs:[
+        				]
+        			},{
+        				iconType:'1',
+        				name:'15614598979',
+        				time:140373271649,
+        				starNum:1,
+        				text:'不好',
+        				goodImgs:[]
+        			},{
+        				iconType:'1',
+        				name:'18889798979',
+        				time:144373271649,
+        				starNum:5,
+        				text:'款式很喜欢，跟图片一样，以后来大宝家具买可以放心了',
+        				goodImgs:['http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204429888197885_360.jpg'
+        				]
+        			},{
+        				iconType:'1',
+        				name:'18819098979',
+        				time:148373271649,
+        				starNum:5,
+        				text:'款式很喜欢，跟图片一样，以后来大宝家具买可以放心了',
+        				goodImgs:[]
+        			},{
+        				iconType:'1',
+        				name:'18816698979',
+        				time:147373271649,
+        				starNum:2,
+        				text:'款式还不错',
+        				goodImgs:['http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204414104485113_360.jpg',
+        						'http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204429888197885_360.jpg'
+        				]
+        			},{
+        				iconType:'1',
+        				name:'18816788979',
+        				time:1410625593567,
+        				starNum:1,
+        				text:'款式很low',
+        				goodImgs:['http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204414104485113_360.jpg'
+        				]
+        			},{
+        				iconType:'1',
+        				name:'18817098979',
+        				time:1415640673567,
+        				starNum:3,
+        				text:'款式很一般呀',
+        				goodImgs:[]
+        			},{
+        				iconType:'1',
+        				name:'18867798979',
+        				time:1509640593567,
+        				starNum:5,
+        				text:'款式很喜欢，跟图片一样，以后来大宝家具买可以放心了',
+        				goodImgs:['http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204414104485113_360.jpg',
+        						'http://www.mallvv.com/data/upload/shop/store/goods/5523/5523_05204429888197885_360.jpg'
+        				]
+        			}]
+        		}
+        	}
+        */
+        }
     }
 	//linksMaskComponent.js：公共模块导航相关方法
 	showLinks(){
@@ -45,10 +157,10 @@ class detailsComponent extends React.Component {
 	componentWillMount(){
 		//用户登录相关
 		let userObj = JSON.parse(sessionStorage.getItem('user'));
-//		console.log(this.props.location.state)
+		console.log(this.props.location.state)
 		//loading模块
 		this.setState({showLoading:true});
-		httpAjax.get(API_URL+"/mobile/sort/product.php").query('?type=getDetails&value='+this.props.location.state).then((res) => {
+		httpAjax.get("http://10.3.137.248:888/api/mobile/sort/product.php").query('?type=getDetails&value='+this.props.location.state).then((res) => {
 			let resObj = JSON.parse(res.text)[0];
 //			console.log(resObj);
 			this.setState({
@@ -64,8 +176,7 @@ class detailsComponent extends React.Component {
 				showLoading:false,
 				userObj:userObj,
 				isHasCollect:false,
-				userCollect:[],
-				carNums:0
+				userCollect:[]
 			});
 			if(this.state.userObj){
 				let userCollect = this.state.userObj.user_collect.split(',');
@@ -73,17 +184,6 @@ class detailsComponent extends React.Component {
 				let isHasCollect = userCollect.some(item => {return item === resObj.id});
 				if(isHasCollect){this.refs.favorLi.className = "add-favor has-favor";}
 				this.setState({userCollect:userCollect,isHasCollect:isHasCollect});
-				//购物车
- 				httpAjax.get("http://10.3.137.248:888/api/mobile/buycar/buycar.php")
- 				.query('username='+this.state.userObj.username)
- 				.then((res) => {
- 				var buycarLi  = JSON.parse(res.text).length == 0 ? [] : JSON.parse(JSON.parse(res.text)[0].list);
- 					var carNums=0;
- 					buycarLi.forEach(function(item){
- 						carNums += item.amount;
- 					});
- 					this.setState({carNums:carNums});
- 				});
 			}
 		});
 //		console.log('商品Id',this.props.location.state);
@@ -92,7 +192,7 @@ class detailsComponent extends React.Component {
 //		});
 	}
 	componentDidMount(){
-//		console.log(1,this.refs.indexCont)
+		console.log(1,this.refs.indexCont)
 //		this.refs.indexCont.click();
 	}
 	componentDidMount(){
@@ -128,9 +228,6 @@ class detailsComponent extends React.Component {
 	}
 	//收藏相关
 	changeFavor(){
-		if(!this.state.userObj){
-			hashHistory.push('/login');
-		}
 		let favor = this.refs.favorLi;
 		let colletGoods = this.state.userCollect;
 		if(this.state.isHasCollect){
@@ -149,16 +246,13 @@ class detailsComponent extends React.Component {
 		this.setState({userCollect:colletGoods});
 		if(this.state.userObj){
 //				console.log(this.state.userObj)
-			httpAjax.get(API_URL+"/mobile/my/goodsCollect.php")
+			httpAjax.get("http://10.3.137.248:888/api/mobile/my/goodsCollect.php")
 			.query('username='+this.state.userObj.username+'&goodsId='+colletGoods.join(','))
-			.then((res) => {});
+			.then((res) => {console.log(res.text)});
 		}
 	}
 	//购物车相关
-	addCart(e){
- 		if(e.target.className=="bottom cart-bot"){
- 			this.setState({goodChoiceHeight:'0',goodChoiceBottom:'-100%'})
-		}
+	addCart(){
 		if(!this.state.userObj){
 			hashHistory.push('/login');
 		}else{
@@ -170,8 +264,7 @@ class detailsComponent extends React.Component {
 				amount:this.state.goodsNum,
 				product_image:this.state.detailGood.product_image
 			}
-			this.setState({carNums:this.state.goodsNum+this.state.carNums});
-			httpAjax.get(API_URL+"/mobile/buycar/buycar.php")
+			httpAjax.get("http://10.3.137.248:888/api/mobile/buycar/buycar.php")
 			.query('username='+this.state.userObj.username)
 			.then((res) => {
 				// console.log(JSON.parse(res.text).length)
@@ -186,7 +279,7 @@ class detailsComponent extends React.Component {
 				if(!carhas){
 					buycarLi.push(carli);
 				}
-				httpAjax.get(API_URL+"/mobile/buycar/buycar.php")
+				httpAjax.get("http://10.3.137.248:888/api/mobile/buycar/buycar.php")
 				.query('username='+this.state.userObj.username+'&list='+JSON.stringify(buycarLi))
 				.then((res) => {
 					// console.log(JSON.parse(res.text))
@@ -208,7 +301,6 @@ class detailsComponent extends React.Component {
 				amount:this.state.goodsNum,
 				product_image:this.state.detailGood.product_image
 			}
-			this.setState({carNums:this.state.goodsNum+this.state.carNums});
 			httpAjax.get("http://10.3.137.248:888/api/mobile/buycar/buycar.php")
 			.query('username='+this.state.userObj.username)
 			.then((res) => {
@@ -256,7 +348,7 @@ class detailsComponent extends React.Component {
 			let num = this.state.goodsNum-1;
 			this.setState({goodsNum:num})
 		}else{
-//			console.log('商品数量不能小于1')
+			console.log('商品数量不能小于1')
 		}
 	}
 	addNum(){
@@ -264,7 +356,7 @@ class detailsComponent extends React.Component {
 			let num = this.state.goodsNum+1;
 			this.setState({goodsNum:num})
 		}else{
-//			console.log('商品数量已超过该商品库存')
+			console.log('商品数量已超过该商品库存')
 		}
 	}
     render(){
@@ -331,7 +423,7 @@ class detailsComponent extends React.Component {
 					<ul>
 						<li className="to-home"><Link to="/home"><Icon type="home"  style={{ fontSize: 20, color: '#555555' }}/>首页</Link></li>
 						<li className="add-favor" onClick={this.changeFavor.bind(this)} ref="favorLi"><Icon type="star-o"  style={{ fontSize: 20, color: '#555555' }}/><Icon type="star"  style={{ fontSize: 20, color: '#FFCE42' }}/><span>收藏</span></li>
-						<li className="cart-list"><Link to="/buycar"><Icon type="shopping-cart"  style={{ fontSize: 20, color: '#555555' }}/>购物车</Link>{!this.state.carNums?null:<span className="car-nums">{this.state.carNums}</span>}</li>
+						<li className="cart-list"><Link to="/buycar"><Icon type="shopping-cart"  style={{ fontSize: 20, color: '#555555' }}/>购物车</Link></li>
 					</ul>
 					<ul>
 						<li className="add-cart" onClick={this.addCart.bind(this)}>加入购物车</li>
@@ -352,7 +444,7 @@ class detailsComponent extends React.Component {
 								<img src={IMGURL+"/product/"+this.state.detailGood.product_image} />
 								<div className="text">
 									<p>{this.state.detailGood.product_name}</p>
-									<span className="price">￥{(this.state.detailGood.product_origin_price*this.state.detailGood.product_discount).toFixed(0)}</span>
+									<span className="price">￥{this.state.detailGood.product_origin_price*this.state.detailGood.product_discount}</span>
 								</div>
 								<Icon  className="hide-good-choice" type="close" onClick={this.hideGoodChoice.bind(this)}/>
 							</div>
@@ -385,7 +477,7 @@ class detailsComponent extends React.Component {
 									</div>
 								</div>
 							</div>
-							<div className="bottom cart-bot" onClick={this.addCart.bind(this)}>加入购物车</div>
+							<div className="bottom" onClick={this.addCart.bind(this)}>加入购物车</div>
 						</div>
 					</div>
 				}

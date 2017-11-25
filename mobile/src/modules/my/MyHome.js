@@ -24,18 +24,18 @@ class MyComponent extends React.Component {
         }
     }
     componentWillMount() {
-        // this.props.MyActions().then(response=>{
-        //     if(response){
-        //         const res =JSON.parse(response)
-        //         if(res.start==true){
-        //             sessionStorage.setItem('user', response);
-        //             this.setState({show:response});
-        //             console.log(response)
-        //         }else{
-        //             sessionStorage.removeItem('user');
-        //         }
-        //     }
-        // })
+        this.props.MyActions().then(response=>{
+            if(response){
+                const res =JSON.parse(response)
+                if(res.start==true){
+                    sessionStorage.setItem('user', response);
+                    this.setState({show:response});
+                    console.log(response)
+                }else{
+                    sessionStorage.removeItem('user');
+                }
+            }
+        })
 
         var token = sessionStorage.getItem('user');
         if (token) {
@@ -49,7 +49,7 @@ class MyComponent extends React.Component {
         }
     }
     linkTo(e) {
-        var loginstate = JSON.parse(this.props.show)
+        var loginstate = JSON.parse(sessionStorage.getItem('user'))
         console.log(loginstate.start)
         if (loginstate.start == "用户不存在") {
             hashHistory.push("/login")
@@ -64,11 +64,9 @@ class MyComponent extends React.Component {
         }
     }
     render() {
-        return ( <
-            div className = "personalBox"
-            onClick = { this.linkTo.bind(this) } >
-            <
-            div className = "personalHead" >
+        return ( 
+            <div className = "personalBox" onClick = { this.linkTo.bind(this) } >
+            <div className = "personalHead" >
             <h3 > 我 < /h3>  </div>  <div className = "personalMain" onClick = { this.quitLogin.bind(this) } >
             <div className = "pMainHead" >
             <div > < img src = "./src/asset/login.jpg" / > < /div> 
@@ -105,10 +103,7 @@ class MyComponent extends React.Component {
             < /div > 
             <div className = "rightIcon"id = "mySecurity" >
             <Icon type = "safety"style = {{ fontSize: 20, color: '#58bc58' }}/> &nbsp;&nbsp;账户安全<span><Icon type="right" / > < /span> 
-            < /div > <div className = "rightIcon" >
-            <Icon type = "menu-unfold"style = {{ fontSize: 20, color: '#58bc58' }}/>&nbsp;&nbsp;关于大宝家具<span><Icon type="right" / > < /span> < /div >
-
-
+            < /div > 
             </div>
 
             <QuitLogin loginShow = { this.state.show }/>  < /div > <FooterComponent / >
