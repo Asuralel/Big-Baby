@@ -6,18 +6,27 @@ import DatagridComponent from '../datagrid/DatagridComponent';
 import {Router,Route,Link} from "react-router";
 
 
-class UserComponent extends React.Component{
+class UsersComponent extends React.Component{
+    // componentDidMount(){
+        
+    //     this.props.UserInit();
+    // }
+
     render(){
         return (
             
 
-                <DatagridComponent url="http://localhost/big_baby/api//web/user/user.php" 
-                delete_url="http://localhost/big_baby/api//web/user/deleteUser.php"  
-                update_url="http://localhost/big_baby/api//web/user/updateUser.php" 
-                title='user_name,user_gender,user_phone,user_account,user_password,user_time'/>
+                <DatagridComponent url="http://localhost/big_baby/api//web/users/user.php" 
+                delete_url="http://localhost/big_baby/api//web/users/deleteUser.php"  
+                update_url="http://localhost/big_baby/api//web/users/updateUser.php" 
+                title='user_name,user_gender,user_phone,user_account,user_sign,user_collect'/>
             )
     }
 }
+
+
+
+
 
 const mapStateToProps = function(state){
     return {

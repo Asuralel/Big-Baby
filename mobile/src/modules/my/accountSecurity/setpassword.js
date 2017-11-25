@@ -5,7 +5,7 @@ import {Icon } from 'antd';
 
 import * as EditAtions from "../myset/address/addressEdit/editAction"
 import Historyback from "../../buycar/HistorybackComponent" 
-import myaddress from "../myset/address/addressEdit/addressedit";
+import myaddress from "../myset/address/addressEdit/addressEdit";
 import MaskComponent from "../../login/Mask";
 
 class MyEditComponent extends React.Component{

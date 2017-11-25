@@ -9,6 +9,7 @@ import UserComponent from "./modules/user/UserComponent";
 import OrderComponent from "./modules/order/OrderComponent";
 import RegisterComponent from "./modules/register/RegisterComponent";
 import BuycarComponent from "./modules/buycar/BuycarComponent";
+import UsersComponent from "./modules/users/UsersComponent";
 
 
  // onEnter={enterFun}
@@ -22,6 +23,7 @@ export default (
 	        <Route path="/user" component={UserComponent} />
 	        <Route path="/order" component={OrderComponent} />
           <Route path="/buycar" component={BuycarComponent} />
+          <Route path="/users" component={UsersComponent} />
     	</Route>
     </Route>
 )

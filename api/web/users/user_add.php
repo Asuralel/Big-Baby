@@ -3,19 +3,19 @@
 
 	include '../../common/connect.php';
 	
-	// $user_address = isset($_REQUEST['user_address']) ? $_REQUEST['user_address'] : '';
-	// $user_sign = isset($_REQUEST['user_sign']) ? $_REQUEST['user_sign'] : '';
-	// $user_collect = isset($_REQUEST['user_collect']) ? $_REQUEST['user_collect'] : '';
-	// $head_image = isset($_REQUEST['head_image']) ? $_REQUEST['head_image'] : '';
-	// $user_order = isset($_REQUEST['user_order']) ? $_REQUEST['user_order'] : '';
-	// $user_id = isset($_REQUEST['user_id']) ? $_REQUEST['user_id'] : '';
 	$user_name = isset($_REQUEST['user_name']) ? $_REQUEST['user_name'] : '';
 	$user_gender = isset($_REQUEST['user_gender']) ? $_REQUEST['user_gender'] : '';
 	$user_phone = isset($_REQUEST['user_phone']) ? $_REQUEST['user_phone'] : '';
+	$user_address = isset($_REQUEST['user_address']) ? $_REQUEST['user_address'] : '';
+	$user_sign = isset($_REQUEST['user_sign']) ? $_REQUEST['user_sign'] : '';
+	$user_collect = isset($_REQUEST['user_collect']) ? $_REQUEST['user_collect'] : '';
+	$head_image = isset($_REQUEST['head_image']) ? $_REQUEST['head_image'] : '';
+	$user_order = isset($_REQUEST['user_order']) ? $_REQUEST['user_order'] : '';
 	$user_account = isset($_REQUEST['user_account']) ? $_REQUEST['user_account'] : '';
 	$user_password = isset($_REQUEST['user_password']) ? $_REQUEST['user_password'] : '';
 	$user_identify = isset($_REQUEST['user_identify']) ? $_REQUEST['user_identify'] : '';
 	$user_time = isset($_REQUEST['user_time']) ? $_REQUEST['user_time'] : '';
+	$user_id = isset($_REQUEST['user_id']) ? $_REQUEST['user_id'] : '';
 	$arr=rand(1,1000);
 	$id = isset($_REQUEST['id']) ? $_REQUEST['id'] : $arr;
 
@@ -49,7 +49,7 @@
 		 
 		// $password = password_hash($password,PASSWORD_DEFAULT);
 
-		$sql = "insert into user (id,user_name,user_password,user_phone,user_gender,user_identify,user_account,user_time) values('$id','$user_name','$user_password','$user_phone','$user_gender','$user_identify','$user_account','$user_time')";
+		$sql = "insert into users (id,user_id,user_name,user_password,user_phone,user_gender,user_address,user_identify,user_account,user_sign,user_collect,head_image,user_order,user_time) values('$id','$user_id','$user_name','$user_password','$user_phone','$user_gender','$user_address','$user_identify','$user_account','$user_sign','$user_collect','$head_image','$user_order','$user_time')";
 
 		// 获取查询结果
 		$result = $conn->query($sql);
