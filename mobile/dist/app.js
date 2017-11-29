@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "f97ed7ff830b922c2116"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "9d1cb453c034659810d3"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -22401,7 +22401,7 @@ exports.default = _react2.default.createElement(
     _react2.default.createElement(_reactRouter.Route, { path: 'buycar', component: _BuycarComponent2.default }),
     _react2.default.createElement(_reactRouter.Route, { path: 'account', component: _AccountComponent2.default }),
     _react2.default.createElement(_reactRouter.Route, { path: 'pay/:order_num', component: _PayComponent2.default }),
-    _react2.default.createElement(_reactRouter.Route, { path: 'home', component: _homeComponent2.default }),
+    _react2.default.createElement(_reactRouter.IndexRoute, { component: _homeComponent2.default }),
     _react2.default.createElement(
         _reactRouter.Route,
         { path: 'my', component: _myComponent2.default },
