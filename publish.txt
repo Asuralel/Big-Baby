@@ -5,3 +5,12 @@
 
 
 移动端basrUrl放在：mobile => src => modules => common
+
+
+
+github地址：git@github.com:Asuralel/Big-Baby.git
+
+或：https://github.com/Asuralel/Big-Baby.git
+
+
+小组成员：陈文贵、黄杏连、李发强、刘文祥、黄伟斌、张升貌
